@@ -1,64 +1,61 @@
 <!doctype html>
 <html class="no-js" lang="">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<title></title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link rel="apple-touch-icon" href="apple-touch-icon.png">
-        <!-- Place favicon.ico in the root directory -->
+	<link rel="apple-touch-icon" href="apple-touch-icon.png">
+	<!-- Place favicon.ico in the root directory -->
 
-        <link rel="stylesheet" href="css/main.css">
-        <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+	<link rel="stylesheet" href="css/main.css">
+	<link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 
+	<!-- Leaflet Js -->
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
+	<script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
 
-    </head>
-    <body>
-        <!--[if lt IE 8]>
-            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
+</head>
+<body>
+	<!--[if lt IE 8]>
+	<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+	<![endif]-->
 
-        <!-- Add your site or application content here -->
-        <div id="website">
+	<!-- Add your site or application content here -->
+	<div id="website">
+		<div id="header">
+			<h1>Hello there! This is the Precious Plastic map.</h1>
+			<div id="content">
+				<p>We are setting up a network that makes it easier to start recycling plastic.</p>
+			</div>
+		</div>
 
-            <div id="header">
-          <h1>Hello there! This is the Precious Plastic map.</h1>
-          <div id="content">
-            <p>We are setting up a network that makes it easier to start recycling plastic.</p>
-            </div>
-</div>
-    <div id="map">
-        <iframe src="https://www.google.com/maps/d/embed?mid=1Kkjfkde4xzOy1fi5aiAF5rr7YX0&hl=en" width="1000px" height="600px"></iframe>
-</div>
-    <div id="content">
-    <p>  On this map we gather everyone that build a set or a single machine. If you build on or now someone that built it. Send us a mail or add it to the list yourself. Don't break anything :)</p>
-      </div>
+		<div id="map">
+			<iframe src="https://www.google.com/maps/d/embed?mid=1Kkjfkde4xzOy1fi5aiAF5rr7YX0&hl=en" width="1000px" height="600px"></iframe>
+		</div>
 
+		<div id="content">
+			<p>  On this map we gather everyone that build a set or a single machine. If you build on or now someone that built it. Send us a mail or add it to the list yourself. Don't break anything :)</p>
+		</div>
 
-      <div id="content">
-      <h1>Material map</h1>
-      </div>
-
-
-      <div id="map">
-<iframe src="https://www.google.com/maps/d/u/0/embed?mid=1PC4A4JhOA7aXxGQBrEQ9be7vqQc" width="1000" height="600"></iframe>
-    </div>
-      <div id="content">
-      <p>  This is our database of machine builders, shops, lasercutters, scrapyards that people added all over the world. Sharing this information makes it much easier for others to get started. Contribute the things you learned or found and <a href="https://drive.google.com/open?id=1PC4A4JhOA7aXxGQBrEQ9be7vqQc&usp=sharing">add them</a> to the map (make sure to login your google account)</p>
-        </div>
+		<div id="content">
+			<h1>Material map</h1>
+		</div>
 
 
+		<div id="map">
+			<iframe src="https://www.google.com/maps/d/u/0/embed?mid=1PC4A4JhOA7aXxGQBrEQ9be7vqQc" width="1000" height="600"></iframe>
+		</div>
+		<div id="content">
+			<p>  This is our database of machine builders, shops, lasercutters, scrapyards that people added all over the world. Sharing this information makes it much easier for others to get started. Contribute the things you learned or found and <a href="https://drive.google.com/open?id=1PC4A4JhOA7aXxGQBrEQ9be7vqQc&usp=sharing">add them</a> to the map (make sure to login your google account)</p>
+		</div>
 
-
-        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-</div>
-
-<script type=’text/javascript’ src=’hhttp://lab.preciousplastic.com//js’></script>
-
-
-
-    </body>
+		<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+	</div>
+	<script type=’text/javascript’ src=’hhttp://lab.preciousplastic.com//js’></script>
+	<script type="text/javascript" src="map.js"></script>
+</body>
 </html>
