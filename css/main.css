@@ -66,3 +66,9 @@ h1 {
    http://www.phpied.com/delay-loading-your-print-css/
    ========================================================================== */
 }
+
+.ppmap {
+	width: 350px;
+	height: 350px;
+	background-color: #333333;
+}
