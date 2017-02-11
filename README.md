@@ -15,4 +15,4 @@ python -m SimpleHTTPServer 8000
 
 this page is also live at
 
->https://map.preciousplastic.com/
+>map.preciousplastic.com
