@@ -4,12 +4,23 @@ Building a database of plastic recyclers (https://map.preciousplastic.com)
 
 ## Development
 
+Install Node.JS (All OS)
+
+https://nodejs.org/en/download/package-manager/
+
+Check instalation
+```sh
+$ nodejs -v
+v6.9.5 (or higher)
+$ npm -v
+4.2.0 (or higher)
+```
+
 Clone repository
 ```sh
 $ git clone git@github.com:hakkens/precious-plastic-map.git
 ```
-
-Install dependencies
+Go to the folder and install dependencies
 ```sh
 $ npm install
 ```
