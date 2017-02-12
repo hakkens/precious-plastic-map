@@ -1,0 +1,27 @@
+#layers {
+  z-index: 400;
+  position: absolute;
+  top: 20px;
+  left: 100px;
+  background: #fff;
+  box-shadow: 0 0 20px #888;
+  .logo {
+    text-align: center;
+    background: #fff;
+    padding: 50px 50px 25px 50px;
+  }
+  .logo img {
+    width: 100px;
+    height: auto;
+  }
+  .layers-form{
+    background: #EDEFEC;
+    padding: 25px 50px 50px 50px;
+  }
+  .layer-checkboxes {
+    color: #E68483;
+  }
+  .layer-checkboxes input[type="checkbox"] {
+    margin: 15px 10px 15px 0px;
+  }
+}

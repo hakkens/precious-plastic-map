@@ -11,7 +11,7 @@ var sassOptions = {
 
 gulp.task('sass', function () {
   return gulp
-    // Find all `.scss` files from the `stylesheets/` folder
+    // Find all `.scss` files from the `css/sass/` folder
     .src(input)
     // Run Sass on those files
     .pipe(sass())

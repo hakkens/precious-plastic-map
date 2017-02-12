@@ -17,9 +17,8 @@ var map = new L.Map('map', {
 // setup map options here
 
 var ppIcon = L.icon({
-    iconUrl: 'images/logo.png',
-    iconSize:     [50, 50], // size of the icon
-    // iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+    iconUrl: 'images/icon.png',
+    iconSize: [50, 50], // size of the icon
     popupAnchor:  [0, -20] // point from which the popup should open relative to the iconAnchor
 });
 
