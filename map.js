@@ -22,7 +22,7 @@ var ppIcon = L.icon({
     popupAnchor:  [0, -20] // point from which the popup should open relative to the iconAnchor
 });
 
-var marker = L.marker([52.3707599, 4.889869200000021], {icon: ppIcon}).addTo(map).bindPopup("Capital Apartments.");;
+var marker = L.marker([52.3707599, 4.889869200000021], {icon: ppIcon}).addTo(map).bindPopup("Capital Apartments.");
 
 // locate module
 var lc = L.control.locate({
