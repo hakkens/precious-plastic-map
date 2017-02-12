@@ -18,8 +18,8 @@ var map = new L.Map('map', {
 
 var ppIcon = L.icon({
     iconUrl: 'images/icon.png',
-    iconSize: [50, 50], // size of the icon
-    popupAnchor:  [0, -20] // point from which the popup should open relative to the iconAnchor
+    // iconSize: [50, 50], // size of the icon
+    popupAnchor:  [25, 0] // point from which the popup should open relative to the iconAnchor
 });
 
 var marker = L.marker([52.3707599, 4.889869200000021], {icon: ppIcon}).addTo(map).bindPopup("Capital Apartments.");
