@@ -20,6 +20,12 @@ Clone repository
 ```sh
 $ git clone git@github.com:hakkens/precious-plastic-map.git
 ```
+
+Install gulp-cli
+```sh
+$ npm install gulp-cli -g
+```
+
 Go to the folder and install dependencies
 ```sh
 $ npm install

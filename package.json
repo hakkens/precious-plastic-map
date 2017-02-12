@@ -18,6 +18,7 @@
   "homepage": "https://map.preciousplastic.com",
   "devDependencies": {
     "gulp": "^3.9.0",
-    "gulp-sass": "^2.1.1"
+    "gulp-sass": "^2.1.1",
+    "gulp-cli": "^1.2.2"
   }
 }
