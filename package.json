@@ -1,0 +1,23 @@
+{
+  "name": "precious-plastic-map",
+  "version": "1.0.0",
+  "description": "Precious Plastic Map",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hakkens/precious-plastic-map.git"
+  },
+  "author": "Precious Plastic",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hakkens/precious-plastic-map/issues"
+  },
+  "homepage": "https://map.preciousplastic.com",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-sass": "^2.1.1"
+  }
+}
