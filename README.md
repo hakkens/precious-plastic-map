@@ -1,18 +1,34 @@
-# preciousplastic-network
+# Precious Plastic Network
 
-building a database of plastic recyclers
+Building a database of plastic recyclers (https://map.preciousplastic.com)
 
-# dev
+## Development
 
-git clone this repo
-use your favorit tool to render the site
+Clone repository
+```sh
+$ git clone git@github.com:hakkens/precious-plastic-map.git
+```
 
-```python
-python -m SimpleHTTPServer 8000
+Install dependencies
+```sh
+$ npm install
+```
+
+Run Gulp while you are working
+```sh
+$ gulp
+```
+
+Use your favorit tool to render the site:
+
+```sh
+$ python -m SimpleHTTPServer 8000
 
 # open your web browser to localhost:8000/map.html
 ```
 
-this page is also live at
+```sh
+$ ruby -run -e httpd . -p 8000
 
->map.preciousplastic.com
+# open your web browser to localhost:8000/map.html
+```
