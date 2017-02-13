@@ -1,18 +1,51 @@
-# preciousplastic-network
+# Precious Plastic Network
 
-building a database of plastic recyclers
+Building a database of plastic recyclers (https://map.preciousplastic.com)
 
-# dev
+## Development
 
-git clone this repo
-use your favorit tool to render the site
+Install Node.JS (All OS)
 
-```python
-python -m SimpleHTTPServer 8000
+https://nodejs.org/en/download/package-manager/
+
+Check instalation
+```sh
+$ nodejs -v
+v6.9.5 (or higher)
+$ npm -v
+4.2.0 (or higher)
+```
+
+Clone repository
+```sh
+$ git clone git@github.com:hakkens/precious-plastic-map.git
+```
+
+Install gulp-cli
+```sh
+$ npm install gulp-cli -g
+```
+
+Go to the folder and install dependencies
+```sh
+$ npm install
+```
+
+Run Gulp while you are working
+```sh
+$ gulp
+```
+
+Use your favorit tool to render the site:
+
+```sh
+$ python -m SimpleHTTPServer 8000
 
 # open your web browser to localhost:8000/map.html
 ```
 
-this page is also live at
+```sh
+$ ruby -run -e httpd . -p 8000
 
->map.preciousplastic.com
+# open your web browser to localhost:8000/map.html
+```

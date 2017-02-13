@@ -1,15 +1,15 @@
-<!doctype html>
+<!DOCTYPE html>
 <html class="no-js" lang="us">
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta charset="utf-8">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
-	<title>Precious Plastic Map beta</title>
+	<title>Precious Plastic Map Beta</title>
 	<meta name="description" content="Precious Plastic Map beta">
 	<link rel="apple-touch-icon" href="apple-touch-icon.png">
-	<!-- Place favicon.ico in the root directory -->
+  <link rel="icon" type="image/png" href="images/icon.png">
 
-	<link rel="stylesheet" href="css/map.css">
+	<link rel="stylesheet" href="css/index.css">
 	<link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 
@@ -27,49 +27,51 @@
 </head>
 <body>
 	<div id="map"></div>
-
   <div id="layers">
     <div class="logo">
       <img src="images/logo.png">
-      <h3 class="title">Precious Plastic <br> Network</h3>
     </div>
-    <form class="layers-form">
-      <h3>Layers</h3>
-      <ul class="list-unstyled layer-checkboxes">
-        <li>
-          <label>
-            <input type="checkbox" name="machine-builder" value="machine-builder">
-            Machine Builder
-          </label>
-        </li>
-        <li>
-          <label>
-            <input type="checkbox" name="workshow" value="workshow">
-            Workshow
-          </label>
-        </li>
-        <li>
-          <label>
-            <input type="checkbox" name="buy-plastic" value="buy-plastic">
-            Buy Plastic
-          </label>
-        </li>
-        <li>
-          <label>
-            <input type="checkbox" name="sell-plastic" value="sell-plastic">
-            Sell Plastic
-          </label>
-        </li>
-        <li>
-          <label>
-            <input type="checkbox" name="collect" value="collect">
-            Collect
-          </label>
-        </li>
-      </ul>
-      <input type="text" class="search" placeholder="&#xf002;">
-      <input type="submit" class="btn btn-block btn-primary" value="ADD PIN">
+    <form class="search-form">
+      <input type="text" class="search" placeholder="&#xf002; Search Precious Plastic world">
     </form>
+    <div class="layers-form">
+      <h3 class="title">Filter</h3>
+      <form>
+        <ul class="list-unstyled layer-checkboxes">
+          <li>
+            <label>
+              <input type="checkbox" name="machine-builder" value="machine-builder">
+              Machine Builder
+            </label>
+          </li>
+          <li>
+            <label>
+              <input type="checkbox" name="workshop" value="workshop">
+              Workshop
+            </label>
+          </li>
+          <li>
+            <label>
+              <input type="checkbox" name="buy-plastic" value="buy-plastic">
+              Buy Plastic
+            </label>
+          </li>
+          <li>
+            <label>
+              <input type="checkbox" name="sell-plastic" value="sell-plastic">
+              Sell Plastic
+            </label>
+          </li>
+          <li>
+            <label>
+              <input type="checkbox" name="collect" value="collect">
+              Collect
+            </label>
+          </li>
+        </ul>
+        <input type="submit" class="btn btn-block btn-primary" value="ADD PIN">
+      </form>
+    </div>
   </div>
 
   <!-- Map JS -->
