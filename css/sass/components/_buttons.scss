@@ -2,7 +2,7 @@
   display: inline-block;
   font-family: 'Varela Round', sans-serif;
   font-weight: 400;
-  font-size: 28px;
+  font-size: 16px;
   line-height: 1.25;
   text-align: center;
   white-space: nowrap;
@@ -21,10 +21,14 @@
 .btn-block {
   width: 100%;
 }
+.btn-lg {
+  font-size: 28px;
+}
 .btn-primary {
-  color: #fff;
+  color: #fff !important;
   background-color: $primary-color;
   border-color: $primary-color;
+  text-decoration: none;
   &:hover {
     color: #fff;
     background-color: $primary-color;

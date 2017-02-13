@@ -2,11 +2,29 @@
 $primary-color: #F58D8E;
 $text-color: #55585A;
 
+// Layers
 $layers: $text-color;
 $layers-cb-selected: $primary-color;
 $layers-cb-hover: $primary-color;
 $layers-border-color: #D4D8DA;
 
-$paragraph: $text-color;
+// Fonts
+$varela: 'Varela Round', sans-serif;
+$open-sans: 'Open Sans', sans-serif;
 
-$hashtag: $primary-color;
+// Popup
+$name-color: $primary-color;
+$name-font-size: 14px;
+$name-font-family: $open-sans;
+
+$paragraph-color: $text-color;
+$paragraph-font-size: 14px;
+$paragraph-font-family: $varela;
+
+$layer-list-color: $primary-color;
+$layer-list-font-size: 14px;
+$layer-list-font-family: $varela;
+
+$hashtag-color: $primary-color;
+$hashtag-font-size: 12px;
+$hashtag-font-family: $varela;

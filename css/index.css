@@ -10,7 +10,7 @@ ol {
   display: inline-block;
   font-family: 'Varela Round', sans-serif;
   font-weight: 400;
-  font-size: 28px;
+  font-size: 16px;
   line-height: 1.25;
   text-align: center;
   white-space: nowrap;
@@ -29,10 +29,14 @@ ol {
 .btn-block {
   width: 100%; }
 
+.btn-lg {
+  font-size: 28px; }
+
 .btn-primary {
-  color: #fff;
+  color: #fff !important;
   background-color: #F58D8E;
-  border-color: #F58D8E; }
+  border-color: #F58D8E;
+  text-decoration: none; }
   .btn-primary:hover {
     color: #fff;
     background-color: #F58D8E;
@@ -96,7 +100,10 @@ ol {
   transition: all .2s ease-in-out; }
   .search:focus {
     width: calc(100% - 10px);
-    outline: none; }
+    outline: none;
+    border-radius: 0;
+    border-right: 0;
+    border-left: 0; }
 
 .search[placeholder] {
   font-family: 'FontAwesome', 'Open Sans';
@@ -106,6 +113,12 @@ ol {
 .list-unstyled {
   list-style: none;
   padding: 0; }
+
+.list-inline li {
+  padding-left: 0;
+  list-style: none;
+  margin-left: 5px;
+  display: inline-block; }
 
 #map {
   height: 100vh;
@@ -117,12 +130,35 @@ ol {
     #map .leaflet-marker-icon:hover {
       width: 75px;
       height: 75px; }
-
-
-			/*Leaflet custom overiding*/
-			.uiconPopupcss .leaflet-popup-tip,
-			.uiconPopupcss .leaflet-popup-content-wrapper {
-					background: #3D3D3D;
-					color: #F8F9F9;
-					text-align: center;
-			}
+  #map .custom .leaflet-popup-content-wrapper {
+    width: 350px;
+    box-shadow: 0 2px 4px #000;
+    border-radius: 2px; }
+    #map .custom .leaflet-popup-content-wrapper .leaflet-popup-content {
+      margin: 15px; }
+    #map .custom .leaflet-popup-content-wrapper .name {
+      font-family: "Open Sans", sans-serif;
+      font-size: 14px;
+      color: #F58D8E;
+      text-transform: uppercase; }
+    #map .custom .leaflet-popup-content-wrapper .layer-list {
+      font-family: "Varela Round", sans-serif;
+      font-size: 14px;
+      color: #F58D8E;
+      list-style: none;
+      margin-bottom: 15px; }
+    #map .custom .leaflet-popup-content-wrapper .paragraph {
+      font-family: "Varela Round", sans-serif;
+      font-size: 14px;
+      color: #55585A; }
+    #map .custom .leaflet-popup-content-wrapper .details {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px; }
+    #map .custom .leaflet-popup-content-wrapper .hashtag {
+      font-family: "Varela Round", sans-serif;
+      font-size: 12px;
+      color: #F58D8E;
+      text-decoration: none; }
+      #map .custom .leaflet-popup-content-wrapper .hashtag:hover {
+        text-decoration: underline; }

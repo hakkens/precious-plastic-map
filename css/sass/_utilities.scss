@@ -1,4 +1,13 @@
+// Lists
 .list-unstyled {
   list-style: none;
   padding: 0;
+}
+.list-inline {
+  li {
+    padding-left: 0;
+    list-style: none;
+    margin-left: 5px;
+    display: inline-block;
+  }
 }
