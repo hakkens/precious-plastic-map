@@ -49,38 +49,45 @@ ol {
     border-color: #F58D8E; }
 
 #layers {
-  min-width: 250px;
-  z-index: 400;
-  position: absolute;
-  top: 50px;
-  left: 50px;
-  background: #fff;
-  box-shadow: 0 2px 14px 0 rgba(0, 0, 0, 0.5);
-  border: 1px solid #D4D8DA;
-  font-family: 'Varela Round', sans-serif; }
-  #layers .logo {
-    text-align: center;
-    background: #fff;
-    padding: 15px;
-    border-bottom: 1px solid #D4D8DA; }
-  #layers .logo img {
-    width: 100px;
-    height: auto; }
-  #layers .title {
-    color: #55585A;
-    text-align: center;
-    font-weight: bold;
-    font-size: 20px;
-    margin: 10px 0;
-    margin-top: 20px; }
-  #layers .layers-form {
-    background: #EDEFEC;
-    padding: 15px; }
-  #layers .layer-checkboxes {
-    color: #55585A;
-    margin-bottom: 20px; }
-  #layers .layer-checkboxes input[type="checkbox"] {
-    margin: 15px 10px 0 15px; }
+  display: none; }
+  @media screen and (min-width: 768px) and (max-width: 1024px) {
+    #layers {
+      display: none; } }
+  @media screen and (min-width: 1024px) {
+    #layers {
+      display: block;
+      min-width: 250px;
+      z-index: 400;
+      position: absolute;
+      top: 50px;
+      left: 50px;
+      background: #fff;
+      box-shadow: 0 2px 14px 0 rgba(0, 0, 0, 0.5);
+      border: 1px solid #D4D8DA;
+      font-family: 'Varela Round', sans-serif; }
+      #layers .logo {
+        text-align: center;
+        background: #fff;
+        padding: 15px;
+        border-bottom: 1px solid #D4D8DA; }
+      #layers .logo img {
+        width: 100px;
+        height: auto; }
+      #layers .title {
+        color: #55585A;
+        text-align: center;
+        font-weight: bold;
+        font-size: 20px;
+        margin: 10px 0;
+        margin-top: 20px; }
+      #layers .layers-form {
+        background: #EDEFEC;
+        padding: 15px; }
+      #layers .layer-checkboxes {
+        color: #55585A;
+        margin-bottom: 20px; }
+      #layers .layer-checkboxes input[type="checkbox"] {
+        margin: 15px 10px 0 15px; } }
 
 .search-form {
   position: absolute;
