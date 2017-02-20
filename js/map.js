@@ -57,7 +57,7 @@ function createLayerList(layers) {
     var li = document.createElement("li");
     var icon = document.createElement("i");
     icon.setAttribute("class", "fa " + el.icon);
-    var text = document.createTextNode(` ${el.text}`);
+    var text = document.createTextNode(" " + el.text);
     li.appendChild(icon);
     li.appendChild(text);
     list.appendChild(li);
@@ -73,7 +73,7 @@ function createHashtagList(hashtags, url){
     var ht = document.createElement("a");
     ht.setAttribute('class', 'hashtag');
     ht.setAttribute('href', url);
-    var text = document.createTextNode(`#${el}`);
+    var text = document.createTextNode('#' + el);
     ht.appendChild(text);
     li.appendChild(ht);
     list.appendChild(li);
