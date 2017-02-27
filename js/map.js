@@ -17,7 +17,7 @@ var map = new L.Map('map', {
 
 map.addControl( new L.Control.Search({
   url: 'http://nominatim.openstreetmap.org/search?format=json&q={s}',
-  container: 'findbox',
+  container: 'findbar',
   jsonpParam: 'json_callback',
   propertyName: 'display_name',
   propertyLoc: ['lat','lon'],
@@ -25,7 +25,6 @@ map.addControl( new L.Control.Search({
   collapsed: false,
   initial: false,
   minLength: 2
-  // layer: tileLayer
 }));
 
 // setup map options here
@@ -124,18 +123,18 @@ var lc = L.control.locate({
 lc.start();
 
 // geocoder
-var geocoder = L.Control.geocoder({
-	defaultMarkGeocode: false
-})
-.on('markgeocode', function(e) {
-	var bbox = e.geocode.bbox;
-	var poly = L.polygon([
-		bbox.getSouthEast(),
-		bbox.getNorthEast(),
-		bbox.getNorthWest(),
-		bbox.getSouthWest()
-	])
-.addTo(map);
-	map.fitBounds(poly.getBounds());
-})
-.addTo(map);
+// var geocoder = L.Control.geocoder({
+// 	defaultMarkGeocode: false
+// })
+// .on('markgeocode', function(e) {
+// 	var bbox = e.geocode.bbox;
+// 	var poly = L.polygon([
+// 		bbox.getSouthEast(),
+// 		bbox.getNorthEast(),
+// 		bbox.getNorthWest(),
+// 		bbox.getSouthWest()
+// 	])
+// .addTo(map);
+// 	map.fitBounds(poly.getBounds());
+// })
+// .addTo(map);

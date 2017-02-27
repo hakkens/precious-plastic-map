@@ -117,6 +117,14 @@ ol {
   padding-left: 10px;
   color: #55585A; }
 
+#findbar {
+  display: flex;
+  position: absolute !important;
+  justify-content: center;
+  z-index: 10000;
+  width: 100%;
+  top: 25px; }
+
 .list-unstyled {
   list-style: none;
   padding: 0; }
