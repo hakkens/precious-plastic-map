@@ -13,25 +13,27 @@
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 
 	<!-- Leaflet Js -->
-	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
-	<script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+	<link rel="stylesheet" href="node_modules/leaflet/dist/leaflet.css" />
+	<script src="node_modules/leaflet/dist/leaflet.js"></script>
 
 	<!-- Font-Awesome -->
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
-	<!-- L-locatecontrole https://github.com/domoritz/leaflet-locatecontrol-->
-	<link rel="stylesheet" href="https://domoritz.github.io/leaflet-locatecontrol/dist/L.Control.Locate.min.css" />
-	<script src="https://domoritz.github.io/leaflet-locatecontrol/dist/L.Control.Locate.min.js" charset="utf-8"></script>
+  <link rel="stylesheet" href="node_modules/leaflet.locatecontrol/dist/L.Control.Locate.min.css" />
+  <script src="node_modules/leaflet.locatecontrol/dist/L.Control.Locate.min.js" charset="utf-8"></script>
 
-	<!-- L-locatecontrole https://github.com/perliedman/leaflet-control-geocoder-->
-	<link rel="stylesheet" href="css/Control.Geocoder.css" />
-	<script src="js/Control.Geocoder.js"></script>
+  <link rel="stylesheet" href="node_modules/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+  <script src="node_modules/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
 
-	<link rel="stylesheet" href="css/index.css">
+  <link rel="stylesheet" href="node_modules/leaflet-search/dist/leaflet-search.min.css">
+  <script type="text/javascript" src="node_modules/leaflet-search/dist/leaflet-search.min.js"></script>
+
+  <link rel="stylesheet" href="css/index.css">
 
 </head>
 <body>
-	<div id="map"></div>
+  <div id="findbox"></div>
+  <div id="map"></div>
   <div id="layers">
     <div class="logo">
       <img src="images/logo.png">

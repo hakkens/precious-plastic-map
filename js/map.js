@@ -2,18 +2,31 @@
 
 // set the map tiles layer aspect
 var tileLayer = new L.TileLayer(
-	'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-		'attribution':
-		'&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-	}
+  'https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
+    'attribution':
+    '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+  }
 );
 
 // init the map params on map div
 var map = new L.Map('map', {
-	'center': [45.8, -5.8],
-	'zoom': 3,
-	'layers': [tileLayer]
+  'center': [45.8, -5.8],
+  'zoom': 3,
+  'layers': [tileLayer]
 });
+
+map.addControl( new L.Control.Search({
+  url: 'http://nominatim.openstreetmap.org/search?format=json&q={s}',
+  container: 'findbox',
+  jsonpParam: 'json_callback',
+  propertyName: 'display_name',
+  propertyLoc: ['lat','lon'],
+  marker: L.circleMarker([0,0],{radius:30}),
+  collapsed: false,
+  initial: false,
+  minLength: 2
+  // layer: tileLayer
+}));
 
 // setup map options here
 

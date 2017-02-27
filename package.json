@@ -20,5 +20,11 @@
     "gulp": "^3.9.0",
     "gulp-sass": "^2.1.1",
     "gulp-cli": "^1.2.2"
+  },
+  "dependencies": {
+    "leaflet": "^1.0.3",
+    "leaflet-control-geocoder": "^1.5.4",
+    "leaflet-search": "^2.7.0",
+    "leaflet.locatecontrol": "^0.60.0"
   }
 }
