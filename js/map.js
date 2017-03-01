@@ -1,4 +1,8 @@
-// Leaflet Map
+// Dependencies
+require('leaflet');
+require('leaflet.locatecontrol');
+require('leaflet-control-geocoder');
+require('leaflet-search');
 
 // set the map tiles layer aspect
 var tileLayer = new L.TileLayer(

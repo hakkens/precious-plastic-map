@@ -1,12 +1,18 @@
-var gulp = require('gulp');
-var sass = require('gulp-sass');
+var gulp = require('gulp'),
+    sass = require('gulp-sass');
 
 var input = './css/sass/*.scss';
 var output = './css/';
 
 var sassOptions = {
   errLogToConsole: true,
-  outputStyle: 'expanded'
+  outputStyle: 'expanded',
+  includePaths: [
+    "node_modules/leaflet/dist/leaflet.css",
+    "node_modules/leaflet.locatecontrol/dist/L.Control.Locate.min.css",
+    "node_modules/leaflet-control-geocoder/dist/Control.Geocoder.css",
+    "node_modules/leaflet-search/dist/leaflet-search.min.css"
+  ]
 };
 
 gulp.task('sass', function () {
@@ -14,7 +20,7 @@ gulp.task('sass', function () {
     // Find all `.scss` files from the `css/sass/` folder
     .src(input)
     // Run Sass on those files
-    .pipe(sass())
+    .pipe(sass(sassOptions))
     // Write the resulting CSS in the output folder
     .pipe(gulp.dest(output));
 });
