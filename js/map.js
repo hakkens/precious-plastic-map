@@ -6,7 +6,7 @@ require('leaflet-search');
 
 // set the map tiles layer aspect
 var tileLayer = new L.TileLayer(
-  'https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
+  'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     'attribution':
     '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
   }
