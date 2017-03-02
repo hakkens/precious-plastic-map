@@ -7,6 +7,7 @@
     "build-js": "browserify js/map.js | uglifyjs -mc > build/map.min.js",
     "build": "npm run build-js",
     "watch-js": "watchify js/map.js -o build/map.min.js -dv",
+    "build-css-libs": "cat node_modules/leaflet/dist/leaflet.css > build/libraries.css && cat node_modules/leaflet-control-geocoder/dist/Control.Geocoder.css >> build/libraries.css && cat node_modules/leaflet-search/dist/leaflet-search.src.css >> build/libraries.css && cat node_modules/leaflet.locatecontrol/dist/L.Control.Locate.css >> build/libraries.css",
     "lint": "eslint js/map.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
