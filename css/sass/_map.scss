@@ -10,4 +10,46 @@
       height: 75px;
     }
   }
+  .custom .leaflet-popup-content-wrapper {
+    width: 350px;
+    box-shadow: 0 2px 4px #000;
+    border-radius: 2px;
+    .leaflet-popup-content {
+      margin: 15px;
+    }
+    .name {
+      font-family: $name-font-family;
+      font-size: $name-font-size;
+      color: $name-color;
+      text-transform: uppercase;
+    }
+    .layer-list {
+      font-family: $layer-list-font-family;
+      font-size: $layer-list-font-size;
+      color: $layer-list-color;
+      list-style: none;
+      margin-bottom: 15px;
+    }
+
+    .paragraph {
+      font-family: $paragraph-font-family;
+      font-size: $paragraph-font-size;
+      color: $paragraph-color;
+    }
+    .details {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+
+    }
+    .hashtag {
+      font-family: $hashtag-font-family;
+      font-size: $hashtag-font-size;
+      color: $hashtag-color;
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
 }

@@ -31,7 +31,15 @@ Go to the folder and install dependencies
 $ npm install
 ```
 
-Run Gulp while you are working
+Execute this npm scripts
+```sh
+$ npm run build-css-libs
+```
+
+Run this while you are working
+```sh
+$ npm run watch-js
+```
 ```sh
 $ gulp
 ```

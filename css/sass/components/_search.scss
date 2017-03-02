@@ -17,6 +17,9 @@
   &:focus {
     width: calc(100% - 10px);
     outline: none;
+    border-radius: 0;
+    border-right: 0;
+    border-left: 0;
   }
 }
 .search[placeholder] {
