@@ -5,4 +5,7 @@
   z-index: 10000;
   width: 100%;
   top: 25px;
+  @media screen and (min-width: $desktop) {
+    display: none;
+  }
 }

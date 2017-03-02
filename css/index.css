@@ -153,6 +153,12 @@ ol {
   top: 25px;
 }
 
+@media screen and (min-width: 1024px) {
+  #findbar {
+    display: none;
+  }
+}
+
 .list-unstyled {
   list-style: none;
   padding: 0;
