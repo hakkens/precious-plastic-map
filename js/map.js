@@ -1,8 +1,47 @@
 // Dependencies
+var $ = require('jquery');
 require('leaflet');
 require('leaflet.locatecontrol');
 require('leaflet-control-geocoder');
 require('leaflet-search');
+
+var daveSite = 'http://172.17.0.2/';
+var hashtags = [];
+var services = [];
+function getTaxonomies(){
+  $.ajax({
+    url: daveSite+'wp-json/wp/v2/ppmap_pin_service',
+    dataType: 'json',
+    success:function(json){
+      var layers = $("#layers ul.layer-checkboxes");
+      services = []; 
+      for(var i=0; i<json.length; i++){
+        layers.append('<li><label><input type="checkbox" name="'+ json[i].slug +'" value="'+ json[i].id +'" checked="checked">'+ json[i].name +'</label></li>');
+        services[json[i].id] = {
+          icon: json[i].slug,
+          text: json[i].name
+        }
+      }
+    },
+    error:function(jqXHR, textStatus, errorThrown){
+      console.log(textStatus);
+    }
+  });
+  $.ajax({
+    url: daveSite+'wp-json/wp/v2/ppmap_pin_tag',
+    dataType: 'json',
+    success:function(json){
+      hashtags = []; 
+      for(var i=0; i<json.length; i++){
+        hashtags[json[i].id] = json[i].name;
+      }
+    },
+    error:function(jqXHR, textStatus, errorThrown){
+      console.log(textStatus);
+    }
+  });
+}
+getTaxonomies();
 
 // set the map tiles layer aspect
 var tileLayer = new L.TileLayer(
@@ -43,28 +82,31 @@ var popupOptions = {
   'closeButton' : false
 }
 
-var marker_data = {
-  latlng: [52.3707599, 4.889869200000021],
-  name: "BOPE",
-  paragraph: "Lorem ipsum Elit in nisi ut ut aute nisi eiusmod ad velit elit culpa pariatur enim dolor officia consectetur officia eu sint commodo deserunt culpa minim adipisicing laborum.",
-  layers: [
-    {
-      icon: "fa-wrench",
-      text: "Workshop"
+function getPins(){
+  $.ajax({
+    url: daveSite+'wp-json/wp/v2/map_pins/',
+    dataType: 'json',
+    success:function(json){
+      for(var i=0; i<json.length; i++){
+        var pin = json[i];
+        var marker_data = {
+          latlng: [pin.meta.ppmap_lat, pin.meta.ppmap_lng],
+          name: pin.title.rendered,
+          paragraph: pin.content.rendered.replace(/<(?:.|\n)*?>/gm, ''),
+          layers: pin.ppmap_pin_service,
+          status: pin.meta.ppmap_status,
+          url: pin.meta.ppmap_url,
+          hashtags: pin.ppmap_pin_tag
+        }
+        createMarker(marker_data);
+      }
     },
-    {
-      icon: "fa-cog",
-      text: "Machine Builder"
-    },
-    {
-      icon: "fa-shopping-basket",
-      text: "Shop"
+    error:function(jqXHR, textStatus, errorThrown){
+      console.log(textStatus);
     }
-  ],
-  status: "Open for visit",
-  url: "http://www.bope.th",
-  hashtags: ["Shredder", "Injection", "Extrusion", "Compression"]
+  });
 }
+getPins();
 
 function createLayerList(layers) {
   var list = document.createElement("ul");
@@ -72,8 +114,8 @@ function createLayerList(layers) {
   layers.forEach( function(el, index) {
     var li = document.createElement("li");
     var icon = document.createElement("i");
-    icon.setAttribute("class", "fa " + el.icon);
-    var text = document.createTextNode(" " + el.text);
+    icon.setAttribute("class", "fa " + services[el].icon);
+    var text = document.createTextNode(" " + services[el].text);
     li.appendChild(icon);
     li.appendChild(text);
     list.appendChild(li);
@@ -81,15 +123,15 @@ function createLayerList(layers) {
   return list;
 }
 
-function createHashtagList(hashtags, url){
+function createHashtagList(tags, url){
   var list = document.createElement("ul");
   list.setAttribute('class', 'list-inline');
-  hashtags.forEach( function(el, index) {
+  tags.forEach( function(el, index) {
     var li = document.createElement("li");
     var ht = document.createElement("a");
     ht.setAttribute('class', 'hashtag');
     ht.setAttribute('href', url);
-    var text = document.createTextNode('#' + el);
+    var text = document.createTextNode('#' + hashtags[el]);
     ht.appendChild(text);
     li.appendChild(ht);
     list.appendChild(li);
@@ -108,8 +150,6 @@ function createMarker(data) {
   }, popupOptions);
 }
 
-createMarker(marker_data);
-
 // locate module
 var lc = L.control.locate({
 	position: 'topleft',
@@ -117,7 +157,7 @@ var lc = L.control.locate({
 	drawCircle: false,
 	drawMarker: false,
 	locateOptions: {
-		maxZoom: 12
+		maxZoom: 12.
 	},
 	strings: {
 		title: "Locate Precious Plastic near me"
