@@ -55,6 +55,39 @@ ol {
   background-image: none;
   background-color: #F58D8E;
   border-color: #F58D8E;
+  box-shadow: 0 0 10px #888;
+}
+
+.btn-sign-prev {
+  color: #fff;
+  background-color: #D4D8DA;
+  text-decoration: none;
+  font-family: "Open Sans", sans-serif;
+  font-weight: bold;
+}
+
+.btn-sign-prev:hover {
+  box-shadow: 0 0 20px #888;
+}
+
+.btn-sign-prev:active {
+  box-shadow: 0 0 10px #888;
+}
+
+.btn-sign-next {
+  color: #fff;
+  background-color: #55585A;
+  text-decoration: none;
+  font-family: "Open Sans", sans-serif;
+  font-weight: bold;
+}
+
+.btn-sign-next:hover {
+  box-shadow: 0 0 20px #888;
+}
+
+.btn-sign-next:active {
+  box-shadow: 0 0 10px #888;
 }
 
 #layers {
@@ -156,6 +189,69 @@ ol {
 @media screen and (min-width: 1024px) {
   #findbar {
     display: none;
+  }
+}
+
+#interaction_form {
+  display: none;
+  z-index: 1000;
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  color: #FF0000;
+  background: #fff;
+  font-family: 'Varela Round', sans-serif;
+  color: #55585A;
+}
+
+#interaction_form .close {
+  position: absolute;
+  top: 25px;
+  right: 90px;
+  font-size: 4em;
+  color: #55585A;
+  cursor: pointer;
+}
+
+#interaction_form .close:hover {
+  font-size: 4.1em;
+}
+
+#interaction_form .close:active {
+  font-size: 3.9em;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  #interaction_form {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  #interaction_form .logo img {
+    width: 100px;
+    height: auto;
+  }
+  #interaction_form .title {
+    color: #55585A;
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+    margin: 10px 0;
+    margin-top: 20px;
+  }
+  #interaction_form .layers-form {
+    background: #EDEFEC;
+    padding: 15px;
+  }
+  #interaction_form .layer-checkboxes {
+    color: #55585A;
+    margin-bottom: 20px;
+  }
+  #interaction_form .layer-checkboxes input[type="checkbox"] {
+    margin: 15px 10px 0 15px;
   }
 }
 

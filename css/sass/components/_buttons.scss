@@ -40,5 +40,34 @@
     background-image: none;
     background-color: $primary-color;
     border-color: $primary-color;
+    box-shadow: 0 0 10px #888;
   }
 }
+.btn-sign-prev{
+  color: #fff;
+  background-color: $layers-border-color;
+  text-decoration: none;
+  font-family: $open-sans;
+  font-weight: bold;
+  &:hover {
+    box-shadow: 0 0 20px #888;
+  }
+  &:active {
+    box-shadow: 0 0 10px #888;
+  }
+}
+.btn-sign-next{
+  color: #fff;
+  background-color: $text-color;
+  text-decoration: none;
+  font-family: $open-sans;
+  font-weight: bold;
+  &:hover {
+    box-shadow: 0 0 20px #888;
+  }
+  &:active {
+    box-shadow: 0 0 10px #888;
+  }
+}
+
+

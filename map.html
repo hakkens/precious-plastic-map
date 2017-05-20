@@ -22,6 +22,17 @@
 <body>
 
   <div id="map"><div id="findbar"></div></div>
+  <div id="interaction_form"><i class="close fa fa-times"></i>
+    <div class="title">GOOD TO SEE YOU HERE AMIGO!</div>
+    <div class="subtitle">Log in to your Dave Hakken's  account to create a pin.</div>
+    <form>
+      <label for="user">Username or Email</label>
+      <input type="text" name="user" id="user">
+      <label for="password">Password</label>
+      <input type="password" name="password" id="password">
+      <input type="button" class="btn btn-sign-next" value="Log In"></div>
+    </form>
+  </div>
   <div id="layers">
     <div class="logo">
       <img src="images/logo.png">
@@ -34,7 +45,7 @@
       <form>
         <ul class="list-unstyled layer-checkboxes">
         </ul>
-        <input type="submit" class="btn btn-lg btn-block btn-primary" value="ADD PIN">
+        <input type="button" class="btn btn-lg btn-block btn-primary" value="ADD PIN" id="add_pin">
       </form>
     </div>
   </div>

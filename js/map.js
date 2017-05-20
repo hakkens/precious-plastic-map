@@ -6,21 +6,62 @@ require('leaflet-control-geocoder');
 require('leaflet-search');
 
 var daveSite = 'http://172.17.0.2/';
+var daveSite = 'http://187.217.174.169/ppWP/';
 var hashtags = [];
 var services = [];
+var currentFormInt = 0;
+$("#interaction_form .close").click(function(){
+  $("#interaction_form").fadeOut();
+});
+var form_interactions={
+  login: {
+    title: 'Good to See Youu Here AMIGO!',
+    subtitle: 'Log in to your Dave Hakken\'s account to create a pin.',
+  },
+  new_pin: {
+    title: 'ADD YOUR PIN DETAILS',
+    subtitle: '',
+    pages:[
+      {
+        question: 'Type your pin address, so we can locate it on the map.',
+        placeholder: 'Your address'
+      },
+      {
+        question: 'Name of the pin',
+        placeholder: 'Precious Plastic'
+      },
+      {
+        question: 'Description(200 char max)',
+        placeholder: 'Precious Plastic'
+      },
+    ]
+  }
+}
+
+console.log(form_interactions);
+
+function loadForm(){
+  currentFormInt = 0;
+}
+
+$("#add_pin").click(function(){
+  $("#interaction_form").fadeIn();
+//  addPin();
+});
+
 function getTaxonomies(){
   $.ajax({
-    url: daveSite+'wp-json/wp/v2/ppmap_pin_service',
+    url: daveSite+'wp-json/pp_pins/v1/services',
     dataType: 'json',
     success:function(json){
       var layers = $("#layers ul.layer-checkboxes");
-      services = []; 
+      services = [];
       for(var i=0; i<json.length; i++){
-        layers.append('<li><label><input type="checkbox" name="'+ json[i].slug +'" value="'+ json[i].id +'" checked="checked">'+ json[i].name +'</label></li>');
         services[json[i].id] = {
-          icon: json[i].slug,
-          text: json[i].name
+          logo: json[i].logo,
+          description: json[i].description
         }
+        layers.append('<li><label><input type="checkbox" name="services" value="'+ json[i].id +'" checked="checked"><i class="fa '+ json[i].logo +'"></i> '+ json[i].description +'</label></li>');
       }
     },
     error:function(jqXHR, textStatus, errorThrown){
@@ -28,7 +69,7 @@ function getTaxonomies(){
     }
   });
   $.ajax({
-    url: daveSite+'wp-json/wp/v2/ppmap_pin_tag',
+    url: daveSite+'wp-json/pp_pins/v1/tags',
     dataType: 'json',
     success:function(json){
       hashtags = []; 
@@ -42,6 +83,33 @@ function getTaxonomies(){
   });
 }
 getTaxonomies();
+
+function parseDBMarker(pin){
+  var marker_data = {
+    latlng: [pin.lat, pin.long],
+    name: pin.name,
+    paragraph: pin.description,
+    layers: pin.services,
+    status: pin.status,
+    url: pin.url,
+    hashtags: pin.tags
+  }
+  return marker_data;
+}
+function addPin(){
+  $.ajax({
+    url: daveSite+'wp-json/pp_pins/v1/pins',
+    dataType: 'json',
+    method: 'post',
+    data: {lat: 19.543, long: -48.532, name: 'Test Web GUI', description: 'GUI: Tut aute nisi eiusmod ad velit elit culff', status: 'testing',url: ''},
+    success:function(json){
+      createMarker(parseDBMarker(json));
+    },
+    error:function(jqXHR, textStatus, errorThrown){
+      console.log(textStatus);
+    }
+  });
+}
 
 // set the map tiles layer aspect
 var tileLayer = new L.TileLayer(
@@ -84,21 +152,11 @@ var popupOptions = {
 
 function getPins(){
   $.ajax({
-    url: daveSite+'wp-json/wp/v2/map_pins/',
+    url: daveSite+'wp-json/pp_pins/v1/pins',
     dataType: 'json',
     success:function(json){
       for(var i=0; i<json.length; i++){
-        var pin = json[i];
-        var marker_data = {
-          latlng: [pin.meta.ppmap_lat, pin.meta.ppmap_lng],
-          name: pin.title.rendered,
-          paragraph: pin.content.rendered.replace(/<(?:.|\n)*?>/gm, ''),
-          layers: pin.ppmap_pin_service,
-          status: pin.meta.ppmap_status,
-          url: pin.meta.ppmap_url,
-          hashtags: pin.ppmap_pin_tag
-        }
-        createMarker(marker_data);
+        createMarker(parseDBMarker(json[i]));
       }
     },
     error:function(jqXHR, textStatus, errorThrown){
@@ -114,8 +172,8 @@ function createLayerList(layers) {
   layers.forEach( function(el, index) {
     var li = document.createElement("li");
     var icon = document.createElement("i");
-    icon.setAttribute("class", "fa " + services[el].icon);
-    var text = document.createTextNode(" " + services[el].text);
+    icon.setAttribute("class", "fa " + services[el].logo);
+    var text = document.createTextNode(" " + services[el].description);
     li.appendChild(icon);
     li.appendChild(text);
     list.appendChild(li);
@@ -164,7 +222,7 @@ var lc = L.control.locate({
 	}
 }).addTo(map);
 // on page load locate me
-lc.start();
+//lc.start();
 
 // geocoder
 // var geocoder = L.Control.geocoder({
