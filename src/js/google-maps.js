@@ -9,7 +9,9 @@ import m5 from '../img/m5.png'
 
 export default class GoogleMap {
 
-  constructor() { }
+  constructor() {
+    this.markers = []
+  }
 
   render(domElement) {
     const defaultLocation = { lat: 52.373, lng: 4.8925 }
@@ -32,8 +34,9 @@ export default class GoogleMap {
   }
 
   setData(data) {
-    const markers = data.map(marker => getMarkerFromData(marker, this.markerClicked()))
-    setDisplayMarkers(this.map, markers)
+    this.markers.map(marker => marker.setMap(null))
+    this.markers = data.map(marker => getMarkerFromData(marker, this.markerClicked()))
+    setDisplayMarkers(this.map, this.markers)
   }
 
   markerClicked() {
