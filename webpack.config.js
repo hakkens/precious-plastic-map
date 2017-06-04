@@ -14,7 +14,8 @@ module.exports = {
         enforce: "pre",
         test: /\.js$/,
         exclude: [
-          'node_modules/'
+          'node_modules/',
+          'lib/'
         ],
         loader: 'eslint-loader'
       },
@@ -36,12 +37,14 @@ module.exports = {
         use: [
           'file-loader'
         ]
-      }]
+      }
+    ]
   },
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Precious Plastic',
-      template: path.join(__dirname, 'src', 'index.html')
+      template: path.join(__dirname, 'src', 'index.html'),
+      inject: 'head'
     })
   ]
 };
