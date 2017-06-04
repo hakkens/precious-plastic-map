@@ -13,7 +13,11 @@
         "max-len" : "off",
         "object-curly-spacing" : [ "error", "always" ],
         "semi" : [ "error", "never" ],
-        "brace-style" : [ "error", "1tbs", { "allowSingleLine" : true } ]
+        "brace-style" : [ "error", "1tbs", { "allowSingleLine" : true } ],
+        "comma-dangle" : "off",
+        "new-cap": [ "error", { "newIsCapExceptions": ["resolve", "reject"] }],
+        "arrow-parens": "off",
+        "spaced-comment": "off",
     },
     "parser": "babel-eslint",
     "plugins": []
