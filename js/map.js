@@ -39,6 +39,7 @@ var formInteractions={
       {
         var: 'services',
         type: 'catalog',
+        source: services,
         question: 'How are you involved with Precious Plastic?',
       },
       {
@@ -51,10 +52,13 @@ var formInteractions={
       {
         var: 'url',
         question: 'Somewhere else on the web?',
-        placeholder: 'Tell people about you, your space or what you do there',
+        placeholder: 'Website, facebook, twitter, etc...',
       },
       {
         var: 'tags',
+        type: 'catalog',
+        simple: true,
+        source: hashtags,
         question: 'Have you built any Precious Plastic machine?',
       },
       {
@@ -99,12 +103,21 @@ function loadForm(action){
     case 'next':
       //TODO: save var
       var name = formInteractions.new_pin.pages[currentFormInt].var;
-      formInteractionsData[name] = $('#'+name).val();
-
-      if(formInteractions.new_pin.pages[currentFormInt].type == 'coord'){
-        var coordinates = $('#coordinates').html().split(',');
-        formInteractionsData.lat = coordinates[0];
-        formInteractionsData.long = coordinates[1];
+      var type = formInteractions.new_pin.pages[currentFormInt].type;
+      switch(type){
+        case 'bool':
+          formInteractionsData[name] =  $('input[name='+name+']:checked').val();
+        break;
+        case 'catalog':
+          formInteractionsData[name] =  pinSelectedCategories;          
+        break;
+        case 'coord':
+          var coordinates = $('#coordinates').html().split(',');
+          formInteractionsData.lat = coordinates[0];
+          formInteractionsData.long = coordinates[1];
+        default:
+          formInteractionsData[name] = $('#'+name).val();
+        break;
       }
       currentFormInt += 1;
       
@@ -191,16 +204,50 @@ function loadForm(action){
       input.append(temp);
       break;
     case 'catalog':
-      var input = $('<input>', {type:'text', name: page.var, id: page.var, placeholder: page.placeholder});
+      pinSelectedCategories = [];
+      var input = $('<div>', {class: 'catalog'});
+      var simple = page.simple;
+      for(var i=0; i<page.source.length; i++){
+        var el = page.source[i];
+        if(typeof el === 'undefined'){
+          continue;
+        }
+        var butt = $('<button/>', {class: 'btn', html: simple?el:el.name, value: i});
+        butt.click(function(e){
+          var butt = $(e.target);
+          if(butt.hasClass('selected')){
+            butt.removeClass('selected')
+            var index = pinSelectedCategories.indexOf(butt.val());
+            if(index > -1){
+              pinSelectedCategories.splice(index, 1);
+            }
+          }else{
+            butt.addClass('selected');
+            pinSelectedCategories.push(butt.val());
+          }
+        });
+        if(simple){
+          input.append(butt);
+        }else{
+          var icon = $('<i>', {'class': 'fa ' + el.logo});
+          butt.html(' '+butt.html());
+          butt.prepend(icon);
+          var cont = $('<div>', {class: 'cont'});
+          var desc = $('<div>', {class: 'desc', html: el.description});
+          cont.append(butt);
+          cont.append(desc);
+          input.append(cont);
+        }
+      }
       break;
     case 'bool':
       var input = $('<div>', {class: 'bool'});
-      var labelT = $('<label>', {html:page.valFalse});
-      var temp = $('<input>', {type:'radio', name: page.var, id: page.var, value:'True'});
+      var labelT = $('<label>', {html:page.valTrue});
+      var temp = $('<input>', {type:'radio', name: page.var, id: page.var, value:1});
       labelT.prepend(temp);
       input.append(labelT);
-      labelT = $('<label>', {html:page.valTrue});
-      temp = $('<input>', {type:'radio', name: page.var, id: page.var, value:'False'});
+      labelT = $('<label>', {html:page.valFalse});
+      temp = $('<input>', {type:'radio', name: page.var, id: page.var, value:0});
       labelT.prepend(temp);
       input.append(labelT);
 
@@ -246,13 +293,14 @@ function getTaxonomies(){
     dataType: 'json',
     success:function(json){
       var layers = $("#layers ul.layer-checkboxes");
-      services = [];
+      services.length = 0;
       for(var i=0; i<json.length; i++){
         services[json[i].id] = {
           logo: json[i].logo,
+          name: json[i].name,
           description: json[i].description
         }
-        layers.append('<li><label><input type="checkbox" name="services" value="'+ json[i].id +'" checked="checked"><i class="fa '+ json[i].logo +'"></i> '+ json[i].description +'</label></li>');
+        layers.append('<li><label><input type="checkbox" name="services" value="'+ json[i].id +'" checked="checked"><i class="fa '+ json[i].logo +'"></i> '+ json[i].name +'</label></li>');
       }
     },
     error:function(jqXHR, textStatus, errorThrown){
@@ -263,7 +311,7 @@ function getTaxonomies(){
     url: daveSite+'wp-json/pp_pins/v1/tags',
     dataType: 'json',
     success:function(json){
-      hashtags = []; 
+      hashtags.length = 0; 
       for(var i=0; i<json.length; i++){
         hashtags[json[i].id] = json[i].name;
       }
@@ -295,7 +343,7 @@ function addPin(data){
     data: data,
 //    data: {lat: 19.543, long: -48.532, name: 'Test Web GUI', description: 'GUI: Tut aute nisi eiusmod ad velit elit culff', status: 'testing', url: ''},
     success:function(json){
-      createMarker(parseDBMarker(json));
+      createMarker(parseDBMarker(json), true);
     },
     error:function(jqXHR, textStatus, errorThrown){
       console.log(textStatus);
@@ -365,7 +413,7 @@ function createLayerList(layers) {
     var li = document.createElement("li");
     var icon = document.createElement("i");
     icon.setAttribute("class", "fa " + services[el].logo);
-    var text = document.createTextNode(" " + services[el].description);
+    var text = document.createTextNode(" " + services[el].name);
     li.appendChild(icon);
     li.appendChild(text);
     list.appendChild(li);
@@ -389,14 +437,17 @@ function createHashtagList(tags, url){
   return list;
 }
 
-function createMarker(data) {
+function createMarker(data, centerTo = false ) {
   var marker = L.marker(data.latlng, {icon: ppIcon}).addTo(map);
+  if(centerTo){
+    map.flyTo(data.latlng, 15);
+  }
   marker.bindPopup(function (evt) {
-  var list = createLayerList(data.layers);
-  var contact = "<a href='#' class='btn btn-primary'>CONTACT</a>"
-  var details = "<div class='details'> <div><span>" + data.status + "</span> <br> <a href='" + data.url + "'>" + data.url + "</a></div> " + contact + " </div>"
-  var hashtags = createHashtagList(data.hashtags, "#");
-  return L.Util.template("<h3 class='name'>{name}</h3><p class='paragraph'>{paragraph}</p>" + list.outerHTML + details + hashtags.outerHTML, data);
+    var list = createLayerList(data.layers);
+    var contact = "<a href='#' class='btn btn-primary'>CONTACT</a>"
+    var details = "<div class='details'> <div><span>" + (data.status!="0" ? "Open for visit" : "Not ready to make new friends") + "</span> <br> <a href='" + data.url + "'>" + data.url + "</a></div> " + contact + " </div>"
+    var hashtags = createHashtagList(data.hashtags, "#");
+    return L.Util.template("<h3 class='name'>{name}</h3><p class='paragraph'>{paragraph}</p>" + list.outerHTML + details + hashtags.outerHTML, data);
   }, popupOptions);
 }
 
