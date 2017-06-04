@@ -1,0 +1,53 @@
+.panel {
+  display: block;
+  min-width: 250px;
+  z-index: 400;
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  background: $background-color-primary;
+  color: $text-color;
+  box-shadow: 0 2px 14px 0 rgba(0, 0, 0, 0.50);
+  border: 1px solid $border-color;
+  font-family: $font;
+  text-align: center;
+}
+
+.panel__section {
+  padding: 15px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid $border-color;
+}
+
+.logo {
+  width: 100px;
+  height: auto;
+}
+
+.panel__title {
+  text-align: center;
+  font-weight: bold;
+  font-size: 20px;
+  margin: 20px 0 10px 0;
+}
+
+.panel__form {
+  background: $background-color-secondary;
+  padding: 15px;
+  border-bottom: 1px solid $border-color;
+}
+
+.panel__checkbox {
+  margin: 15px 10px 0 15px;
+}
+
+.panel__checkbox-item {
+  display: block;
+}
+
+.panel__list {
+  list-style: none;
+  padding: 0;
+  text-align: left;
+  margin-bottom: 20px;
+}
