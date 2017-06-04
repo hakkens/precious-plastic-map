@@ -14,7 +14,8 @@ module.exports = {
         enforce: "pre",
         test: /\.js$/,
         exclude: [
-          'node_modules/'
+          'node_modules/',
+          'lib/'
         ],
         loader: 'eslint-loader'
       },
@@ -22,6 +23,12 @@ module.exports = {
         test: /\.js$/,
         exclude: /(node_modules)/,
         loader: 'babel-loader'
+      },
+      {
+        test: /\.(png|svg|jpg|gif)$/,
+        use: [
+          'file-loader'
+        ]
       }
     ]
   },
