@@ -9,7 +9,8 @@ import m5 from '../img/m5.png'
 export default class GoogleMap {
 
   constructor() {
-
+    this.data = []
+    this.filters = []
   }
 
   render(domElement) {
@@ -18,9 +19,12 @@ export default class GoogleMap {
       center: defaultLocation,
       zoom: 4,
       minZoom: 3,
+      mapTypeControlOptions: {
+        mapTypeIds: ['styled_map', 'satellite'],
+      },
     })
 
-    const styledMap = new google.maps.StyledMapType(preciousStyle)
+    const styledMap = new google.maps.StyledMapType(preciousStyle, { name: 'Map' })
 
     this.map.mapTypes.set('styled_map', styledMap)
     this.map.setMapTypeId('styled_map')
@@ -28,15 +32,11 @@ export default class GoogleMap {
     checkForGeoLocation(this.map)
   }
 
-  setData(data) {
-    const markers = data.map((marker) => getMarkerFromData(marker))
+  setMarkers(data) {
+    this.data = data
+    const markers = this.data.map((marker) => getMarkerFromData(marker))
     setDisplayMarkers(this.map, markers, { imagePath: 'img/m' })
   }
-
-  setFilters(filters) {
-    // chagnes active markers to the filters
-  }
-
 }
 
 function getMarkerFromData(data) {
