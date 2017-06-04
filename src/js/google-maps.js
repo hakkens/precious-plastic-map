@@ -27,16 +27,24 @@ export default class GoogleMap {
     this.map.mapTypes.set('styled_map', styledMap)
     this.map.setMapTypeId('styled_map')
 
+    this.infoWindow = new google.maps.InfoWindow()
     checkForGeoLocation(this.map)
   }
 
   setData(data) {
-    const markers = this.data.map(marker => getMarkerFromData(marker))
+    const markers = data.map(marker => getMarkerFromData(marker, this.markerClicked()))
     setDisplayMarkers(this.map, markers)
+  }
+
+  markerClicked() {
+    return (marker, data) => {
+      this.infoWindow.setContent(generateMarkerContent(data))
+      this.infoWindow.open(this.map, marker)
+    }
   }
 }
 
-function getMarkerFromData(data) {
+function getMarkerFromData(data, clickHandler) {
   const marker = new google.maps.Marker({
     position: {
       lat: data.lat,
@@ -44,6 +52,8 @@ function getMarkerFromData(data) {
     },
     icon: markerIcon
   })
+
+  marker.addListener('click', () => { clickHandler(marker, data) })
   return marker
 }
 
@@ -65,3 +75,21 @@ function checkForGeoLocation(map) {
     }, () => {})
   }
 }
+
+function generateMarkerContent(data) {
+  return `
+    <div class="popup">
+      <h2 class="popup__header">${data.name}</h2>
+      <p class="popup__description">${data.description}</p>
+      <ul class="popup__filters">
+        ${data.filters.map(filter => `<li class="popup__filter">${filter}</li>`).join('')}
+      </ul>
+      <p class="popup__status">${data.status}</p>
+      <p class="popup__website">${data.website}</p>
+      <ul class="popup__tags">
+        ${data.hashtags.map(tag => `<li class="popup__tag">#${tag}</li>`).join('')}
+      </ul>
+    </div>
+  `
+}
+
