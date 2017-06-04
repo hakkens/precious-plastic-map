@@ -11,7 +11,7 @@ export default class Data {
       address: '',
       email: '',
       description: 'Lorem ipsum Elit in nisi ut ut aute nisi eiusmod ad velit elit culpa pariatur enim dolor officia consectetur officia eu sint commodo deserunt culpa minim adipisicing laborum.',
-      filters: ['WORKSHOP', 'MACHINE_BUILDER', 'SHOP'],
+      filters: ['MACHINE_BUILDER', 'SHOP'],
       status: 'OPEN',
       website: 'http://www.bope.th',
       hashtags: ['Shredder', 'Injection', 'Extrusion', 'Compression']

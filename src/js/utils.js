@@ -2,7 +2,7 @@ export function getElement(id) {
   return document.getElementById(id)
 }
 
-export function createElement({ tag, cls, type, name, value }) {
+export function createElement({ tag, cls, type, name, value, checked }) {
   const el = document.createElement(tag)
   if (cls && !el.classList.contains(cls)) {
     el.classList.add(cls)
@@ -11,6 +11,7 @@ export function createElement({ tag, cls, type, name, value }) {
   addAttribute(el, 'type', type)
   addAttribute(el, 'name', name)
   addAttribute(el, 'value', value)
+  addAttribute(el, 'checked', checked)
 
   return el
 }
