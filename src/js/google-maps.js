@@ -1,3 +1,4 @@
+import preciousStyle from './map-style.json'
 import './../../lib/markerclusterer'
 import m1 from '../img/m1.png'
 import m2 from '../img/m2.png'
@@ -12,11 +13,17 @@ export default class GoogleMap {
   }
 
   render(domElement) {
-    const nullIsland = { lat: 0, lng: 0 }
+    const defaultLocation = { lat: 52.373, lng: 4.8925 }
     this.map = new google.maps.Map(domElement, {
-      center: nullIsland,
-      zoom: 2,
+      center: defaultLocation,
+      zoom: 4,
+      minZoom: 3,
     })
+
+    const styledMap = new google.maps.StyledMapType(preciousStyle)
+
+    this.map.mapTypes.set('styled_map', styledMap)
+    this.map.setMapTypeId('styled_map')
 
     checkForGeoLocation(this.map)
   }
