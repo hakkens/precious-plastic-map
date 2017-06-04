@@ -35,7 +35,7 @@ export default class GoogleMap {
   setMarkers(data) {
     this.data = data
     const markers = this.data.map((marker) => getMarkerFromData(marker))
-    setDisplayMarkers(this.map, markers, { imagePath: 'img/m' })
+    setDisplayMarkers(this.map, markers)
   }
 }
 
@@ -49,7 +49,7 @@ function getMarkerFromData(data) {
   })
 }
 
-function setDisplayMarkers(map, markers, opts) {
+function setDisplayMarkers(map, markers) {
   new MarkerClusterer(map, markers, {
     imagePaths: [m1, m2, m3, m4, m5],
   })
