@@ -1,9 +1,9 @@
 import './../../lib/markerclusterer'
-import '../img/m1.png'
-import '../img/m2.png'
-import '../img/m3.png'
-import '../img/m4.png'
-import '../img/m5.png'
+import m1 from '../img/m1.png'
+import m2 from '../img/m2.png'
+import m3 from '../img/m3.png'
+import m4 from '../img/m4.png'
+import m5 from '../img/m5.png'
 
 export default class GoogleMap {
 
@@ -43,7 +43,9 @@ function getMarkerFromData(data) {
 }
 
 function setDisplayMarkers(map, markers, opts) {
-  new MarkerClusterer(map, markers, opts)
+  new MarkerClusterer(map, markers, {
+    imagePaths: [m1, m2, m3, m4, m5],
+  })
 }
 
 function checkForGeoLocation(map) {
