@@ -1,5 +1,6 @@
 import preciousStyle from './map-style.json'
 import './../../lib/markerclusterer'
+import markerIcon from '../img/marker.png'
 import m1 from '../img/m1.png'
 import m2 from '../img/m2.png'
 import m3 from '../img/m3.png'
@@ -32,21 +33,22 @@ export default class GoogleMap {
     checkForGeoLocation(this.map)
   }
 
-  setMarkers(data) {
+  setData(data) {
     this.data = data
     const markers = this.data.map((marker) => getMarkerFromData(marker))
     setDisplayMarkers(this.map, markers)
   }
 }
 
-function getMarkerFromData(data) {
-  return new google.maps.Marker({
+function getMarkerFromData(data, clickHandler) {
+  const marker = new google.maps.Marker({
     position: {
       lat: data.lat,
       lng: data.lng,
     },
-    label: data.name,
+    icon: markerIcon,
   })
+  return marker
 }
 
 function setDisplayMarkers(map, markers) {
