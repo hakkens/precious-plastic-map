@@ -1,4 +1,6 @@
+import mapStyleConfig from './map-style.json'
 import './../../lib/markerclusterer'
+import markerIcon from '../img/marker.png'
 import m1 from '../img/m1.png'
 import m2 from '../img/m2.png'
 import m3 from '../img/m3.png'
@@ -7,53 +9,56 @@ import m5 from '../img/m5.png'
 
 export default class GoogleMap {
 
-  constructor() {
-
-  }
+  constructor() { }
 
   render(domElement) {
-    const nullIsland = { lat: 0, lng: 0 }
+    const defaultLocation = { lat: 52.373, lng: 4.8925 }
     this.map = new google.maps.Map(domElement, {
-      center: nullIsland,
-      zoom: 2,
+      center: defaultLocation,
+      zoom: 4,
+      minZoom: 3,
+      mapTypeControlOptions: {
+        mapTypeIds: ['styled_map', 'satellite']
+      }
     })
+
+    const styledMap = new google.maps.StyledMapType(mapStyleConfig, { name: 'Map' })
+
+    this.map.mapTypes.set('styled_map', styledMap)
+    this.map.setMapTypeId('styled_map')
 
     checkForGeoLocation(this.map)
   }
 
   setData(data) {
-    const markers = data.map((marker) => getMarkerFromData(marker))
-    setDisplayMarkers(this.map, markers, { imagePath: 'img/m' })
+    const markers = this.data.map(marker => getMarkerFromData(marker))
+    setDisplayMarkers(this.map, markers)
   }
-
-  setFilters(filters) {
-    // chagnes active markers to the filters
-  }
-
 }
 
 function getMarkerFromData(data) {
-  return new google.maps.Marker({
+  const marker = new google.maps.Marker({
     position: {
       lat: data.lat,
-      lng: data.lng,
+      lng: data.lng
     },
-    label: data.name,
+    icon: markerIcon
   })
+  return marker
 }
 
-function setDisplayMarkers(map, markers, opts) {
+function setDisplayMarkers(map, markers) {
   new MarkerClusterer(map, markers, {
-    imagePaths: [m1, m2, m3, m4, m5],
+    imagePaths: [m1, m2, m3, m4, m5]
   })
 }
 
 function checkForGeoLocation(map) {
   if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition((position) => {
+    navigator.geolocation.getCurrentPosition(position => {
       const pos = {
         lat: position.coords.latitude,
-        lng: position.coords.longitude,
+        lng: position.coords.longitude
       }
 
       map.panTo(pos)

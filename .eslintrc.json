@@ -14,10 +14,9 @@
         "object-curly-spacing" : [ "error", "always" ],
         "semi" : [ "error", "never" ],
         "brace-style" : [ "error", "1tbs", { "allowSingleLine" : true } ],
-        "comma-dangle" : "off",
-        "new-cap": [ "error", { "newIsCapExceptions": ["resolve", "reject"] }],
-        "arrow-parens": "off",
+        "arrow-parens": [ "error", "as-needed" ],
         "spaced-comment": "off",
+        "comma-dangle": [ "error", "never" ]
     },
     "parser": "babel-eslint",
     "plugins": []
