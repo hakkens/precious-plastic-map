@@ -1,15 +1,9 @@
 {
   "name": "precious-plastic-map",
-  "version": "1.0.0",
+  "version": “0.0.1”,
   "description": "Precious Plastic Map",
-  "main": "index.js",
+  "main": “app.js",
   "scripts": {
-    "build-js": "browserify js/map.js | uglifyjs -mc > build/map.min.js",
-    "build": "npm run build-js",
-    "watch-js": "watchify js/map.js -o build/map.min.js -dv",
-    "build-css-libs": "cat node_modules/leaflet/dist/leaflet.css > build/libraries.css && cat node_modules/leaflet-control-geocoder/dist/Control.Geocoder.css >> build/libraries.css && cat node_modules/leaflet-search/dist/leaflet-search.src.css >> build/libraries.css && cat node_modules/leaflet.locatecontrol/dist/L.Control.Locate.css >> build/libraries.css",
-    "lint": "eslint js/map.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -22,17 +16,7 @@
   },
   "homepage": "https://map.preciousplastic.com",
   "devDependencies": {
-    "browserify": "^14.1.0",
-    "gulp": "^3.9.0",
-    "gulp-cli": "^1.2.2",
-    "gulp-sass": "^2.1.1",
-    "uglifyjs": "^2.4.10",
-    "watchify": "^3.9.0"
   },
   "dependencies": {
-    "leaflet": "^1.0.3",
-    "leaflet-control-geocoder": "^1.5.4",
-    "leaflet-search": "^2.7.0",
-    "leaflet.locatecontrol": "^0.60.0"
   }
 }
