@@ -1,10 +1,9 @@
 {
   "name": "precious-plastic-map",
-  "version": “0.0.1”,
+  "version": "0.0.1",
   "description": "Precious Plastic Map",
-  "main": “app.js",
-  "scripts": {
-  },
+  "main": "app.js",
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/hakkens/precious-plastic-map.git"
@@ -16,7 +15,10 @@
   },
   "homepage": "https://map.preciousplastic.com",
   "devDependencies": {
+    "babel-core": "^6.24.1",
+    "babel-loader": "^7.0.0",
+    "html-webpack-plugin": "^2.28.0",
+    "webpack": "^2.6.1"
   },
-  "dependencies": {
-  }
+  "dependencies": {}
 }

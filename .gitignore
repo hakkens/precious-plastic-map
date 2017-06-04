@@ -1,7 +1,4 @@
-*~
-*.swp
 .DS_Store
-.DS_Store?
-Thumbs.db
 npm-debug.log
 node_modules/
+build/
