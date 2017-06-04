@@ -3,7 +3,7 @@ export default class GoogleMap {
   constructor() { }
 
   render(domElement) {
-    //renders google map into domElement
+    // renders google map into domElement
   }
 
   setData(data) {
@@ -11,7 +11,7 @@ export default class GoogleMap {
   }
 
   setFilters(filters) {
-    //chagnes active markers to the filters
+    // chagnes active markers to the filters
   }
 
 

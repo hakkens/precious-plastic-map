@@ -3,7 +3,7 @@ export default class Data {
   constructor() { }
 
   getLocations() {
-    //return promise which gets location data from endpoint?
+    // return promise which gets location data from endpoint?
   }
 
 }
