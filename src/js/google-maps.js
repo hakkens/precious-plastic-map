@@ -1,4 +1,4 @@
-import preciousStyle from './map-style.json'
+import mapStyleConfig from './map-style.json'
 import './../../lib/markerclusterer'
 import markerIcon from '../img/marker.png'
 import m1 from '../img/m1.png'
@@ -9,10 +9,7 @@ import m5 from '../img/m5.png'
 
 export default class GoogleMap {
 
-  constructor() {
-    this.data = []
-    this.filters = []
-  }
+  constructor() { }
 
   render(domElement) {
     const defaultLocation = { lat: 52.373, lng: 4.8925 }
@@ -25,7 +22,7 @@ export default class GoogleMap {
       }
     })
 
-    const styledMap = new google.maps.StyledMapType(preciousStyle, { name: 'Map' })
+    const styledMap = new google.maps.StyledMapType(mapStyleConfig, { name: 'Map' })
 
     this.map.mapTypes.set('styled_map', styledMap)
     this.map.setMapTypeId('styled_map')
@@ -34,13 +31,12 @@ export default class GoogleMap {
   }
 
   setData(data) {
-    this.data = data
     const markers = this.data.map(marker => getMarkerFromData(marker))
     setDisplayMarkers(this.map, markers)
   }
 }
 
-function getMarkerFromData(data, clickHandler) {
+function getMarkerFromData(data) {
   const marker = new google.maps.Marker({
     position: {
       lat: data.lat,
