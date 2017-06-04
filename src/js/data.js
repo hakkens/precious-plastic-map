@@ -1,3 +1,15 @@
+export default class Data {
+
+  constructor() { }
+
+  getLocations() {
+    //return promise which gets location data from endpoint?
+  }
+
+}
+
+
+/* dummy marker data
 var marker_data = {
     lat: 52.3707599,
     lng: 4.889869200000021,
@@ -13,5 +25,5 @@ var marker_data = {
     status: "Open for visit",  //ENUM
     website: "http://www.bope.th",
     hashtags: ["Shredder", "Injection", "Extrusion", "Compression"]
-}
+}*/
 
