@@ -31,12 +31,14 @@ export default class GoogleMap {
 
     this.infoWindow = new google.maps.InfoWindow()
     checkForGeoLocation(this.map)
+
+    this.markerCluster = new MarkerClusterer(this.map, this.markers, { imagePaths: [m1, m2, m3, m4, m5] })
   }
 
   setData(data) {
-    this.markers.map(marker => marker.setMap(null))
+    this.markerCluster.clearMarkers()
     this.markers = data.map(marker => getMarkerFromData(marker, this.markerClicked()))
-    setDisplayMarkers(this.map, this.markers)
+    this.markerCluster.addMarkers(this.markers)
   }
 
   markerClicked() {
@@ -58,12 +60,6 @@ function getMarkerFromData(data, clickHandler) {
 
   marker.addListener('click', () => { clickHandler(marker, data) })
   return marker
-}
-
-function setDisplayMarkers(map, markers) {
-  new MarkerClusterer(map, markers, {
-    imagePaths: [m1, m2, m3, m4, m5]
-  })
 }
 
 function checkForGeoLocation(map) {
