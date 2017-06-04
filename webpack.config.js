@@ -9,7 +9,15 @@ module.exports = {
     filename: 'bundle.js'
   },
   module: {
-    loaders: [
+    rules: [
+      {
+        enforce: "pre",
+        test: /\.js$/,
+        exclude: [
+          'node_modules/'
+        ],
+        loader: 'eslint-loader'
+      },
       {
         test: /\.js$/,
         exclude: /(node_modules)/,
