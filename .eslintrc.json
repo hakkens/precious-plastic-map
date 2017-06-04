@@ -1,7 +1,12 @@
 {
     "extends": [ "eslint:recommended", "google" ],
     "env" : { 
-        "es6" : true
+        "es6" : true,
+        "browser": true
+    },
+    "globals": {
+        "google": false,
+        "MarkerClusterer": false
     },
     "rules": {
         "require-jsdoc" : "off",
