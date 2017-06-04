@@ -9,5 +9,6 @@ window.init = () => {
   const data = new Data()
   const map = new GoogleMap()
   map.render(mapElement)
-  new App({ data, map })
+  const app = new App({ data, map })
+  app.initApp()
 }
