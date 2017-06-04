@@ -1,19 +1,68 @@
 <!DOCTYPE html>
-<html>
-    <head>
-    
-        <style>
-            #map {
-                height: 600px;
-                width: 600px;
-            }
-        </style>
-    </head>
-    <body>
-        <div id="map"></div>
+<html lang="us">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Precious Plastic Map</title>
+  <meta name="description" content="Precious Plastic Map">
 
-        <script async defer
-             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCrb3BB8Wg-YaCs8JXtFCeNGY2YPAmATrc&callback=init">
-        </script>
-    </body>
+  <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+</head>
+<body>
+  <div id="map" class="map"></div>
+  <div id="panel" class="panel">
+    <div class="panel__section">
+      <img class="logo" src="img/logo.png">
+    </div>
+
+    <form class="search">
+      <input type="text" class="search__input" placeholder="&#xf002; Search Precious Plastic">
+    </form>
+
+    <div class="panel__form">
+      <h3 class="panel__title">Filter</h3>
+      <form>
+        <ul class="panel__list">
+          <li>
+            <label>
+              <input class="panel__checkbox" type="checkbox" name="machine-builder" value="machine-builder">
+              Machine Builder
+            </label>
+          </li>
+          <li>
+            <label>
+              <input class="panel__checkbox" type="checkbox" name="workshop" value="workshop">
+              Workshop
+            </label>
+          </li>
+          <li>
+            <label>
+              <input class="panel__checkbox" type="checkbox" name="buy-plastic" value="buy-plastic">
+              Buy Plastic
+            </label>
+          </li>
+          <li>
+            <label>
+              <input class="panel__checkbox" type="checkbox" name="sell-plastic" value="sell-plastic">
+              Sell Plastic
+            </label>
+          </li>
+          <li>
+            <label>
+              <input class="panel__checkbox" type="checkbox" name="collect" value="collect">
+              Collect
+            </label>
+          </li>
+        </ul>
+      </form>
+    </div>
+    <div class="panel__section">
+      <input type="submit" class="btn btn-primary" value="ADD PIN">
+    </div>
+  </div>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCrb3BB8Wg-YaCs8JXtFCeNGY2YPAmATrc&callback=init"></script>
+</body>
 </html>

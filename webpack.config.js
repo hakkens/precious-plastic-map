@@ -2,7 +2,7 @@ var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: path.join(__dirname, 'src', 'app.js'),
+  entry: path.join(__dirname, 'src', 'index.js'),
   devtool: "#inline-source-map",
   output: {
     path: path.join(__dirname, 'build'),
@@ -23,6 +23,14 @@ module.exports = {
         test: /\.js$/,
         exclude: /(node_modules)/,
         loader: 'babel-loader'
+      },
+      {
+        test: /\.scss$/,
+        use: [
+          { loader: "style-loader" },
+          { loader: "css-loader" },
+          { loader: "sass-loader" }
+        ]
       },
       {
         test: /\.(png|svg|jpg|gif)$/,

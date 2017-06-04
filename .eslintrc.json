@@ -1,6 +1,6 @@
 {
     "extends": [ "eslint:recommended", "google" ],
-    "env" : { 
+    "env" : {
         "es6" : true,
         "browser": true
     },
