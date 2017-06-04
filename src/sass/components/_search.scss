@@ -1,28 +1,30 @@
-.search-form {
+.search {
   position: absolute;
-  top: 172px;
+  top: 180px;
   text-align: center;
   width: 100%;
 }
-.search {
+
+.search__input {
   width: 90%;
   height: 30px;
   font-size: 12px;
   padding: 0;
   margin: 0;
-  border: 1px solid $layers-border-color;
+  border: 1px solid $border-color;
   border-radius: 5px;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.5);
   transition: all .2s ease-in-out;
   &:focus {
-    width: calc(100% - 10px);
+    width: 100%;
     outline: none;
     border-radius: 0;
     border-right: 0;
     border-left: 0;
   }
 }
-.search[placeholder] {
+
+.search__input[placeholder] {
   font-family: 'FontAwesome', 'Open Sans';
   padding-left: 10px;
   color: $text-color;
