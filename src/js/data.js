@@ -5,8 +5,8 @@ export default class Data {
   getLocations() {
     // return promise which gets location data from endpoint?
     const markerData = [{
-      lat: 52.3707599,
-      lng: 4.889869200000021,
+      lat: 53.3707599,
+      lng: 5.889869200000021,
       name: 'BOPE',
       address: '',
       email: '',
