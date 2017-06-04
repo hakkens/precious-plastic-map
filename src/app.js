@@ -2,9 +2,12 @@ import Data from './js/data'
 import GoogleMap from './js/google-maps'
 import App from './js/app'
 
+window.init = () => {
+  const mapElement = document.getElementById('map')
 
-window.addEventListener('DOMContentLoaded' , () => {
   const data = new Data()
   const map = new GoogleMap()
-  const app = new App({ data, map })
-})
+  map.render(mapElement)
+  new App({ data, map })
+}
+
