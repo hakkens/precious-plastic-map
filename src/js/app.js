@@ -20,7 +20,7 @@ export default class App {
     const filters = buildFilters(this.locationData)
     this.createFilterElements(filters)
     this.activeFilters = filters.map(filter => filter.key)
-    document.getElementById('add-pin').addEventListener('click', () => this.map.addPin())
+    getElement('add-pin').addEventListener('click', () => this.map.addPin())
     this.setData()
   }
 
