@@ -1,0 +1,24 @@
+.popup {
+    max-width: 300px;
+}
+
+.popup__header, 
+.popup__filter {
+    font-family: $title-font;
+    color: $primary-color;
+}
+
+.popup__status {
+    font-weight: bold;
+    font-family: $title-font;
+}
+
+.popup__tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    list-style: none;
+    color: $secondary-color;
+    font-family: $title-font;
+    margin-top: 20px;
+}
