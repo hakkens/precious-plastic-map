@@ -1,9 +1,9 @@
 var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   entry: [ 'babel-polyfill', path.join(__dirname, 'src', 'index.js') ],
-  devtool: "#inline-source-map",
   output: {
     path: path.join(__dirname, 'build'),
     filename: 'bundle.js'
@@ -29,11 +29,13 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        use: [
-          { loader: "style-loader" },
-          { loader: "css-loader" },
-          { loader: "sass-loader" }
-        ]
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [
+            { loader: "css-loader" },
+            { loader: "sass-loader" }
+          ]
+        })
       },
       {
         test: /\.(png|svg|jpg|gif)$/,
@@ -49,6 +51,7 @@ module.exports = {
       template: path.join(__dirname, 'src', 'index.ejs'),
       inject: 'head',
       googleKey: 'AIzaSyCrb3BB8Wg-YaCs8JXtFCeNGY2YPAmATrc'
-    })
+    }),
+    new ExtractTextPlugin('style-[contenthash].css')
   ]
 };
