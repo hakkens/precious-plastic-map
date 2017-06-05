@@ -11,13 +11,13 @@
   transition: all .2s ease-in-out;
   &:hover {
     cursor: pointer;
+    box-shadow: 0 0 10px #888;
   }
+  background-color: $background-color-secondary;
+  margin: 5px;
 }
 
 .btn-primary {
   color: #fff;
   background-color: $primary-color;
-  &:hover {
-    box-shadow: 0 0 20px #888;
-  }
 }

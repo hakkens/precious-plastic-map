@@ -1,4 +1,5 @@
 import { FILTERS } from './const'
+import { createElement } from './utils'
 import mapStyleConfig from './map-style.json'
 import './../../lib/markerclusterer'
 import markerIcon from '../img/marker.png'
@@ -12,6 +13,7 @@ export default class GoogleMap {
 
   constructor() {
     this.markers = []
+    this.newPin = null
   }
 
   render(domElement) {
@@ -26,12 +28,15 @@ export default class GoogleMap {
     })
 
     const styledMap = new google.maps.StyledMapType(mapStyleConfig, { name: 'Map' })
-
     this.map.mapTypes.set('styled_map', styledMap)
     this.map.setMapTypeId('styled_map')
 
-    this.infoWindow = new google.maps.InfoWindow()
     checkForGeoLocation(this.map)
+
+    this.infoWindow = new google.maps.InfoWindow()
+
+    this.savePinInfoWindow = new google.maps.InfoWindow()
+    this.savePinInfoWindow.setContent(generateSavePinInfoWindow(this.savePin(), this.removePin()))
 
     this.markerCluster = new MarkerClusterer(this.map, this.markers, { imagePaths: [m1, m2, m3, m4, m5] })
   }
@@ -48,6 +53,60 @@ export default class GoogleMap {
       this.infoWindow.open(this.map, marker)
     }
   }
+
+  addPin() {
+    if (this.newPin) {
+      this.map.panTo(this.newPin.getPosition())
+      this.showAddPinInfo()(this.newPin)
+      return
+    }
+
+    this.newPin = getNewPinMarker(this.map, this.showAddPinInfo())
+    this.showAddPinInfo()(this.newPin)
+  }
+
+  savePin() {
+    return () => {
+      const urlKeys = {
+        lat: {
+          key: 'entry.1563030055',
+          value: this.newPin.getPosition().lat()
+        },
+        lng: {
+          key: 'entry.1806137749',
+          value: this.newPin.getPosition().lng()
+        }
+      }
+
+      const params = Object.keys(urlKeys).map(param => urlKeys[param].key + '=' + encodeURIComponent(urlKeys[param].value))
+
+      const url = 'https://docs.google.com/forms/d/e/1FAIpQLScx24LA8KrQA9XnPJ8FQokKMl5EnhDEs35xbcKqxbcvGaXt-Q/viewform?usp=pp_url&' +
+        params.join('&')
+
+      const survey = window.open(url, '_blank')
+      survey.focus()
+      this.newPin.setMap(null)
+      this.newPin = null
+    }
+  }
+
+  removePin() {
+    return () => {
+      if (!this.newPin) return
+      this.newPin.setMap(null)
+      this.newPin = null
+    }
+  }
+
+  showAddPinInfo() {
+    return marker => {
+      const content = this.savePinInfoWindow.getContent()
+      content.getElementsByClassName('popup__lat')[0].innerHTML = 'Lat: ' + marker.getPosition().lat()
+      content.getElementsByClassName('popup__lng')[0].innerHTML = 'Lng: ' + marker.getPosition().lng()
+      this.savePinInfoWindow.open(this.map, marker)
+    }
+  }
+
 }
 
 function getMarkerFromData(data, clickHandler) {
@@ -60,6 +119,18 @@ function getMarkerFromData(data, clickHandler) {
   })
 
   marker.addListener('click', () => { clickHandler(marker, data) })
+  return marker
+}
+
+function getNewPinMarker(map, clickHandler) {
+  const marker = new google.maps.Marker({
+    position: map.getCenter(),
+    draggable: true,
+    animation: google.maps.Animation.DROP
+  })
+  marker.addListener('click', () => { clickHandler(marker) })
+  marker.addListener('dragend', () => { clickHandler(marker) })
+  marker.setMap(map)
   return marker
 }
 
@@ -93,3 +164,34 @@ function generateMarkerContent(data) {
   `
 }
 
+function generateSavePinInfoWindow(savePinHandler, cancelPinHandler) {
+  //export function createElement({ tag, cls, type, name, value, checked }) {
+  const wrapper = createElement({
+    tag: 'div',
+    cls: 'pipup--addpin'
+  })
+
+  wrapper.innerHTML = `
+      <h2 class="popup__header">Add Pin</h2>
+      <p class="popup__lat" id="addpin-lat"></p>
+      <p class="popup__lng" id="addpin-lng"></p>
+  `
+
+  const savePinButton = createElement({
+    tag: 'button',
+    cls: 'btn btn-primary'
+  })
+  savePinButton.innerHTML = 'Save'
+  savePinButton.addEventListener('click', () => { savePinHandler() })
+  wrapper.appendChild(savePinButton)
+
+  const cancelPinButton = createElement({
+    tag: 'button',
+    cls: 'btn'
+  })
+  cancelPinButton.innerHTML = 'Cancel'
+  cancelPinButton.addEventListener('click', () => { cancelPinHandler() })
+  wrapper.appendChild(cancelPinButton)
+
+  return wrapper
+}

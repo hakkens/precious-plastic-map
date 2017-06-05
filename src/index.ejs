@@ -19,7 +19,7 @@
     </div>
 
     <form class="search">
-      <input id="search" type="text" class="search__input" placeholder="Search Precious Plastic">
+      <input id="search" type="text" class="search__input" placeholder="Search Locations">
       <i class="fa fa-search search__glass" aria-hidden="true"></i>
       <i id="close-search" class="fa fa-close search__close" aria-hidden="true"></i>
     </form>
@@ -31,7 +31,7 @@
       </form>
     </div>
     <div class="panel__section">
-      <input type="submit" class="btn btn-primary" value="ADD PIN">
+      <input type="submit" id="add-pin" class="btn btn-primary" value="ADD PIN">
     </div>
   </div>
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=<%= htmlWebpackPlugin.options.googleKey %>&callback=init"></script>
