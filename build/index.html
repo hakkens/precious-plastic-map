@@ -10,7 +10,7 @@
   <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-<link rel="icon" type="image/png" sizes="32x32" href="icons-65b20b4f45b9c33efc4567fcce8626d2/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="icons-65b20b4f45b9c33efc4567fcce8626d2/favicon-16x16.png"><link rel="shortcut icon" href="icons-65b20b4f45b9c33efc4567fcce8626d2/favicon.ico"><link href="style-e2b3523d865dc80be899d08fddc987df.css" rel="stylesheet"><script type="text/javascript" src="bundle.js"></script></head>
+<link rel="icon" type="image/png" sizes="32x32" href="icons-65b20b4f45b9c33efc4567fcce8626d2/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="icons-65b20b4f45b9c33efc4567fcce8626d2/favicon-16x16.png"><link rel="shortcut icon" href="icons-65b20b4f45b9c33efc4567fcce8626d2/favicon.ico"><link href="style-41d17ddc25753cb603f13e1cd13b9220.css" rel="stylesheet"><script type="text/javascript" src="bundle.js"></script></head>
 <body>
   <div id="map" class="map"></div>
   <div id="panel" class="panel">
@@ -19,7 +19,9 @@
     </div>
 
     <form class="search">
-      <input type="text" class="search__input" placeholder="&#xf002; Search Precious Plastic">
+      <input id="search" type="text" class="search__input" placeholder="Search Locations">
+      <i class="fa fa-search search__glass" aria-hidden="true"></i>
+      <i id="close-search" class="fa fa-close search__close" aria-hidden="true"></i>
     </form>
 
     <div class="panel__form">
@@ -29,7 +31,7 @@
       </form>
     </div>
     <div class="panel__section">
-      <input type="submit" class="btn btn-primary" value="ADD PIN">
+      <input type="submit" id="add-pin" class="btn btn-primary" value="ADD PIN">
     </div>
   </div>
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCrb3BB8Wg-YaCs8JXtFCeNGY2YPAmATrc&callback=init"></script>
