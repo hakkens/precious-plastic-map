@@ -25,7 +25,36 @@
 }
 
 .search__input[placeholder] {
-  font-family: 'FontAwesome', 'Open Sans';
-  padding-left: 10px;
+  padding-left: 30px;
   color: $text-color;
+}
+
+.search__glass {
+  color: lighten($text-color, 20%);
+  position: absolute;
+  left: 22px;
+  font-size: 14px;
+  top: 8px;
+  transition: all .2s ease-in-out;
+}
+
+.search__input:focus ~ .search__glass {
+  left: 10px;
+}
+
+.search__close {
+  opacity: 0;
+  color: lighten($text-color, 20%);
+  position: absolute;
+  right: 15px;
+  font-size: 14px;
+  top: 8px;
+  transition: all .2s ease-in-out;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.search__input:focus ~ .search__close {
+  opacity: 1;
 }
