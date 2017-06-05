@@ -1,6 +1,7 @@
 import { FILTERS } from './const'
 import _ from 'lodash'
 import { getElement, createElement } from './utils'
+import Fuse from 'fuse.js'
 
 export default class App {
 
@@ -14,6 +15,8 @@ export default class App {
   async initApp() {
     this.locations = await this.data.getLocations()
     this.map.setData(this.locations)
+
+    this.createSearch(this.locations)
 
     const filters = buildFilters(this.locations)
     this.createFilterElements(filters)
@@ -53,6 +56,35 @@ export default class App {
       return !_.isEmpty(_.intersection(location.filters, this.activeFilters))
     })
     this.map.setData(filteredLocations)
+  }
+
+  createSearch(locations) {
+    const options = {
+      shouldSort: true,
+      includeMatches: true,
+      threshold: 0.2,
+      location: 0,
+      distance: 100,
+      maxPatternLength: 32,
+      minMatchCharLength: 2,
+      keys: [
+        "name",
+        "address",
+        "description",
+        "hashtags"
+      ]
+    };
+    const fuse = new Fuse(locations, options);
+
+    getElement('search').addEventListener('input', _.debounce(event => {
+      this.runSearch(event.target.value, fuse)
+    }, 300))
+  }
+
+  runSearch(query, fuse) {
+    const results = fuse.search(query)
+    const foundLocations = _.map(results, 'item')
+    this.map.setData(foundLocations)
   }
 }
 

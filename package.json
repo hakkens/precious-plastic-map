@@ -39,5 +39,7 @@
     "webpack-dev-server": "^2.4.5",
     "webpack-merge": "^4.1.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "fuse.js": "^3.0.4",
+  }
 }
