@@ -2,7 +2,7 @@ var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: path.join(__dirname, 'src', 'index.js'),
+  entry: [ 'babel-polyfill', path.join(__dirname, 'src', 'index.js') ],
   devtool: "#inline-source-map",
   output: {
     path: path.join(__dirname, 'build'),
@@ -24,7 +24,7 @@ module.exports = {
         exclude: /(node_modules)/,
         loader: 'babel-loader',
         query: {
-          presets: ["es2015"]
+          presets: ["es2015", "es2017"]
         }
       },
       {
@@ -46,8 +46,9 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Precious Plastic',
-      template: path.join(__dirname, 'src', 'index.html'),
-      inject: 'head'
+      template: path.join(__dirname, 'src', 'index.ejs'),
+      inject: 'head',
+      googleKey: 'AIzaSyCrb3BB8Wg-YaCs8JXtFCeNGY2YPAmATrc'
     })
   ]
 };

@@ -15,7 +15,7 @@
   <div id="map" class="map"></div>
   <div id="panel" class="panel">
     <div class="panel__section">
-      <img class="logo" src="img/logo.png">
+      <img class="logo" src="<%= require('./img/logo.png') %>">
     </div>
 
     <form class="search">
@@ -32,6 +32,6 @@
       <input type="submit" class="btn btn-primary" value="ADD PIN">
     </div>
   </div>
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCrb3BB8Wg-YaCs8JXtFCeNGY2YPAmATrc&callback=init"></script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=<%= htmlWebpackPlugin.options.googleKey %>&callback=init"></script>
 </body>
 </html>

@@ -1,3 +1,5 @@
 module.exports = function(env) {
-  return require(`./webpack.${env}.js`)
+  return env === 'prod'
+    ? require('./webpack.prod.js')
+    : require('./webpack.common.js')
 }
