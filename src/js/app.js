@@ -9,19 +9,18 @@ export default class App {
     this.data = data
     this.map = map
     this.activeFilters = []
-    this.locations = []
+    this.query = ''
+    this.locationData = []
+    this.fuse = {}
   }
 
   async initApp() {
-    this.locations = await this.data.getLocations()
-    this.map.setData(this.locations)
-
-    this.createSearch(this.locations)
-
-    const filters = buildFilters(this.locations)
+    this.locationData = await this.data.getLocations()
+    this.createSearch()
+    const filters = buildFilters(this.locationData)
     this.createFilterElements(filters)
-
     this.activeFilters = filters.map(filter => filter.key)
+    this.setData()
   }
 
   createFilterElements(filters) {
@@ -42,23 +41,17 @@ export default class App {
       })
       const textEl = document.createTextNode(filter.value)
 
-      inputEl.addEventListener('click', () => this.toggleFilter(filter.key))
+      inputEl.addEventListener('click', () => {
+        this.activeFilters = _.xor(this.activeFilters, [filter.key])
+        this.setData()
+      })
       labelEl.appendChild(inputEl)
       labelEl.appendChild(textEl)
       container.appendChild(labelEl)
     })
   }
 
-  toggleFilter(filterKey) {
-    this.activeFilters = _.xor(this.activeFilters, [filterKey])
-
-    const filteredLocations = this.locations.filter(location => {
-      return !_.isEmpty(_.intersection(location.filters, this.activeFilters))
-    })
-    this.map.setData(filteredLocations)
-  }
-
-  createSearch(locations) {
+  createSearch() {
     const options = {
       shouldSort: true,
       includeMatches: true,
@@ -74,34 +67,43 @@ export default class App {
         'hashtags'
       ]
     }
-    const fuse = new Fuse(locations, options)
+    this.fuse = new Fuse(this.locationData, options)
 
     getElement('search').addEventListener('input', _.debounce(event => {
-      const query = event.target.value
-      if (query.length > 1) {
-        this.runSearch(event.target.value, fuse)
-      }
-      if (query.length === 0) {
-        this.map.setData(locations)
-      }
+      this.query = event.target.value
+      this.setData()
     }, 300))
 
     getElement('close-search').addEventListener('click', () => {
       getElement('search').value = ''
-      this.map.setData(locations)
+      this.query = ''
+      this.setData()
     })
   }
 
-  runSearch(query, fuse) {
-    const results = fuse.search(query)
-    const foundLocations = _.map(results, 'item')
-    this.map.setData(foundLocations)
+  setData() {
+    const { locationData, query, activeFilters } = this
+
+    const searched = (query.length > 1)
+      ? _.map(this.fuse.search(query), 'item')
+      : locationData
+
+    const filtered = applyFilters(locationData, activeFilters)
+
+    const updatedLocations = _.intersection(searched, filtered)
+    this.map.setData(updatedLocations)
   }
 }
 
-function buildFilters(locations) {
+function applyFilters(locationData, activeFilters) {
+  return locationData.filter(location => {
+    return !_.isEmpty(_.intersection(location.filters, activeFilters))
+  })
+}
+
+function buildFilters(locationData) {
   return _
-    .chain(locations)
+    .chain(locationData)
     .map('filters')
     .flatten()
     .uniq()
