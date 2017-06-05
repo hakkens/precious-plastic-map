@@ -68,17 +68,28 @@ export default class App {
       maxPatternLength: 32,
       minMatchCharLength: 2,
       keys: [
-        "name",
-        "address",
-        "description",
-        "hashtags"
+        'name',
+        'address',
+        'description',
+        'hashtags'
       ]
-    };
-    const fuse = new Fuse(locations, options);
+    }
+    const fuse = new Fuse(locations, options)
 
     getElement('search').addEventListener('input', _.debounce(event => {
-      this.runSearch(event.target.value, fuse)
+      const query = event.target.value
+      if (query.length > 1) {
+        this.runSearch(event.target.value, fuse)
+      }
+      if (query.length === 0) {
+        this.map.setData(locations)
+      }
     }, 300))
+
+    getElement('close-search').addEventListener('click', () => {
+      getElement('search').value = ''
+      this.map.setData(locations)
+    })
   }
 
   runSearch(query, fuse) {

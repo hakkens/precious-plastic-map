@@ -40,6 +40,6 @@
     "webpack-merge": "^4.1.0"
   },
   "dependencies": {
-    "fuse.js": "^3.0.4",
+    "fuse.js": "^3.0.4"
   }
 }
