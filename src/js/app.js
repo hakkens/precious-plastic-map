@@ -22,6 +22,8 @@ export default class App {
     this.createFilterElements(filters)
 
     this.activeFilters = filters.map(filter => filter.key)
+
+    document.getElementById('add-pin').addEventListener('click', () => this.map.addPin())
   }
 
   createFilterElements(filters) {
