@@ -37,6 +37,7 @@
     "style-loader": "^0.18.1",
     "webpack": "^2.6.1",
     "webpack-dev-server": "^2.4.5",
+    "favicons-webpack-plugin": "^0.0.7",
     "webpack-merge": "^4.1.0"
   },
   "dependencies": {

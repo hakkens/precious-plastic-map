@@ -1,6 +1,7 @@
 var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var FaviconsWebpackPlugin = require('favicons-webpack-plugin')
 
 module.exports = {
   entry: [ 'babel-polyfill', path.join(__dirname, 'src', 'index.js') ],
@@ -52,6 +53,20 @@ module.exports = {
       inject: 'head',
       googleKey: 'AIzaSyCrb3BB8Wg-YaCs8JXtFCeNGY2YPAmATrc'
     }),
-    new ExtractTextPlugin('style-[contenthash].css')
+    new ExtractTextPlugin('style-[contenthash].css'),
+    new FaviconsWebpackPlugin({
+      logo: path.join(__dirname, 'src', 'img', 'icon.png'),
+      persistentCache: true,
+      icons: {
+        android: false,
+        appleIcon: false,
+        appleStartup: false,
+        coast: false,
+        favicons: true,
+        firefox: false,
+        windows: false,
+        yandex: false
+      }
+    })
   ]
 };
