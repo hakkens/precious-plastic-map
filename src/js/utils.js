@@ -4,9 +4,8 @@ export function getElement(id) {
 
 export function createElement({ tag, cls, type, name, value, checked }) {
   const el = document.createElement(tag)
-  if (cls && !el.classList.contains(cls)) {
-    el.classList.add(cls)
-  }
+
+  cls.split(' ').forEach(elemCls => el.classList.add(elemCls))
 
   addAttribute(el, 'type', type)
   addAttribute(el, 'name', name)
