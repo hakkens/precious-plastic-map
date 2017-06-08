@@ -6,8 +6,7 @@ require('leaflet.locatecontrol');
 require('leaflet-control-geocoder');
 require('leaflet-search');
 
-var daveSite = 'http://172.17.0.2/';
-//var daveSite = 'http://187.217.174.169/ppWP/';
+var daveSite = '../ppWP/';
 var hashtags = [];
 var services = [];
 var currentFormInt = 0;
@@ -21,7 +20,7 @@ $("#interaction_form #btnLogIn").click(function(){
     'pwd':		$("#interaction_form #password").val(),
     'rememberme':	$("#interaction_form #remember").val(),
     'wp-submit':	'Log+In',
-    'redirect_to':	'http://172.17.0.2/nonce/'
+    'redirect_to':	daveSite+'nonce/'
   }
   if(data.log.length<2 || data.pwd.length<2){
     $("#interaction_form #result").html("Please input valid data");
@@ -331,9 +330,7 @@ $("#add_pin").click(function(){
   if(sessionNonce != null){
     loadForm();
   }else{
-//    loadLogIn('', loadForm);
-    loadLogIn('', addPin);
-
+    loadLogIn('', loadForm);
   }
 });
 
@@ -498,7 +495,7 @@ function createHashtagList(tags, url){
   return list;
 }
 
-function createMarker(data, centerTo = false ) {
+function createMarker(data, centerTo ) {
   var marker = L.marker(data.latlng, {icon: ppIcon}).addTo(map);
   if(centerTo){
     map.flyTo(data.latlng, 15);
