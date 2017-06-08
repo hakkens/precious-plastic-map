@@ -25,14 +25,20 @@
   <div id="interaction_form"><i class="close fa fa-times"></i>
     <div class="title">GOOD TO SEE YOU HERE AMIGO!</div>
     <div class="subtitle">Log in to your Dave Hakken's  account to create a pin.</div>
-    <div class="form">
+    <div class="form formLogIn">
       <label for="user">Username or Email</label>
       <input type="text" name="user" id="user">
       <label for="password">Password</label>
       <input type="password" name="password" id="password">
+      <div id="result"></div>
+      <label>
+        <input type="checkbox" name="remember" id="remember" value="forever">Remember me
+      </label>
     </div>
     <div class="controls">
-      <input type="button" class="btn btn-sign-next" value="Log In"></div>
+      <input type="button" id="btnLogIn" class="btn btn-sign-next" value="Log In">
+      <a href="https://davehakkens.nl/community/forgot-password/" target="_blank">Forgot your password</a>
+      <a href="https://davehakkens.nl/community/register" target="_blank">Create an account</a>
     </div>
   </div>
   <div id="layers">

@@ -11,6 +11,50 @@ var daveSite = 'http://172.17.0.2/';
 var hashtags = [];
 var services = [];
 var currentFormInt = 0;
+var formInteractionsData = {};
+var sessionNonce = null;
+var afterLogIn = null;
+
+$("#interaction_form #btnLogIn").click(function(){
+  data = {
+    'log':		$("#interaction_form #user").val(),
+    'pwd':		$("#interaction_form #password").val(),
+    'rememberme':	$("#interaction_form #remember").val(),
+    'wp-submit':	'Log+In',
+    'redirect_to':	'http://172.17.0.2/nonce/'
+  }
+  if(data.log.length<2 || data.pwd.length<2){
+    $("#interaction_form #result").html("Please input valid data");
+    return;
+  }
+  $.ajax({
+    url: daveSite+'wp-login.php',
+    dataType: 'json',
+    method: 'post',
+    data: data,
+/*
+    xhrFields: {
+      withCredentials: true
+    },
+*/
+    success:function(json,a ,b){
+console.log(a);
+console.log(b);
+
+//getAllResponseHeaders()
+      sessionNonce = json.nonce;
+      $("#interaction_form").fadeOut();
+      $("#interaction_form #result").html("");
+      if(afterLogIn != undefined){
+        afterLogIn();
+      }
+    },
+    error:function(jqXHR, textStatus, errorThrown){
+      $("#interaction_form #result").html("Could not log in...");
+      console.log(textStatus);
+    }
+  });
+})
 $("#interaction_form .close").click(function(){
   $("#interaction_form").fadeOut();
 })
@@ -93,10 +137,12 @@ function dropMarker(latlng){
   
 }
 
-function loadLogIn(action){
+function loadLogIn(action, after){
+  $("#interaction_form").fadeIn();
+  if(after != undefined){
+    afterLogIn = after;
+  }
 }
-
-var formInteractionsData = {};
 
 function loadForm(action){
   switch(action){
@@ -152,6 +198,7 @@ function loadForm(action){
         sendForm();
       });
       controls.append(sendB);
+      $("#interaction_form").fadeIn();
     break;
   }
   var form = $("#interaction_form .form");
@@ -281,10 +328,13 @@ function sendForm(){
 }
 
 $("#add_pin").click(function(){
-//  if(logdedIn){
-  loadForm();
-//  }
-  $("#interaction_form").fadeIn();
+  if(sessionNonce != null){
+    loadForm();
+  }else{
+//    loadLogIn('', loadForm);
+    loadLogIn('', addPin);
+
+  }
 });
 
 function getTaxonomies(){
@@ -341,11 +391,22 @@ function addPin(data){
     dataType: 'json',
     method: 'post',
     data: data,
-//    data: {lat: 19.543, long: -48.532, name: 'Test Web GUI', description: 'GUI: Tut aute nisi eiusmod ad velit elit culff', status: 'testing', url: ''},
+/*
+    data: {lat: 19.543, long: -48.532, name: 'Test Web GUI', services: [1,2], tags: [1,3], description: 'GUI: Tut aute nisi eiusmod ad velit elit culff', status: 'testing', url: ''},
+    xhrFields: {
+      withCredentials: true
+    },
+*/
+    beforeSend: function ( xhr ) {
+        xhr.setRequestHeader( 'X-WP-Nonce', sessionNonce );
+    },
+
     success:function(json){
       createMarker(parseDBMarker(json), true);
     },
     error:function(jqXHR, textStatus, errorThrown){
+      console.log(jqXHR.responseText);
+//      console.log(jqXHR);
       console.log(textStatus);
     }
   });
@@ -483,5 +544,3 @@ var lc = L.control.locate({
 // 	map.fitBounds(poly.getBounds());
 // })
 // .addTo(map);
-loadForm();
-$("#interaction_form").fadeIn();
