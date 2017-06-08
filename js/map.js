@@ -6,7 +6,7 @@ require('leaflet.locatecontrol');
 require('leaflet-control-geocoder');
 require('leaflet-search');
 
-var daveSite = '../ppWP/';
+var daveSite = '../';
 var hashtags = [];
 var services = [];
 var currentFormInt = 0;
@@ -20,7 +20,7 @@ $("#interaction_form #btnLogIn").click(function(){
     'pwd':		$("#interaction_form #password").val(),
     'rememberme':	$("#interaction_form #remember").val(),
     'wp-submit':	'Log+In',
-    'redirect_to':	daveSite+'nonce/'
+    'redirect_to':	'nonce/'
   }
   if(data.log.length<2 || data.pwd.length<2){
     $("#interaction_form #result").html("Please input valid data");
@@ -497,9 +497,6 @@ function createHashtagList(tags, url){
 
 function createMarker(data, centerTo ) {
   var marker = L.marker(data.latlng, {icon: ppIcon}).addTo(map);
-  if(centerTo){
-    map.flyTo(data.latlng, 15);
-  }
   marker.bindPopup(function (evt) {
     var list = createLayerList(data.layers);
     var contact = "<a href='#' class='btn btn-primary'>CONTACT</a>"
@@ -507,6 +504,10 @@ function createMarker(data, centerTo ) {
     var hashtags = createHashtagList(data.hashtags, "#");
     return L.Util.template("<h3 class='name'>{name}</h3><p class='paragraph'>{paragraph}</p>" + list.outerHTML + details + hashtags.outerHTML, data);
   }, popupOptions);
+  if(centerTo){
+    map.flyTo(data.latlng, 15);
+    marker.openPopup();
+  }
 }
 
 // locate module

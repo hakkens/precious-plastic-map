@@ -212,7 +212,7 @@ ol {
   right: 90px;
   font-size: 4em;
   color: #55585A;
-  cursor: pointer;
+  cursor: default;
 }
 
 #interaction_form .close:hover {
@@ -221,6 +221,139 @@ ol {
 
 #interaction_form .close:active {
   font-size: 3.9em;
+}
+
+#interaction_form .subtitle {
+  margin-bottom: 30px;
+}
+
+#interaction_form .form {
+  width: 590px;
+  margin: auto;
+}
+
+#interaction_form .number {
+  color: #F58D8E;
+  margin-right: 7px;
+}
+
+#interaction_form input {
+  display: block;
+  width: 98%;
+  margin-top: 15px;
+}
+
+#interaction_form .pagger {
+  text-align: center;
+}
+
+#interaction_form .controls {
+  display: block;
+  margin: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#interaction_form .controls .btn {
+  margin: 20px 15px 0px 15px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+#interaction_form input[type="checkbox"] {
+  display: inline;
+  margin-right: 10px;
+  width: auto !important;
+}
+
+#interaction_form .formLogIn #result {
+  color: red;
+}
+
+#interaction_form .formLogIn input {
+  margin-top: 5px;
+}
+
+#interaction_form .formLogIn label {
+  margin-top: 15px;
+}
+
+#interaction_form .formLogIn #resulta {
+  display: none;
+}
+
+#interaction_form #btnLogIn {
+  margin: 0 0 20px 0;
+}
+
+#interaction_form a {
+  display: block;
+  color: #55585A;
+  text-decoration: none;
+  text-align: center;
+}
+
+#interaction_form #coord_options li {
+  cursor: pointer;
+}
+
+#interaction_form #coordinates {
+  cursor: pointer;
+}
+
+#interaction_form .bool label {
+  display: block;
+}
+
+#interaction_form .bool label input[type="radio"] {
+  display: inline;
+  margin-right: 10px;
+  width: auto !important;
+  -webkit-appearance: checkbox;
+  -moz-appearance: checkbox;
+  -ms-appearance: checkbox;
+}
+
+#interaction_form .catalog {
+  margin-top: 15px;
+}
+
+#interaction_form .catalog .cont {
+  content: "";
+  clear: both;
+  display: table;
+  width: 100%;
+}
+
+#interaction_form .catalog .btn {
+  float: left;
+  clear: left;
+  padding: 10px;
+  color: #55585A !important;
+  border: 1px solid #D4D8DA !important;
+  background-color: #FFF;
+  text-decoration: none;
+  margin-bottom: 5px;
+}
+
+#interaction_form .catalog .btn:hover {
+  color: #D4D8DA !important;
+}
+
+#interaction_form .catalog .selected {
+  border-color: #F58D8E !important;
+  color: #F58D8E !important;
+}
+
+#interaction_form .catalog .selected:hover {
+  color: #F58D8E !important;
+}
+
+#interaction_form .catalog .desc {
+  float: right;
+  width: 70%;
 }
 
 @media screen and (min-width: 768px) and (max-width: 1024px) {
@@ -241,6 +374,12 @@ ol {
     font-size: 20px;
     margin: 10px 0;
     margin-top: 20px;
+  }
+  #interaction_form .subtitle {
+    color: #55585A;
+    text-align: center;
+    margin: 10px 0;
+    margin-bottom: 30px;
   }
   #interaction_form .layers-form {
     background: #EDEFEC;

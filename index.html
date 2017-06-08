@@ -1,56 +1,64 @@
-<!doctype html>
-<html class="no-js" lang="">
+<!DOCTYPE html>
+<html class="no-js" lang="us">
 <head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta charset="utf-8">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
-	<title></title>
-	<meta name="description" content="">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-
+	<title>Precious Plastic Map Beta</title>
+	<meta name="description" content="Precious Plastic Map beta">
 	<link rel="apple-touch-icon" href="apple-touch-icon.png">
-	<!-- Place favicon.ico in the root directory -->
+  <link rel="icon" type="image/png" href="images/icon.png">
 
-	<link rel="stylesheet" href="css/main.css">
 	<link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+  <!-- Font-Awesome -->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+  <link rel="stylesheet" href="build/libraries.css">
+  <link rel="stylesheet" href="css/index.css">
+
 </head>
 <body>
-	<!--[if lt IE 8]>
-	<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-	<![endif]-->
 
-	<!-- Add your site or application content here -->
-	<div id="website">
-		<div id="header">
-			<h1>Hello there! This is the Precious Plastic map.</h1>
-			<div id="content">
-				<p>We are setting up a network that makes it easier to start recycling plastic.</p>
-			</div>
-		</div>
+  <div id="map"><div id="findbar"></div></div>
+  <div id="interaction_form"><i class="close fa fa-times"></i>
+    <div class="title">GOOD TO SEE YOU HERE AMIGO!</div>
+    <div class="subtitle">Log in to your Dave Hakken's  account to create a pin.</div>
+    <div class="form formLogIn">
+      <label for="user">Username or Email</label>
+      <input type="text" name="user" id="user">
+      <label for="password">Password</label>
+      <input type="password" name="password" id="password">
+      <div id="result"></div>
+      <label>
+        <input type="checkbox" name="remember" id="remember" value="forever">Remember me
+      </label>
+    </div>
+    <div class="controls">
+      <input type="button" id="btnLogIn" class="btn btn-sign-next" value="Log In">
+      <a href="https://davehakkens.nl/community/forgot-password/" target="_blank">Forgot your password</a>
+      <a href="https://davehakkens.nl/community/register" target="_blank">Create an account</a>
+    </div>
+  </div>
+  <div id="layers">
+    <div class="logo">
+      <img src="images/logo.png">
+    </div>
+    <form class="search-form">
+      <input type="text" class="search" placeholder="&#xf002; Search Precious Plastic world">
+    </form>
+    <div class="layers-form">
+      <h3 class="title">Filter</h3>
+      <form>
+        <ul class="list-unstyled layer-checkboxes">
+        </ul>
+        <input type="button" class="btn btn-lg btn-block btn-primary" value="ADD PIN" id="add_pin">
+      </form>
+    </div>
+  </div>
 
-		<div id="map">
-			<iframe src="https://www.google.com/maps/d/embed?mid=1Kkjfkde4xzOy1fi5aiAF5rr7YX0&hl=en" width="1000px" height="600px"></iframe>
-		</div>
-
-		<div id="content">
-			<p>  On this map we gather everyone that build a set or a single machine. If you build on or now someone that built it. Send us a mail or add it to the list yourself. Don't break anything :)</p>
-		</div>
-
-		<div id="content">
-			<h1>Material map</h1>
-		</div>
-
-
-		<div id="map">
-			<iframe src="https://www.google.com/maps/d/u/0/embed?mid=1PC4A4JhOA7aXxGQBrEQ9be7vqQc" width="1000" height="600"></iframe>
-		</div>
-		<div id="content">
-			<p>  This is our database of machine builders, shops, lasercutters, scrapyards that people added all over the world. Sharing this information makes it much easier for others to get started. Contribute the things you learned or found and <a href="https://drive.google.com/open?id=1PC4A4JhOA7aXxGQBrEQ9be7vqQc&usp=sharing">add them</a> to the map (make sure to login your google account)</p>
-		</div>
-
-		<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-	</div>
-	<script type=’text/javascript’ src=’hhttp://lab.preciousplastic.com//js’></script>
-	<script type="text/javascript" src="map.js"></script>
+  <!-- Map JS -->
+  <script type="text/javascript" src="build/map.min.js"></script>
 </body>
 </html>
