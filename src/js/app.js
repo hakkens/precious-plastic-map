@@ -1,6 +1,6 @@
 import { FILTERS } from './const'
 import _ from 'lodash'
-import { getElement, createElement } from './utils'
+import { getElement, createElement, openNewWindow } from './utils'
 import Fuse from 'fuse.js'
 
 export default class App {
@@ -20,7 +20,7 @@ export default class App {
     const filters = Object.keys(FILTERS).map(filter => ({ key: filter, value: FILTERS[filter] }))
     this.createFilterElements(filters)
     this.activeFilters = filters.map(filter => filter.key)
-    getElement('add-pin').addEventListener('click', () => redirectToUrl(process.env.WP_ADD_PIN))
+    getElement('add-pin').addEventListener('click', () => openNewWindow(process.env.WP_ADD_PIN))
     this.setData()
   }
 
@@ -100,8 +100,4 @@ function applyFilters(locationData, activeFilters) {
   return locationData.filter(location => {
     return !_.isEmpty(_.intersection(location.filters, activeFilters))
   })
-}
-
-function redirectToUrl(url) {
-  window.open(url, '_blank')
 }

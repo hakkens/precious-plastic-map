@@ -18,3 +18,7 @@ export function createElement({ tag, cls, type, name, value, checked }) {
 export function addAttribute(el, attrType, attrVal) {
   return attrVal ? el.setAttribute(attrType, attrVal) : el
 }
+
+export function openNewWindow(url) {
+  window.open(url, '_blank')
+}
