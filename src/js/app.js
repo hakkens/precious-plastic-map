@@ -17,7 +17,7 @@ export default class App {
   async initApp() {
     this.locationData = await this.data.getLocations()
     this.createSearch()
-    const filters = buildFilters(this.locationData)
+    const filters = Object.keys(FILTERS).map(filter => ({ key: filter, value: FILTERS[filter] }))
     this.createFilterElements(filters)
     this.activeFilters = filters.map(filter => filter.key)
     getElement('add-pin').addEventListener('click', () => this.map.addPin())
@@ -100,17 +100,4 @@ function applyFilters(locationData, activeFilters) {
   return locationData.filter(location => {
     return !_.isEmpty(_.intersection(location.filters, activeFilters))
   })
-}
-
-function buildFilters(locationData) {
-  return _
-    .chain(locationData)
-    .map('filters')
-    .flatten()
-    .uniq()
-    .map(name => ({
-      key: name,
-      value: FILTERS[name]
-    }))
-    .value()
 }
