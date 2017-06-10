@@ -1,5 +1,9 @@
-.popup {
-    max-width: 300px;
+.popup__text {
+    padding: 0 20px;
+}
+
+.popup__filters {
+    list-style: none;
 }
 
 .popup__header, 
@@ -21,4 +25,43 @@
     color: $secondary-color;
     font-family: $title-font;
     margin-top: 20px;
+}
+
+//Are you kidding me google? No classes?!
+.gm-style-iw {
+    display: flex;
+    justify-content: center;
+    top: 0px !important;
+    left: 0px !important;
+    width: 300px !important;
+}
+
+//Close button layer
+.gm-style-iw + div {
+    width: 30px !important;
+    height: 30px !important;
+    left: 265px;
+    color: #fff;
+    text-shadow: 2px 2px 5px #000000;
+    opacity: 1 !important;
+    font-size: 25px;
+    text-align: center;
+}
+.gm-style-iw + div:after {
+    content: "\00d7";
+}
+.gm-style-iw + div img {
+    display: none;
+}
+
+//Shadow layer
+.gm-style > div > div > div > div > div > div:nth-child(2) {
+    width: 300px !important;
+}
+
+//Panel background layer
+.gm-style > div > div > div > div > div > div:nth-child(4) {
+    width: 300px !important;
+    top: 0px !important;
+    left: 0px !important;
 }
