@@ -8,6 +8,13 @@ export const FILTERS = {
 }
 
 export const STATUS = {
-    OPEN: 'Open for visits',
-    CLOSED: 'Closed for visits'
+  OPEN: 'Open for visits',
+  CLOSED: 'Closed for visits'
+}
+
+export const HASHTAGS = {
+  SHREDDER: 'shredder',
+  INJECTION: 'injection',
+  EXTRUSION: 'extrusion',
+  COMPRESSION: 'compression'
 }
