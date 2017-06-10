@@ -1,4 +1,4 @@
-import { FILTERS } from './const'
+import { FILTERS, HASHTAGS } from './const'
 import { createElement } from './utils'
 import mapStyleConfig from './map-style.json'
 import './../../lib/markerclusterer'
@@ -158,7 +158,7 @@ function generateMarkerContent(data) {
       <p class="popup__status">${data.status}</p>
       <a href="${data.website}" class="popup__website">${data.website}</a>
       <ul class="popup__tags">
-        ${data.hashtags.map(tag => `<li class="popup__tag">#${tag}</li>`).join('')}
+        ${data.hashtags.map(tag => `<li class="popup__tag">#${HASHTAGS[tag]}</li>`).join('')}
       </ul>
     </div>
   `
