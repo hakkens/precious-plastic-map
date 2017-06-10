@@ -5,7 +5,6 @@ var FaviconsWebpackPlugin = require('favicons-webpack-plugin')
 
 module.exports = {
   entry: [ 'babel-polyfill', path.join(__dirname, 'src', 'index.js') ],
-  devtool: "#inline-source-map",
   output: {
     path: path.join(__dirname, 'build'),
     filename: 'bundle.js'
