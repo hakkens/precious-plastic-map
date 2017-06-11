@@ -15,11 +15,11 @@ export default class App {
   }
 
   async initApp() {
-    this.locationData = await this.data.getLocations()
-    this.createSearch()
     const filters = Object.keys(FILTERS).map(filter => ({ key: filter, value: FILTERS[filter] }))
     this.createFilterElements(filters)
     this.activeFilters = filters.map(filter => filter.key)
+    this.locationData = await this.data.getLocations()
+    this.createSearch()
     getElement('add-pin').addEventListener('click', () => openNewWindow(process.env.WP_ADD_PIN))
     this.setData()
   }

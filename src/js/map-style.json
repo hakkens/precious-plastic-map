@@ -4,10 +4,10 @@
     "elementType": "geometry.fill",
     "stylers": [
       {
-        "saturation": -50
+        "saturation": -20
       },
       {
-        "lightness": 15
+        "lightness": 10
       }
     ]
   },
@@ -28,7 +28,7 @@
     "elementType": "geometry.fill",
     "stylers": [
       {
-        "color": "#b6d8e6"
+        "color": "#d0e4ec"
       }
     ]
   }
