@@ -27,13 +27,11 @@
     margin-top: 20px;
 }
 
-//Are you kidding me google? No classes?!
+//Google markup is awful and has no classes, forcing these styles to be super ugly.
+//Nth-child is used to hopefully prevent these styles from affecting other things.
 .gm-style-iw {
-    display: flex;
-    justify-content: center;
     top: 0px !important;
     left: 0px !important;
-    width: 300px !important;
 }
 
 //Close button layer
@@ -55,12 +53,12 @@
 }
 
 //Shadow layer
-.gm-style > div > div > div > div > div > div:nth-child(2) {
+.gm-style > div:first-child > div:nth-child(4) > div:nth-child(4) > div:first-child > div:first-child > div:nth-child(2) {
     width: 300px !important;
 }
 
 //Panel background layer
-.gm-style > div > div > div > div > div > div:nth-child(4) {
+.gm-style > div:first-child > div:nth-child(4) > div:nth-child(4) > div:first-child > div:first-child > div:nth-child(4) {
     width: 300px !important;
     top: 0px !important;
     left: 0px !important;
