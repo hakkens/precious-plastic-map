@@ -1,4 +1,4 @@
-import { FILTERS, HASHTAGS } from './const'
+import { FILTERS, HASHTAGS, STATUS } from './const'
 
 export default class Data {
 
@@ -13,13 +13,14 @@ export default class Data {
 function mapValue(value) {
   const filterKeys = Object.keys(FILTERS)
   const hashtagKeys = Object.keys(HASHTAGS)
+  const statusKeys = Object.keys(STATUS)
 
   const { lat, long, name, services, tags, status, description, url } = value
   const newObj = {
     lat: parseFloat(lat),
     lng: parseFloat(long),
     name,
-    status,
+    status: statusKeys[parseInt(status)],
     description,
     website: url,
     filters: services.map(index => filterKeys[index - 1]),
