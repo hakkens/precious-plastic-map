@@ -1,7 +1,6 @@
 import { FILTERS } from './const'
 import _ from 'lodash'
 import { getElement, createElement, openNewWindow } from './utils'
-import Fuse from 'fuse.js'
 
 export default class App {
 
@@ -9,17 +8,14 @@ export default class App {
     this.data = data
     this.map = map
     this.activeFilters = []
-    this.query = ''
     this.locationData = []
-    this.fuse = {}
   }
 
   async initApp() {
-    this.locationData = await this.data.getLocations()
-    this.createSearch()
     const filters = Object.keys(FILTERS).map(filter => ({ key: filter, value: FILTERS[filter] }))
     this.createFilterElements(filters)
     this.activeFilters = filters.map(filter => filter.key)
+    this.locationData = await this.data.getLocations()
     getElement('add-pin').addEventListener('click', () => openNewWindow(process.env.WP_ADD_PIN))
     this.setData()
   }
@@ -52,47 +48,10 @@ export default class App {
     })
   }
 
-  createSearch() {
-    const options = {
-      shouldSort: true,
-      includeMatches: true,
-      threshold: 0.2,
-      location: 0,
-      distance: 100,
-      maxPatternLength: 32,
-      minMatchCharLength: 2,
-      keys: [
-        'name',
-        'address',
-        'description',
-        'hashtags'
-      ]
-    }
-    this.fuse = new Fuse(this.locationData, options)
-
-    getElement('search').addEventListener('input', _.debounce(event => {
-      this.query = event.target.value
-      this.setData()
-    }, 300))
-
-    getElement('close-search').addEventListener('click', () => {
-      getElement('search').value = ''
-      this.query = ''
-      this.setData()
-    })
-  }
-
   setData() {
-    const { locationData, query, activeFilters } = this
-
-    const searched = (query.length > 1)
-      ? _.map(this.fuse.search(query), 'item')
-      : locationData
-
+    const { locationData, activeFilters } = this
     const filtered = applyFilters(locationData, activeFilters)
-
-    const updatedLocations = _.intersection(searched, filtered)
-    this.map.setData(updatedLocations)
+    this.map.setData(filtered)
   }
 }
 
