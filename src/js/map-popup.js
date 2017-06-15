@@ -7,11 +7,18 @@ export default function generateMarkerContent(data) {
       <div class="popup__text">
         <h2 class="popup__header">${data.name}</h2>
         <p class="popup__description">${data.description}</p>
-        <ul class="popup__filters">
-          ${data.filters.map(filter => `<li class="popup__filter">${FILTERS[filter]}</li>`).join('')}
-        </ul>
-        <p class="popup__status">${data.status}</p>
-        <a href="${data.website}" class="popup__website">${data.website}</a>
+        <div class="popup__column">
+          <ul class="popup__filters">
+            ${data.filters.map(filter => 
+              `<li class="popup__filter"><span class="popup__filtericon"></span>${FILTERS[filter]}</li>`
+            ).join('')}
+          </ul>
+          <p class="popup__status">${data.status}</p>
+          <a href="${data.website}" class="popup__website">${data.website}</a>
+        </div>
+        <div class="popup__column popup__column-right">
+          <a href="${data.contact}" target="_blank" class="btn btn-primary popup__contact">Contact</a>
+        </div>
         <ul class="popup__tags">
           ${data.hashtags.map(tag => `<li class="popup__tag">#${HASHTAGS[tag]}</li>`).join('')}
         </ul>
