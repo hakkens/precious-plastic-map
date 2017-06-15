@@ -9,12 +9,14 @@
   padding: .5rem 1rem;
   border-radius: .25rem;
   transition: all .2s ease-in-out;
+  background-color: $background-color-secondary;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: normal;
   &:hover {
     cursor: pointer;
     box-shadow: 0 0 10px #888;
   }
-  background-color: $background-color-secondary;
-  margin: 5px;
 }
 
 .btn-primary {

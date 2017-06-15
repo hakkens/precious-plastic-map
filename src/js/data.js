@@ -20,9 +20,10 @@ function mapValue(value) {
     lat: parseFloat(lat),
     lng: parseFloat(long),
     name,
-    status: statusKeys[parseInt(status)],
+    status: STATUS[statusKeys[parseInt(status)]],
     description,
     website: url,
+    contact: 'https://davehakkens.nl/community/members/davehakkens/',
     filters: services.map(index => filterKeys[index - 1]),
     hashtags: tags.map(index => hashtagKeys[index - 1]),
     imgs: [
