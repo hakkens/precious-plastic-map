@@ -17,6 +17,7 @@ export default class App {
     this.activeFilters = filters.map(filter => filter.key)
     this.locationData = await this.data.getLocations()
     getElement('add-pin').addEventListener('click', () => openNewWindow(process.env.WP_ADD_PIN))
+    getElement('info').addEventListener('click', toggleInfoBox)
     this.setData()
   }
 
@@ -59,4 +60,8 @@ function applyFilters(locationData, activeFilters) {
   return locationData.filter(location => {
     return !_.isEmpty(_.intersection(location.filters, activeFilters))
   })
+}
+
+function toggleInfoBox() {
+  getElement('info-box').classList.toggle('info__box-visible')
 }
