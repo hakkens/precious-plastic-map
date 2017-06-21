@@ -7,7 +7,7 @@
   top: 0px;
   left: 0px;
   color: #FF0000;
-  background: #fff;
+  background: #f2f6f9;
   font-family: 'Varela Round', sans-serif;
   color: $text-color;
 
@@ -145,7 +145,32 @@
       width:70%;
     }
   }
-
+  .photos{
+    margin-top: 15px;
+    label.imgUpload{
+      margin: 10px;
+      display: inline-block;
+      position: relative;
+      width: 170px;
+      height: 170px;
+      border: 2px solid $layers-border-color;
+      border-radius: 10px;
+      overflow: hidden;
+      background-color: #FFFFFF;
+      img{
+        max-width: 350px;
+        max-height: 180px;
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      input{
+        display: none;
+      }
+    }
+  }
   @media screen and (min-width: $tablet) and (max-width: $desktop) {
     display: none;
   }

@@ -11,17 +11,34 @@
     }
   }
   .custom .leaflet-popup-content-wrapper {
-    width: 350px;
+    width: 300px;
     box-shadow: 0 2px 4px #000;
     border-radius: 2px;
+    padding: 0px;
     .leaflet-popup-content {
-      margin: 15px;
+      margin: 0px;
+    }
+    .unverified {
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      height: 20px;
+      background-color: #FFFFFF;
+      padding: 3px 5px 1px 5px;
+      color: $name-color;
+      font-size: $name-font-size;
+      font-weight: bold;
+      border-radius: 0px 2px 0px 5px;;
+    }
+    .popupData {
+      padding: 12px;
     }
     .name {
       font-family: $name-font-family;
       font-size: $name-font-size;
       color: $name-color;
       text-transform: uppercase;
+      margin-top: 0px;
     }
     .layer-list {
       font-family: $layer-list-font-family;
