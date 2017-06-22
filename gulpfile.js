@@ -1,7 +1,7 @@
 var gulp = require('gulp'),
     sass = require('gulp-sass');
 
-var input = './css/sass/*.scss';
+var input = ['./css/sass/*.scss','./css/sass/*/*.scss'];
 var output = './css/';
 
 var sassOptions = {
