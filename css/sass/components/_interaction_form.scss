@@ -41,10 +41,14 @@
     color: $primary-color;
     margin-right: 7px;
   }
-  input{
+  input, textarea{
     display: block;
     width: 98%;
     margin-top: 15px;
+  }
+  textarea{
+    resize: none;
+    height: 70px;
   }
   .pagger{
     text-align: center;

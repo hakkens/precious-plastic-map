@@ -20,7 +20,7 @@ var coordinates = [];
 var newMarkerShown = false;
 var markers = [];
 
-var markerCluster = L.markerClusterGroup();
+var markerCluster = L.markerClusterGroup({ showCoverageOnHover: false, spiderfyDistanceMultiplier: 1.5 });
 
 $("#interaction_form #btnLogIn").click(function(){
   data = {
@@ -64,17 +64,20 @@ var formInteractions={
       {
         var: 'address',
         type: 'coord',
+        max: 100,
         question: 'Type your pin address, so we can locate it on the map.',
         placeholder: 'Your address',
       },
       {
         var: 'name',
+        max: 50,
         question: 'Name of the pin',
         placeholder: 'Precious Plastic',
       },
       {
         var: 'description',
         type: 'comment',
+        max: 200,
         question: 'Description(200 char max)',
         placeholder: 'Tell people about you, your space or what you do there',
       },
@@ -93,6 +96,7 @@ var formInteractions={
       },
       {
         var: 'url',
+        max: 50,
         question: 'Somewhere else on the web?',
         placeholder: 'Website, facebook, twitter, etc...',
       },
@@ -111,6 +115,10 @@ var formInteractions={
       },
     ]
   }
+}
+
+function showError(text){
+  alert(text);
 }
 
 function dropMarker(latlng){
@@ -144,6 +152,51 @@ function dropMarker(latlng){
     popup.className= 'popupData';
     var title = $('<h3>', {class: 'name', text: "Add Pin"});
     var coords = $('<div>', {class: 'coords', html: "Lat: " + position.lat + "</br>Lng: " + position.lng});
+
+
+/* //Disable geocoding, we have latlng allready
+      var temp = $('<div>', {id: 'coord_options'});
+      input.append(temp);
+      temp.on('input', function(){
+        $.ajax({
+          url: 'http://photon.komoot.de/api/?',
+          dataType: 'json',
+          data: {q: $(this).val(), limit: 5},
+          success:function(json, options){
+            var options = $('#coord_options');
+            options.empty();
+            var i;
+            for(i=0; i<json.features.length; i++){
+              var item = $('<li>', {text: json.features[i].properties.name});
+              item.click(json.features[i].geometry.coordinates, function(e){
+                var coordinates = $('#coordinates');
+                coordinates.html(e.data[1]+","+e.data[0]);
+                console.log(e.data);
+              });
+              options.append(item);
+            }
+            if(i>0){
+              options.slideDown();
+            }else{
+              options.slideUp();
+            }
+          },
+          error:function(jqXHR, textStatus, errorThrown){
+            console.log(textStatus);
+          }
+        });
+      });
+      var temp = $('<div>', {id: 'coordinates'});
+      temp.click(temp, function(e){
+//TODO: Fix
+        var latlng = L.LatLng(position.lat, position.lng);
+        dropMarker(e.data.html().split(','));
+      });
+*/
+
+
+
+
     $(popup).append(title);
     $(popup).append(coords);
     $(popup).append(addB);
@@ -194,6 +247,7 @@ function loadForm(action){
       currentFormInt += 1;
       if(currentFormInt >= formInteractions.new_pin.pages.length){
         sendForm();
+        return;
       }
     break;
     case 'prev':
@@ -237,51 +291,6 @@ function loadForm(action){
   form.append(label);
 
   switch(page.type){
-    case 'coord':
-      var input = $('<div>', {class: 'coord'});
-      var temp = $('<input>', {type:'text', name: page.var, id: page.var, placeholder: page.placeholder});
-      input.append(temp);
-/* //Disable geocoding, we have latlng allready
-      temp.on('input', function(){
-        $.ajax({
-          url: 'http://photon.komoot.de/api/?',
-          dataType: 'json',
-          data: {q: $(this).val(), limit: 5},
-          success:function(json, options){
-            var options = $('#coord_options');
-            options.empty();
-            var i;
-            for(i=0; i<json.features.length; i++){
-              var item = $('<li>', {text: json.features[i].properties.name});
-              item.click(json.features[i].geometry.coordinates, function(e){
-                var coordinates = $('#coordinates');
-                coordinates.html(e.data[1]+","+e.data[0]);
-                console.log(e.data);
-              });
-              options.append(item);
-            }
-            if(i>0){
-              options.slideDown();
-            }else{
-              options.slideUp();
-            }
-          },
-          error:function(jqXHR, textStatus, errorThrown){
-            console.log(textStatus);
-          }
-        });
-      });
-      var temp = $('<div>', {id: 'coordinates'});
-      temp.click(temp, function(e){
-//TODO: Fix
-        var latlng = L.LatLng(position.lat, position.lng);
-        dropMarker(e.data.html().split(','));
-      });
-*/
-      input.append(temp);
-      var temp = $('<div>', {id: 'coord_options'});
-      input.append(temp);
-      break;
     case 'catalog':
       pinSelectedCategories = [];
       var input = $('<div>', {class: 'catalog'});
@@ -517,8 +526,20 @@ function loadForm(action){
         input.append(labelT);
       }
       break;
+    case 'comment':
+      var input = $('<textarea>', {name: page.var, id: page.var, placeholder: page.placeholder});
+      if (typeof page.max !== 'undefined') {
+        input.attr('maxlength', page.max);
+      }
+      break;
+    case 'coord':
+      var temp = $('<div>', {class: 'coord'}); /* TODO: Style to show lat long */
+      form.append(temp);
     default:
       var input = $('<input>', {type:'text', name: page.var, id: page.var, placeholder: page.placeholder});
+      if (typeof page.max !== 'undefined') {
+        input.attr('maxlength', page.max);
+      }
       break;
   }
   form.append(input);
@@ -628,14 +649,18 @@ function addPin(data){
         xhr.setRequestHeader( 'X-WP-Nonce', sessionNonce );
     },
     success:function(json){
+      if(json.error){
+        showError(json.error);
+        return;
+      }
       var marker = createMarker(parseDBMarker(json), true);
       var markerData = {marker: marker, services: json.services, tags: json.tags};
       markers.push(markerData);
     },
     error:function(jqXHR, textStatus, errorThrown){
       console.log(jqXHR.responseText);
-//      console.log(jqXHR);
-      console.log(textStatus);
+      console.log(jqXHR);
+      showError("Pin could not be added, please verify provided information");
     }
   });
 }
