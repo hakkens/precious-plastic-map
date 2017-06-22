@@ -68,5 +68,37 @@
         text-decoration: underline;
       }
     }
+    .search{
+      &:focus {
+        border-radius: 5px;
+      }
+      margin-bottom: 5px;
+    }
+    .btn{
+      margin: 5px 10px 5px 10px; 
+    }
+    .coords{
+      font-family: $paragraph-font-family;
+      font-size: $paragraph-font-size;
+      color: $paragraph-color;
+      margin: 5px 0px 5px 0px; 
+    }
+    .coord_options{
+      position: absolute;
+      list-style-type: none;
+      left: 90%;
+      background-color: #FFFFFF;
+      box-shadow: 0 0 4px #000;
+      border-radius: 0px 0px 5px 5px;
+      overflow: auto;
+      width:50%;
+      height:70%;
+      display:none;
+      font-family: $paragraph-font-family;
+      color: $paragraph-color;
+      li{
+       padding: 3px;
+      }
+    }
   }
 }

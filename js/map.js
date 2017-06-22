@@ -135,10 +135,16 @@ function dropMarker(latlng){
   marker.bindPopup(function (evt) {
     var marker = evt._popup._source;
     var position = marker.getLatLng();
+
+    var popup = document.createElement('div');
+    popup.className= 'popupData';
+
     var addB = $('<button/>', {class: 'btn btn-primary addB', text: 'Add'});
     addB.click(function(){
       loadForm();
+      var position = marker.getLatLng();
       coordinates = [position.lat, position.lng];
+      console.log(coordinates);
       map.removeLayer(marker);
       newMarkerShown = false;
     })
@@ -148,56 +154,53 @@ function dropMarker(latlng){
       newMarkerShown = false;
     })
 
-    var popup = document.createElement('div');
-    popup.className= 'popupData';
     var title = $('<h3>', {class: 'name', text: "Add Pin"});
-    var coords = $('<div>', {class: 'coords', html: "Lat: " + position.lat + "</br>Lng: " + position.lng});
+    var coords = $('<div>', {class: 'coords', html: "Lat: " + position.lat.toFixed(5) + "</br>Lng: " + position.lng.toFixed(5)});
 
-
-/* //Disable geocoding, we have latlng allready
-      var temp = $('<div>', {id: 'coord_options'});
-      input.append(temp);
-      temp.on('input', function(){
-        $.ajax({
-          url: 'http://photon.komoot.de/api/?',
-          dataType: 'json',
-          data: {q: $(this).val(), limit: 5},
-          success:function(json, options){
-            var options = $('#coord_options');
-            options.empty();
-            var i;
-            for(i=0; i<json.features.length; i++){
-              var item = $('<li>', {text: json.features[i].properties.name});
-              item.click(json.features[i].geometry.coordinates, function(e){
-                var coordinates = $('#coordinates');
-                coordinates.html(e.data[1]+","+e.data[0]);
-                console.log(e.data);
-              });
-              options.append(item);
-            }
-            if(i>0){
-              options.slideDown();
-            }else{
-              options.slideUp();
-            }
-          },
-          error:function(jqXHR, textStatus, errorThrown){
-            console.log(textStatus);
+    var search = $('<input\>', {type: 'text', class: 'search', id: 'geocoding', placeholder: '\uF002 Search location'});
+    var options = $('<ul>', {class: 'coord_options'});
+    search.on('input', function(){
+      var query = $(this).val();
+      if(query.length<2){
+        options.slideUp();
+        return;
+      }
+      $.ajax({
+        url: 'http://photon.komoot.de/api/?',
+        dataType: 'json',
+        data: {q: query, limit: 15},
+        success:function(json, status){
+          options.empty();
+          var i;
+          for(i=0; i<json.features.length; i++){
+            var item = $('<li>', {text: json.features[i].properties.name});
+//TODO: show better info to selct point
+//            console.log(json.features[i]);
+            item.click(json.features[i].geometry.coordinates, function(e){
+              var newLatLng = new L.LatLng(e.data[1], e.data[0]);
+              marker.setLatLng(newLatLng);
+              map.panTo(newLatLng);
+              coords.html("Lat: " + e.data[1].toFixed(5) + "</br>Lng: " + e.data[0].toFixed(5));
+//              console.log(e);
+            });
+            options.append(item);
           }
-        });
+          if(i>0){
+            options.slideDown();
+          }else{
+            options.slideUp();
+          }
+        },
+        error:function(jqXHR, textStatus, errorThrown){
+          console.log(textStatus);
+        }
       });
-      var temp = $('<div>', {id: 'coordinates'});
-      temp.click(temp, function(e){
-//TODO: Fix
-        var latlng = L.LatLng(position.lat, position.lng);
-        dropMarker(e.data.html().split(','));
-      });
-*/
-
-
+    });
 
 
     $(popup).append(title);
+    $(popup).append(options);
+    $(popup).append(search);
     $(popup).append(coords);
     $(popup).append(addB);
     $(popup).append(cancelB);
@@ -578,6 +581,7 @@ function newMarker(){
   var latlng = map.getCenter();
   dropMarker(latlng);
 }
+
 function getTaxonomies(){
   $.ajax({
     url: daveSite+'wp-json/pp_pins/v1/services',

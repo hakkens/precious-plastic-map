@@ -237,10 +237,15 @@ ol {
   margin-right: 7px;
 }
 
-#interaction_form input {
+#interaction_form input, #interaction_form textarea {
   display: block;
   width: 98%;
   margin-top: 15px;
+}
+
+#interaction_form textarea {
+  resize: none;
+  height: 70px;
 }
 
 #interaction_form .pagger {
@@ -517,4 +522,42 @@ ol {
 
 #map .custom .leaflet-popup-content-wrapper .hashtag:hover {
   text-decoration: underline;
+}
+
+#map .custom .leaflet-popup-content-wrapper .search {
+  margin-bottom: 5px;
+}
+
+#map .custom .leaflet-popup-content-wrapper .search:focus {
+  border-radius: 5px;
+}
+
+#map .custom .leaflet-popup-content-wrapper .btn {
+  margin: 5px 10px 5px 10px;
+}
+
+#map .custom .leaflet-popup-content-wrapper .coords {
+  font-family: "Varela Round", sans-serif;
+  font-size: 14px;
+  color: #55585A;
+  margin: 5px 0px 5px 0px;
+}
+
+#map .custom .leaflet-popup-content-wrapper .coord_options {
+  position: absolute;
+  list-style-type: none;
+  left: 90%;
+  background-color: #FFFFFF;
+  box-shadow: 0 0 4px #000;
+  border-radius: 0px 0px 5px 5px;
+  overflow: auto;
+  width: 50%;
+  height: 70%;
+  display: none;
+  font-family: "Varela Round", sans-serif;
+  color: #55585A;
+}
+
+#map .custom .leaflet-popup-content-wrapper .coord_options li {
+  padding: 3px;
 }
