@@ -1,6 +1,6 @@
 import { FILTERS } from './const'
 import _ from 'lodash'
-import { getElement, createElement, openNewWindow } from './utils'
+import { getElement, openNewWindow } from './utils'
 
 export default class App {
 
@@ -14,7 +14,7 @@ export default class App {
   async initApp() {
     const filters = Object.keys(FILTERS).map(filter => ({ key: filter, value: FILTERS[filter] }))
     this.createFilterElements(filters)
-    this.activeFilters = filters.map(filter => filter.key)
+    this.activeFilters = filters.map(filter => filter.key).filter(filter => filter === 'WORKSPACE')
     this.locationData = await this.data.getLocations()
     getElement('add-pin').addEventListener('click', () => openNewWindow(process.env.WP_ADD_PIN))
     getElement('info').addEventListener('click', toggleInfoBox)
@@ -25,8 +25,8 @@ export default class App {
     const container = getElement('filters')
 
     container.innerHTML = filters.map(filter => {
-      const key = filter.key.toLowerCase();
-      const checked = (filter.key === 'WORKSPACE') ? 'checked' : '';
+      const key = filter.key.toLowerCase()
+      const checked = (filter.key === 'WORKSPACE') ? 'checked' : ''
       return `
         <div class="checkbox">
           <input type="checkbox" id=${key} name="filter" class="panel__checkbox" value=${key} ${checked} />
@@ -35,16 +35,17 @@ export default class App {
             <span class="panel__checkbox-icon panel__checkbox-icon-${key}"></span>
             <p class="panel__checkbox-text">${filter.value}</p>
         </div>
-      `;
+      `
     }).join('')
 
     document.getElementsByClassName('panel__checkbox')
 
-    const inputs = [].slice.call(document.querySelectorAll('.panel__checkbox'));
+    const inputs = [].slice.call(document.querySelectorAll('.panel__checkbox'))
 
-    inputs.forEach((input) => {
-      input.addEventListener('click', () => {
-        this.activeFilters = _.xor(this.activeFilters, [filter.key])
+    inputs.forEach(input => {
+      input.addEventListener('click', e => {
+        const filter = e.target.value.toUpperCase()
+        this.activeFilters = _.xor(this.activeFilters, [filter])
         this.setData()
       })
     })

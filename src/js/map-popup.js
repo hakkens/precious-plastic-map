@@ -1,4 +1,4 @@
-import { FILTERS, HASHTAGS } from './const'
+import { FILTERS } from './const'
 
 export default function generateMarkerContent(data) {
   return `
@@ -8,7 +8,7 @@ export default function generateMarkerContent(data) {
         <h2 class="popup__header">${data.name}</h2>
         <p class="popup__description">${data.description}</p>
         <ul class="popup__filters">
-          ${data.filters.map(filter => 
+          ${data.filters.map(filter =>
             `<li class="popup__filter">
               <span class="popup__filtericon popup__filtericon-${filter.toLowerCase()}"></span>
               <p class="popup__filter-text">${FILTERS[filter]}</p>
