@@ -1,4 +1,4 @@
-import { FILTERS, HASHTAGS, STATUS } from './const'
+import { HASHTAGS, STATUS } from './const'
 
 export default class Data {
 
@@ -11,11 +11,10 @@ export default class Data {
 }
 
 function mapValue(value) {
-  const filterKeys = Object.keys(FILTERS)
   const hashtagKeys = Object.keys(HASHTAGS)
   const statusKeys = Object.keys(STATUS)
 
-  const { lat, long, name, services, tags, status, description, url } = value
+  const { lat, long, name, tags, status, description, url } = value
   const newObj = {
     lat: parseFloat(lat),
     lng: parseFloat(long),
@@ -24,7 +23,7 @@ function mapValue(value) {
     description,
     website: url,
     contact: 'https://davehakkens.nl/community/members/davehakkens/',
-    filters: services.map(index => filterKeys[index - 1]),
+    filters: ['WORKSPACE', 'MACHINE', 'STARTED'],
     hashtags: tags.map(index => hashtagKeys[index - 1]),
     imgs: [
       'https://davehakkens.nl/wp-content/uploads/2017/06/shop-1500x955.jpg',

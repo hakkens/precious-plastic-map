@@ -10,16 +10,16 @@
 
 .info__box {
     opacity: 0;
-    width: 200px;
+    width: 420px;
     position: fixed;
+    text-align: center;
     top: 62px;
     right: 10px;
     background: #fff;
     box-shadow: 0 2px 14px 0 rgba(0, 0, 0, 0.50);
     top: 100px;
     right: 50px;
-    padding: 0 1em;
-    font-size: 12px;
+    padding: 2em;
     transition: opacity .2s;
 }
 

@@ -6,17 +6,18 @@
   top: 50px;
   left: 50px;
   background: $background-color-primary;
-  color: $text-color;
   box-shadow: 0 2px 14px 0 rgba(0, 0, 0, 0.50);
   border: 1px solid $border-color;
-  font-family: $font;
   text-align: center;
 }
 
 .panel__section {
-  padding: 15px;
-  padding-bottom: 20px;
+  padding: 20px;
   border-bottom: 1px solid $border-color;
+}
+
+.panel__section:last-of-type {
+  border: none;
 }
 
 .logo {
@@ -26,20 +27,14 @@
 
 .panel__title {
   text-align: center;
-  font-weight: bold;
-  font-size: 18px;
-  margin: 20px 0 10px 0;
+  margin: 15px 0;
   text-transform: uppercase;
 }
 
 .panel__form {
   background: $background-color-secondary;
-  padding: 15px;
+  padding: 20px;
   border-bottom: 1px solid $border-color;
-}
-
-.panel__checkbox {
-  margin: 15px 10px 0 15px;
 }
 
 .panel__checkbox-item {
@@ -47,8 +42,42 @@
 }
 
 .panel__list {
-  list-style: none;
   padding: 0;
   text-align: left;
-  margin-bottom: 20px;
+}
+
+.panel__checkbox-icon {
+  background-image: url('../img/map-sprite.png');
+  width: 30px;
+  height: 30px;
+  background-size: 63px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 6px;
+  margin-left: 8px;
+}
+
+.panel__checkbox-text {
+  font-weight: 300;
+  display: inline;
+}
+
+.panel__checkbox-icon-workspace {
+  background-position-y: 2px;
+}
+
+.panel__checkbox-icon-machine {
+  background-position-y: -26px;
+}
+
+.panel__checkbox-icon-started {
+  background-position-y: -59px;
+}
+
+.panel__checkbox:checked ~ .panel__checkbox-icon {
+  background-position-x: 30px;
+}
+
+.panel__checkbox:checked ~ .panel__checkbox-text {
+  color: $primary-color;
 }
