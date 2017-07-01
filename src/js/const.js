@@ -1,10 +1,7 @@
 export const FILTERS = {
-  WORKSHOP: 'Workshop',
-  MACHINE_BUILDER: 'Machine Builder',
-  SHOP: 'Shop',
-  BUY_PLASTIC: 'Buy Plastic',
-  SELL_PLASTIC: 'Sell Plastic',
-  COLLECT: 'Collect'
+  WORKSPACE: 'Workspaces',
+  MACHINE: 'Machine Builders',
+  STARTED: 'Wants to Get Started'
 }
 
 export const STATUS = {

@@ -3,25 +3,21 @@
 }
 
 .popup__text {
-    padding: 0 20px;
+    padding: 20px 20px 0 20px;
+    word-wrap: break-word;
 }
 
 .popup__filters {
     list-style: none;
+    margin-bottom: 1rem;
 }
 
-.popup__header, 
-.popup__filter {
-    font-family: $title-font;
+.popup__header {
     color: $primary-color;
 }
 
 .popup__website {
     color: $text-color;
-}
-
-.popup__status {
-    font-weight: 400;
 }
 
 .popup__column {
@@ -44,20 +40,35 @@
     margin-top: 1em;
 }
 
-.popup__filter {
-    margin-bottom: 5px;
+.popup__filter-text {
+    font-weight: 300;
+    color: $primary-color;
+    display: inline;
 }
 
 .popup__filtericon {
-    background-image: url('../img/filter-icon-sprite.png');
-    width: 20px;
-    height: 20px;
+    background-image: url('../img/map-sprite.png');
+    width: 25px;
+    height: 25px;
     margin-right: 3px;
-    background-size: auto 20px;
     display: inline-block;
-    background-position: right;
     background-repeat: no-repeat;
     vertical-align: text-bottom;
+    background-size: 50px;
+    background-position-x: -26px;
+    vertical-align: middle;
+}
+
+.popup__filtericon-workspace {
+    background-position-y: 3px;
+}
+
+.popup__filtericon-machine {
+    background-position-y: -21px;
+}
+
+.popup__filtericon-started {
+    background-position-y: -48px;
 }
 
 //Google markup is awful and has no classes, forcing these styles to be super ugly.
@@ -75,8 +86,9 @@
     color: #fff;
     text-shadow: 2px 2px 5px #000000;
     opacity: 1 !important;
-    font-size: 25px;
+    font-size: 30px;
     text-align: center;
+    top: 2px !important;
 }
 .gm-style-iw + div:after {
     content: "\00d7";

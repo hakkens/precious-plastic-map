@@ -24,28 +24,29 @@ export default class App {
   createFilterElements(filters) {
     const container = getElement('filters')
 
-    filters.forEach(filter => {
-      const labelEl = createElement({
-        tag: 'label',
-        cls: 'panel__checkbox-item'
-      })
-      const inputEl = createElement({
-        tag: 'input',
-        cls: 'panel__checkbox',
-        type: 'checkbox',
-        name: 'filter',
-        checked: 'true',
-        value: filter.key
-      })
-      const textEl = document.createTextNode(filter.value)
+    container.innerHTML = filters.map(filter => {
+      const key = filter.key.toLowerCase();
+      const checked = (filter.key === 'WORKSPACE') ? 'checked' : '';
+      return `
+        <div class="checkbox">
+          <input type="checkbox" id=${key} name="filter" class="panel__checkbox" value=${key} ${checked} />
+          <label class="panel__checkbox-item" for=${key}>
+          </label>
+            <span class="panel__checkbox-icon panel__checkbox-icon-${key}"></span>
+            <p class="panel__checkbox-text">${filter.value}</p>
+        </div>
+      `;
+    }).join('')
 
-      inputEl.addEventListener('click', () => {
+    document.getElementsByClassName('panel__checkbox')
+
+    const inputs = [].slice.call(document.querySelectorAll('.panel__checkbox'));
+
+    inputs.forEach((input) => {
+      input.addEventListener('click', () => {
         this.activeFilters = _.xor(this.activeFilters, [filter.key])
         this.setData()
       })
-      labelEl.appendChild(inputEl)
-      labelEl.appendChild(textEl)
-      container.appendChild(labelEl)
     })
   }
 
