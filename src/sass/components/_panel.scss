@@ -81,3 +81,35 @@
 .panel__checkbox:checked ~ .panel__checkbox-text {
   color: $primary-color;
 }
+
+@include breakpoint {
+  .panel__form,
+  .panel__section:first-of-type,
+  .panel__section:last-of-type,
+  .panel__title {
+    display: none;
+  }
+
+  .panel {
+    position: fixed;
+    left: 50%;
+    transform: translate(-50%);
+    width: 80%;
+    box-shadow: none;
+    border-radius: 5px;
+    border: none;
+  }
+
+  .panel__form-open {
+    .panel__form {
+      display: block;
+      border-radius: 5px;
+      border: none;
+      box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.5);
+    }
+
+    .panel__list {
+      margin-top: 25px;
+    }
+  }
+}

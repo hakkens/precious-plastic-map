@@ -13,11 +13,13 @@ export default class App {
 
   async initApp() {
     const filters = Object.keys(FILTERS).map(filter => ({ key: filter, value: FILTERS[filter] }))
-    this.createFilterElements(filters)
     this.activeFilters = filters.map(filter => filter.key).filter(filter => filter === 'WORKSPACE')
+    this.createFilterElements(filters)
     this.locationData = await this.data.getLocations()
-    getElement('add-pin').addEventListener('click', () => openNewWindow(process.env.WP_ADD_PIN))
+    getElement('add-pin').addEventListener('click', addPin)
+    getElement('mob-add-pin').addEventListener('click', addPin)
     getElement('info').addEventListener('click', toggleInfoBox)
+    getElement('drop-toggle').addEventListener('click', toggleFilterDrop)
     this.setData()
   }
 
@@ -26,19 +28,16 @@ export default class App {
 
     container.innerHTML = filters.map(filter => {
       const key = filter.key.toLowerCase()
-      const checked = (filter.key === 'WORKSPACE') ? 'checked' : ''
+      const checked = (this.activeFilters.includes(filter.key)) ? 'checked' : ''
       return `
         <div class="checkbox">
           <input type="checkbox" id=${key} name="filter" class="panel__checkbox" value=${key} ${checked} />
-          <label class="panel__checkbox-item" for=${key}>
-          </label>
-            <span class="panel__checkbox-icon panel__checkbox-icon-${key}"></span>
-            <p class="panel__checkbox-text">${filter.value}</p>
+          <label class="panel__checkbox-item" for=${key}></label>
+          <span class="panel__checkbox-icon panel__checkbox-icon-${key}"></span>
+          <p class="panel__checkbox-text">${filter.value}</p>
         </div>
       `
     }).join('')
-
-    document.getElementsByClassName('panel__checkbox')
 
     const inputs = [].slice.call(document.querySelectorAll('.panel__checkbox'))
 
@@ -66,4 +65,12 @@ function applyFilters(locationData, activeFilters) {
 
 function toggleInfoBox() {
   getElement('info-box').classList.toggle('info__box-visible')
+}
+
+function toggleFilterDrop() {
+  getElement('panel').classList.toggle('panel__form-open')
+}
+
+function addPin() {
+  openNewWindow(process.env.WP_ADD_PIN)
 }

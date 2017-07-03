@@ -33,16 +33,25 @@
       <i id="close-search" class="fa fa-close search__close" aria-hidden="true"></i>
     </form>
 
+    <div id="drop-toggle" class="toggle__btn">
+      <p class="toggle__label">Filter</p>
+      <i class="fa fa-angle-down toggle__icon" aria-hidden="true"></i>
+    </div>
+
     <div class="panel__form">
       <h2 class="panel__title">Filter</h2>
       <form>
         <div id="filters" class="panel__list"></div>
       </form>
     </div>
+
     <div class="panel__section">
       <input type="submit" id="add-pin" class="btn btn-primary" value="ADD PIN">
     </div>
   </div>
+
+  <input type="submit" id="mob-add-pin" class="btn btn-primary btn-cta" value="ADD PIN">
+
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=<%= htmlWebpackPlugin.options.googleKey %>&callback=init&libraries=places"></script>
 </body>
 </html>

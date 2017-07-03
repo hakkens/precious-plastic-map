@@ -9,7 +9,8 @@
   width: 90%;
   height: 30px;
   font-size: 0.75rem;
-  padding: 0;
+  color: $text-color;
+  padding: 0 25px 0 30px;
   margin: 0;
   border: 1px solid $border-color;
   border-radius: 5px;
@@ -22,11 +23,6 @@
     border-right: 0;
     border-left: 0;
   }
-}
-
-.search__input[placeholder] {
-  padding: 0 25px 0 30px;
-  color: $text-color;
 }
 
 .search__glass {
@@ -61,4 +57,31 @@
 .pac-container {
   border-top: 0;
   font-family: $font;
+}
+
+@include breakpoint {
+  .search {
+    top: 0px;
+  }
+
+  .search__glass {
+    display: none;
+  }
+
+  .search__close {
+    right: 10px;
+  }
+
+  .search__input {
+    width: 100%;
+    padding: 0 25px 0 75px;
+    transition: none;
+    border: none;
+    border-bottom: 1px solid $border-color;
+  }
+
+  .panel__form-open .search__input {
+    box-shadow: none;
+    border-radius: 5px 5px 0px 0px;
+  }
 }
