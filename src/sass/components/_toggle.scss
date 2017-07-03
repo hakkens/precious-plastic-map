@@ -1,0 +1,23 @@
+.toggle__btn {
+    display: none;
+}
+
+@include breakpoint {
+  .toggle__btn {
+    display: block;
+    padding: 2px 10px 0px 10px;
+    position: absolute;
+    height: 30px;
+    border-right: 1px solid $border-color;
+    color: $primary-color;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .toggle__label {
+    display: inline;
+    font-size: 12px;
+    color: $primary-color;
+  }
+}

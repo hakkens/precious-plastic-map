@@ -21,6 +21,7 @@
     right: 50px;
     padding: 2em;
     transition: opacity .2s;
+    z-index: 1000;
 }
 
 .info__box:after {
@@ -38,4 +39,10 @@
 
 .info__box-visible {
     opacity: 1;
+}
+
+@include breakpoint {
+    .info {
+        display: none;
+    }
 }
