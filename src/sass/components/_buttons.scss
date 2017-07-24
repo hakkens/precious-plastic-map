@@ -28,6 +28,10 @@
   margin-left: 10px;
 }
 
+.btn-cta {
+  display: none;
+}
+
 @include breakpoint {
   .btn-cta {
     display: block;
