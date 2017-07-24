@@ -1,4 +1,4 @@
-import { FILTERS } from './const'
+import { FILTERS, STATUS } from './const'
 
 export default function generateMarkerContent(data) {
   return `
@@ -16,7 +16,7 @@ export default function generateMarkerContent(data) {
           ).join('')}
         </ul>
         <div class="popup__column">
-          <p class="popup__status">${data.status}</p>
+          <p class="popup__status">${STATUS[data.status]}</p>
           <a href="${data.website}" class="popup__website">Website</a>
         </div>
         <div class="popup__column popup__column-right">
