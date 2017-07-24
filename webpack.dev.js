@@ -8,8 +8,8 @@ var mergedConfig = function(env) {
     plugins: [
       new webpack.DefinePlugin({
         'process.env' : {
-          'WP_URL': JSON.stringify('http://187.217.174.169/ppWP'),
-          'WP_ADD_PIN': JSON.stringify('http://www.google.com')
+          'WP_URL': JSON.stringify('http://localhost:8000'),
+          'WP_ADD_PIN': JSON.stringify('http://localhost:8000/community/login?redirect_to=USER%2Fpins%2F')
         }
       })
     ]

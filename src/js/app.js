@@ -13,7 +13,7 @@ export default class App {
 
   async initApp() {
     const filters = Object.keys(FILTERS).map(filter => ({ key: filter, value: FILTERS[filter] }))
-    this.activeFilters = filters.map(filter => filter.key).filter(filter => filter === 'WORKSPACE')
+    this.activeFilters = filters.map(filter => filter.key).filter(filter => filter === 'WORKSHOP')
     this.createFilterElements(filters)
     this.locationData = await this.data.getLocations()
     getElement('add-pin').addEventListener('click', addPin)
@@ -74,3 +74,4 @@ function toggleFilterDrop() {
 function addPin() {
   openNewWindow(process.env.WP_ADD_PIN)
 }
+

@@ -1,5 +1,5 @@
 export const FILTERS = {
-  WORKSPACE: 'Workspaces',
+  WORKSHOP: 'Workshops',
   MACHINE: 'Machine Builders',
   STARTED: 'Wants to Get Started'
 }
