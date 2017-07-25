@@ -72,6 +72,6 @@ function toggleFilterDrop() {
 }
 
 function addPin() {
-  openNewWindow(process.env.WP_ADD_PIN)
+  openNewWindow(process.env.WP_LOGIN + encodeURIComponent('USER/pins/'))
 }
 

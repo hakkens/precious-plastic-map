@@ -1,6 +1,7 @@
 import { FILTERS, STATUS } from './const'
 
 export default function generateMarkerContent(data) {
+  const contactURL = process.env.WP_LOGIN + encodeURIComponent('members/' + data.username + '/messages/')
   return `
     <div class="popup">
       ${generateImgSlideshow(data.imgs)}
@@ -20,7 +21,7 @@ export default function generateMarkerContent(data) {
           <a href="${data.website}" class="popup__website">Website</a>
         </div>
         <div class="popup__column popup__column-right">
-          <a href="${data.contact}" target="_blank" class="btn btn-primary">Contact</a>
+          <a href="${contactURL}" target="_blank" class="btn btn-primary">Contact</a>
         </div>
       </div>
     </div>
