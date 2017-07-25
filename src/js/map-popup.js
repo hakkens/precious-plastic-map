@@ -29,6 +29,10 @@ export default function generateMarkerContent(data) {
 }
 
 function generateImgSlideshow(imgs) {
+  if (imgs.length === 0) {
+    return ''
+  }
+
   const slides = imgs.map((img, i) => {
     const checked = (i === 0) ? 'checked' : ''
     const prev = (i === 0) ? imgs.length - 1 : i - 1
