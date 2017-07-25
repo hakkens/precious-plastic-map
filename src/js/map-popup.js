@@ -2,6 +2,7 @@ import { FILTERS, STATUS } from './const'
 
 export default function generateMarkerContent(data) {
   const contactURL = process.env.WP_LOGIN + encodeURIComponent('members/' + data.username + '/messages/')
+  const website = data.website ? `<a href="${data.website}" class="popup__website">Website</a>` : ''
   return `
     <div class="popup">
       ${generateImgSlideshow(data.imgs)}
@@ -18,7 +19,7 @@ export default function generateMarkerContent(data) {
         </ul>
         <div class="popup__column">
           <p class="popup__status">${STATUS[data.status]}</p>
-          <a href="${data.website}" class="popup__website">Website</a>
+          ${website}
         </div>
         <div class="popup__column popup__column-right">
           <a href="${contactURL}" target="_blank" class="btn btn-primary">Contact</a>
@@ -29,6 +30,10 @@ export default function generateMarkerContent(data) {
 }
 
 function generateImgSlideshow(imgs) {
+  if (!imgs || imgs.length === 0) {
+    return ''
+  }
+
   const slides = imgs.map((img, i) => {
     const checked = (i === 0) ? 'checked' : ''
     const prev = (i === 0) ? imgs.length - 1 : i - 1
