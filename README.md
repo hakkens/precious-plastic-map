@@ -17,8 +17,3 @@ Run development server (includes watch)
 Production build
 
     yarn run build
-
-## TODO
-
-- Database
-- Static hosting of data points
