@@ -30,14 +30,18 @@ export default function generateMarkerContent(data) {
 }
 
 function generateImgSlideshow(imgs) {
-  if (!imgs || imgs.length === 0) {
+  const numImages = imgs.length
+
+  if (!imgs || numImages === 0) {
     return ''
   }
 
   const slides = imgs.map((img, i) => {
     const checked = (i === 0) ? 'checked' : ''
-    const prev = (i === 0) ? imgs.length - 1 : i - 1
-    const next = (i === imgs.length - 1) ? '0' : i + 1
+    const prev = (i === 0) ? numImages - 1 : i - 1
+    const next = (i === numImages - 1) ? '0' : i + 1
+    const prevEl = (numImages > 1) ? `<label for="img-${prev}" class="slides__prev"></label>` : ''
+    const nextEl = (numImages > 1) ? `<label for="img-${next}" class="slides__next"></label>` : ''
 
     return `<input class="slides__input" type="radio" name="radio-btn" id="img-${i}" ${checked} />
       <li class="slides__container">
@@ -45,8 +49,8 @@ function generateImgSlideshow(imgs) {
           <img class="slides__img" src="${img}" />
         </div>
         <div class="slides__nav">
-          <label for="img-${prev}" class="slides__prev"></label>
-          <label for="img-${next}" class="slides__next"></label>
+          ${prevEl}
+          ${nextEl}
         </div>
     </li>`
   })
