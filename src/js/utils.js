@@ -24,11 +24,8 @@ export function openNewWindow(url) {
 }
 
 export function getQueryVariable(variable) {
-  const query = window.location.search.substring(1);
-  const vars = query.split("&");
-  for (var i = 0; i < vars.length; i++) {
-    const pair = vars[i].split("=");
-    if (pair[0] == variable) { return pair[1]; }
-  }
-  return (false);
+  const query = window.location.search.substring(1)
+  const urlParam = query.split('&').find(param => param.split('=')[0] === variable)
+  if (urlParam) return urlParam.split('=')[1]
+  return false
 }
