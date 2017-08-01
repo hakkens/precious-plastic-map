@@ -19,7 +19,7 @@ export default class GoogleMap {
     const defaultLocation = { lat: 52.373, lng: 4.8925 }
     this.map = new google.maps.Map(domElement, {
       center: defaultLocation,
-      zoom: 4,
+      zoom: 3,
       minZoom: 3,
       mapTypeControlOptions: {
         mapTypeIds: ['styled_map', 'satellite']
