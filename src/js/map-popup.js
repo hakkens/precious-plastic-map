@@ -1,4 +1,4 @@
-import { FILTERS, STATUS } from './const'
+import { FILTERS_SINGULAR, STATUS } from './const'
 
 export default function generateMarkerContent(data) {
   const contactURL = process.env.WP_LOGIN + encodeURIComponent('members/' + data.username + '/messages/')
@@ -13,7 +13,7 @@ export default function generateMarkerContent(data) {
           ${data.filters.map(filter =>
             `<li class="popup__filter">
               <span class="popup__filtericon popup__filtericon-${filter.toLowerCase()}"></span>
-              <p class="popup__filter-text">${FILTERS[filter]}</p>
+              <p class="popup__filter-text">${FILTERS_SINGULAR[filter]}</p>
             </li>`
           ).join('')}
         </ul>
