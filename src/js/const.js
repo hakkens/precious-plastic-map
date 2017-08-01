@@ -1,7 +1,13 @@
 export const FILTERS = {
-  WORKSHOP: 'Workshops',
+  WORKSHOP: 'Workspaces',
   MACHINE: 'Machine Builders',
   STARTED: 'Wants to Get Started'
+}
+
+export const FILTERS_SINGULAR = {
+  WORKSHOP: 'Workspace',
+  MACHINE: 'Machine Builder',
+  STARTED: 'Want to Get Started'
 }
 
 export const STATUS = {
