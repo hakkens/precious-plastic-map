@@ -65,7 +65,7 @@ function getMarkerFromData(data, clickHandler) {
 }
 
 function checkForGeoLocation(map) {
-  let userClicked = false;
+  let userClicked = false
 
   document.addEventListener('click', () => {
     userClicked = true
@@ -83,13 +83,14 @@ function checkForGeoLocation(map) {
 }
 
 function getUrlParamLocation() {
-  const lat = parseFloat(getQueryVariable('lat'));
-  const lng = parseFloat(getQueryVariable('lng'));
+  const lat = getQueryVariable('lat')
+  const lng = getQueryVariable('lng')
 
-  if (!lat || !lng) return null;
+  if (lat === false || lng === false) return null
 
   return {
-    lat: lat,
-    lng: lng
+    lat: parseFloat(lat),
+    lng: parseFloat(lng)
   }
 }
+
