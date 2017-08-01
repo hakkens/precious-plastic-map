@@ -1,6 +1,7 @@
 import mapStyleConfig from './map-style.json'
 import generateMarkerContent from './map-popup'
 import initSearch from './map-search'
+import { getQueryVariable } from './utils'
 import markerIcon from '../img/marker.png'
 
 export default class GoogleMap {
@@ -11,9 +12,11 @@ export default class GoogleMap {
 
   render(domElement) {
     const defaultLocation = { lat: 52.373, lng: 4.8925 }
+    const urlParamLocation = getUrlParamLocation()
+
     this.map = new google.maps.Map(domElement, {
-      center: defaultLocation,
-      zoom: 3,
+      center: urlParamLocation || defaultLocation,
+      zoom: urlParamLocation ? 13 : 3,
       minZoom: 3,
       mapTypeControlOptions: {
         mapTypeIds: ['styled_map', 'satellite']
@@ -24,7 +27,7 @@ export default class GoogleMap {
     this.map.mapTypes.set('styled_map', styledMap)
     this.map.setMapTypeId('styled_map')
 
-    checkForGeoLocation(this.map)
+    if (!urlParamLocation) checkForGeoLocation(this.map)
     initSearch(this.map)
 
     this.infoWindow = new google.maps.InfoWindow()
@@ -62,14 +65,31 @@ function getMarkerFromData(data, clickHandler) {
 }
 
 function checkForGeoLocation(map) {
+  let userClicked = false;
+
+  document.addEventListener('click', () => {
+    userClicked = true
+  })
+
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(position => {
       const pos = {
         lat: position.coords.latitude,
         lng: position.coords.longitude
       }
+      if (!userClicked) map.panTo(pos)
+    })
+  }
+}
 
-      map.panTo(pos)
-    }, () => {})
+function getUrlParamLocation() {
+  const lat = parseFloat(getQueryVariable('lat'));
+  const lng = parseFloat(getQueryVariable('lng'));
+
+  if (!lat || !lng) return null;
+
+  return {
+    lat: lat,
+    lng: lng
   }
 }

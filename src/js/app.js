@@ -1,6 +1,6 @@
 import { FILTERS } from './const'
 import _ from 'lodash'
-import { getElement, openNewWindow } from './utils'
+import { getElement, openNewWindow, getQueryVariable } from './utils'
 
 export default class App {
 
@@ -13,7 +13,7 @@ export default class App {
 
   async initApp() {
     const filters = Object.keys(FILTERS).map(filter => ({ key: filter, value: FILTERS[filter] }))
-    this.activeFilters = filters.map(filter => filter.key).filter(filter => filter === 'WORKSHOP')
+    this.activeFilters = this.initFilters(filters)
     this.createFilterElements(filters)
     this.locationData = await this.data.getLocations()
     getElement('add-pin').addEventListener('click', addPin)
@@ -21,6 +21,16 @@ export default class App {
     getElement('info').addEventListener('click', toggleInfoBox)
     getElement('drop-toggle').addEventListener('click', toggleFilterDrop)
     this.setData()
+  }
+
+  initFilters(filters) {
+    const param = getQueryVariable('filters')
+    const paramFilters = param ? param.split(',') : []
+
+    return filters.map(filter => filter.key).filter(filter => {
+      if (paramFilters.length > 0) return paramFilters.includes(filter)
+      return filter === 'WORKSHOP'
+    })
   }
 
   createFilterElements(filters) {
