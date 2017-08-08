@@ -82,6 +82,11 @@
   color: $primary-color;
 }
 
+.panel__button {
+  margin: 20px 0px 0px 0px;
+  width: 100%;
+}
+
 @include breakpoint {
   .panel__form,
   .panel__section:first-of-type,
