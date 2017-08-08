@@ -12,6 +12,7 @@ export default class App {
   }
 
   async initApp() {
+    this.toggleMenu()
     const filters = Object.keys(FILTERS).map(filter => ({ key: filter, value: FILTERS[filter] }))
     this.activeFilters = this.initFilters(filters)
     this.createFilterElements(filters)
@@ -21,6 +22,15 @@ export default class App {
     getElement('info').addEventListener('click', toggleInfoBox)
     getElement('drop-toggle').addEventListener('click', toggleFilterDrop)
     this.setData()
+  }
+
+  toggleMenu() {
+    const param = getQueryVariable('menu')
+    if (param === 'false') {
+      getElement('mob-add-pin').style.display = "none"
+      getElement('panel').style.display = "none"
+      getElement('info').style.display = "none"
+    }
   }
 
   initFilters(filters) {
