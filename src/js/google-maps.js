@@ -31,6 +31,8 @@ export default class GoogleMap {
     initSearch(this.map)
 
     this.infoWindow = new google.maps.InfoWindow()
+
+    google.maps.event.addListener(this.map, 'click', event => this.infoWindow.close())
   }
 
   setData(data) {
