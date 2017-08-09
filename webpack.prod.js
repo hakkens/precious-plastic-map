@@ -19,6 +19,12 @@ var mergedConfig = function(env) {
           screw_ie8: true
         },
         comments: false
+      }),
+      new webpack.DefinePlugin({
+        'process.env' : {
+          'WP_URL': JSON.stringify('https://davehakkens.nl'),
+          'WP_LOGIN': JSON.stringify('https://davehakkens.nl/community/login?redirect_to=')
+        }
       })
     ]
   });

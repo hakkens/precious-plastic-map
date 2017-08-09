@@ -27,9 +27,9 @@ export default class App {
   toggleMenu() {
     const param = getQueryVariable('menu')
     if (param === 'false') {
-      getElement('mob-add-pin').style.display = "none"
-      getElement('panel').style.display = "none"
-      getElement('info').style.display = "none"
+      getElement('mob-add-pin').style.display = 'none'
+      getElement('panel').style.display = 'none'
+      getElement('info').style.display = 'none'
     }
   }
 
