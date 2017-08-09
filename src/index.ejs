@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="us">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Precious Plastic Map</title>
+  <meta name="description" content="Precious Plastic Map">
+
+  <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+</head>
+<body>
+  <div id="map" class="map"></div>
+  <img id="info" class="info" src="<%= require('./img/info-icon.png') %>">
+  <div id="info-box" class="info__box">
+    <h1>Join the Precious Plastic Family</h1>
+    <h2>We love to recycle plastic!</h2>
+    <p>Precious Plastic is a project that wants to provide people with the tools and knowledge to recycle plastic. Anywhere in the world. We use this map to bring our family together and help local collaboration. Add your location!</p>
+    <p>Visit some of our places on the web:</p>
+    <a href="https://davehakkens.nl/" class="btn btn-primary" target="_blank">Website</a>
+    <a href="https://davehakkens.nl/community/forums/" class="btn btn-primary" target="_blank">Forums</a>
+  </div>
+  <div id="panel" class="panel">
+    <div class="panel__section">
+      <img class="logo" src="<%= require('./img/logo.png') %>">
+    </div>
+
+    <form class="search">
+      <input id="search" type="text" class="search__input" placeholder="Search">
+      <i class="fa fa-search search__glass" aria-hidden="true"></i>
+      <i id="close-search" class="fa fa-close search__close" aria-hidden="true"></i>
+    </form>
+
+    <div id="drop-toggle" class="toggle__btn">
+      <p class="toggle__label">Filter</p>
+      <i class="fa fa-angle-down toggle__icon" aria-hidden="true"></i>
+    </div>
+
+    <div class="panel__form">
+      <h2 class="panel__title">Filter</h2>
+      <form>
+        <div id="filters" class="panel__list"></div>
+      </form>
+      <input type="submit" id="add-pin" class="btn btn-primary panel__button" value="ADD PIN">
+    </div>
+  </div>
+
+  <input type="submit" id="mob-add-pin" class="btn btn-primary btn-cta" value="ADD PIN">
+
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=<%= htmlWebpackPlugin.options.googleKey %>&callback=init&libraries=places"></script>
+</body>
+</html>

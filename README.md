@@ -2,58 +2,18 @@
 
 Building a database of plastic recyclers (https://map.preciousplastic.com)
 
-## Development
+## Build instructions
 
-Install Node.JS (All OS)
+Below instructions are using `yarn` however will work using `npm` too.
 
-https://nodejs.org/en/download/package-manager/
+Install
 
-Check instalation
-```sh
-$ nodejs -v
-v6.9.5 (or higher)
-$ npm -v
-4.2.0 (or higher)
-```
+    yarn install
 
-Clone repository
-```sh
-$ git clone git@github.com:hakkens/precious-plastic-map.git
-```
+Run development server (includes watch)
 
-Install gulp-cli
-```sh
-$ npm install gulp-cli -g
-```
+    yarn run start
 
-Go to the folder and install dependencies
-```sh
-$ npm install
-```
+Production build
 
-Execute this npm scripts
-```sh
-$ npm run build-css-libs
-```
-
-Run this while you are working
-```sh
-$ npm run watch-js
-```
-```sh
-$ gulp
-```
-
-Use your favorit tool to render the site:
-
-```sh
-$ python -m SimpleHTTPServer 8000
-
-# open your web browser to localhost:8000/map.html
-```
-
-```sh
-$ ruby -run -e httpd . -p 8000
-
-# open your web browser to localhost:8000/map.html
-```
+    yarn run build

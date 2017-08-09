@@ -1,0 +1,121 @@
+.popup {
+    max-width: 300px;
+}
+
+.popup__text {
+    padding: 20px 20px 0 20px;
+    word-wrap: break-word;
+    width: 300px;
+}
+
+.popup__filters {
+    list-style: none;
+    margin-bottom: 1rem;
+}
+
+.popup__header {
+    color: $primary-color;
+}
+
+.popup__website {
+    color: $text-color;
+}
+
+.popup__column {
+    width: 49%;
+    display: inline-block;
+    vertical-align: bottom;
+}
+
+.popup__column-right {
+    text-align: right;
+}
+
+.popup__tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    list-style: none;
+    color: $secondary-color;
+    font-family: $title-font;
+    margin-top: 1em;
+}
+
+.popup__filter-text {
+    font-weight: 300;
+    color: $primary-color;
+    display: inline;
+}
+
+.popup__filtericon {
+    background-image: url('../img/map-sprite.png');
+    width: 25px;
+    height: 25px;
+    margin-right: 3px;
+    display: inline-block;
+    background-repeat: no-repeat;
+    vertical-align: text-bottom;
+    background-size: 50px;
+    background-position-x: -26px;
+    vertical-align: middle;
+}
+
+.popup__filtericon-workshop {
+    background-position-y: 3px;
+}
+
+.popup__filtericon-machine {
+    background-position-y: -21px;
+}
+
+.popup__filtericon-started {
+    background-position-y: -48px;
+}
+
+//Google markup is awful and has no classes, forcing these styles to be super ugly.
+//Nth-child is used to hopefully prevent these styles from affecting other things.
+.gm-style-iw {
+    top: 0px !important;
+    left: 0px !important;
+}
+
+//Close button layer
+.gm-style-iw + div {
+    width: 25px !important;
+    height: 25px !important;
+    left: 265px;
+    color: #fff;
+    opacity: 1 !important;
+    font-size: 25px;
+    font-weight: 100;
+    text-align: center;
+    top: 10px !important;
+    line-height: 22px;
+    border-radius: 50%;
+    background: $text-color;
+}
+.gm-style-iw + div:after {
+    content: "\00d7";
+}
+.gm-style-iw + div img {
+    display: none;
+}
+
+//Shadow layer
+.gm-style > div:first-child > div:nth-child(4) > div:nth-child(4) > div:first-child > div:first-child > div:nth-child(2) {
+    width: 300px !important;
+}
+
+//Panel background layer
+.gm-style > div:first-child > div:nth-child(4) > div:nth-child(4) > div:first-child > div:first-child > div:nth-child(4) {
+    width: 300px !important;
+    top: 0px !important;
+    left: 0px !important;
+}
+
+//Places of interest popups
+.poi-info-window {
+    padding: 20px 20px 0 20px;
+    word-wrap: break-word;
+    width: 300px;
+}

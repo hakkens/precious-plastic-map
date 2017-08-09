@@ -1,0 +1,40 @@
+html {
+    font-family: $font;
+    color: $text-color;
+    line-height: 1.4;
+}
+
+body {
+    font-size: 1rem;
+}
+
+h1, h2, h3 {
+    font-family: $title-font;
+    margin-top: 0;
+    margin-bottom: .75rem
+}
+
+h1 {
+    font-size: 1.5rem;
+}
+
+h2 {
+    font-size: 1.2rem;
+}
+
+h3 {
+    font-size: 0.9rem;
+}
+
+p, a {
+    font-size: 0.9rem;
+    font-weight: normal;
+    font-family: $font;
+    color: $text-color;
+    line-height: 1.4;
+    margin-top: 0;
+}
+
+p {
+    margin-bottom: 1rem;
+}
