@@ -79,6 +79,12 @@
     left: 0px !important;
 }
 
+.gm-style-iw,
+.gm-style-iw > div:first-child {
+    max-width: 300px !important;
+    width: 300px !important;
+}
+
 //Close button layer
 .gm-style-iw + div {
     width: 25px !important;

@@ -13,6 +13,8 @@
   text-transform: uppercase;
   font-weight: normal;
   margin: 5px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
   &:hover {
     cursor: pointer;
     box-shadow: 0 0 10px #888;
