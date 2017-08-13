@@ -1,10 +1,11 @@
 var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var FaviconsWebpackPlugin = require('favicons-webpack-plugin')
+var FaviconsWebpackPlugin = require('favicons-webpack-plugin');
+var autoprefixer = require('autoprefixer');
 
 module.exports = {
-  entry: [ 'babel-polyfill', path.join(__dirname, 'src', 'index.js') ],
+  entry: [ 'whatwg-fetch', 'babel-polyfill', path.join(__dirname, 'src', 'index.js') ],
   output: {
     path: path.join(__dirname, 'build'),
     filename: 'bundle.js'
@@ -34,6 +35,16 @@ module.exports = {
           fallback: 'style-loader',
           use: [
             { loader: "css-loader" },
+            {
+              loader: 'postcss-loader',
+              options: {
+                plugins: (loader) => [
+                  autoprefixer({
+                    browsers: ['last 2 versions', 'ie 9-11']
+                  })
+                ]
+              }
+            },
             { loader: "sass-loader" }
           ]
         })

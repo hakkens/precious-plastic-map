@@ -10,13 +10,10 @@ var mergedConfig = function(env) {
         debug: false
       }),
       new webpack.optimize.UglifyJsPlugin({
+        ie8: true,
         beautify: false,
         mangle: {
-          screw_ie8: true,
           keep_fnames: true
-        },
-        compress: {
-          screw_ie8: true
         },
         comments: false
       }),
