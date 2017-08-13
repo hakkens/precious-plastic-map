@@ -1,7 +1,7 @@
 import { FILTERS_SINGULAR, STATUS } from './const'
 
 export default function generateMarkerContent(data) {
-  const contactURL = process.env.WP_LOGIN + encodeURIComponent('community/members/' + data.username + '/messages/')
+  const contactURL = process.env.WP_LOGIN + encodeURIComponent('community/members/' + data.username)
   const website = data.website ? `<a href="${data.website}" class="popup__website" target="_blank">Website</a>` : ''
   return `
     <div class="popup">
@@ -22,7 +22,7 @@ export default function generateMarkerContent(data) {
           ${website}
         </div>
         <div class="popup__column popup__column-right">
-          <a href="${contactURL}" target="_blank" class="btn btn-primary">Contact</a>
+          <a href="${contactURL}" target="_blank" class="btn btn-primary">Profile</a>
         </div>
       </div>
     </div>

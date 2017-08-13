@@ -1,0 +1,17 @@
+.beta {
+    background: $primary-color;
+    padding: 10px;
+    bottom: 0;
+    width: 100%;
+    height: 40px;
+    position: fixed;
+    text-align: center;
+}
+
+.beta p {
+    color: #fff;
+}
+
+.beta ~ .btn-cta {
+    bottom: 50px;
+}
