@@ -1,7 +1,7 @@
 import { FILTERS_SINGULAR, STATUS } from './const'
 
 export default function generateMarkerContent(data) {
-  const contactURL = process.env.WP_LOGIN + encodeURIComponent('members/' + data.username + '/messages/')
+  const contactURL = process.env.WP_LOGIN + encodeURIComponent('community/members/' + data.username + '/messages/')
   const website = data.website ? `<a href="${data.website}" class="popup__website" target="_blank">Website</a>` : ''
   return `
     <div class="popup">
