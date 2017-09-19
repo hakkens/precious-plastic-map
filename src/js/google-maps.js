@@ -2,7 +2,7 @@ import mapStyleConfig from './map-style.json'
 import generateMarkerContent from './map-popup'
 import initSearch from './map-search'
 import { getQueryVariable } from './utils'
-import markerIcon from '../img/marker.png'
+import markerIcon from '../img/marker.svg'
 
 export default class GoogleMap {
 
