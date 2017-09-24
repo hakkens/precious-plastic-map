@@ -1,6 +1,10 @@
 version: 2
 jobs:
   build:
+    branches:
+      only:
+        - master
+
     docker:
       - image: circleci/node:8.5
 
@@ -18,10 +22,13 @@ jobs:
       - save_cache:
           paths:
             - node_modules
-          key: deps-{{ checksum "package.json "}}
+          key: deps-{{ checksum "package.json" }}
       - run:
           name: build
           command: yarn run build
+      - run:
+          name: cp-cname
+          command: cp CNAME build/
       - run:
           name: gh-pages
           command: ./scripts/deploy-ghpages.sh build
