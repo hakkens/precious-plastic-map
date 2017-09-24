@@ -56,20 +56,19 @@
     background-repeat: no-repeat;
     vertical-align: text-bottom;
     background-size: 50px;
-    background-position-x: -26px;
     vertical-align: middle;
 }
 
 .popup__filtericon-workshop {
-    background-position-y: 3px;
+    background-position: -26px 3px;
 }
 
 .popup__filtericon-machine {
-    background-position-y: -21px;
+    background-position: -26px -21px;
 }
 
 .popup__filtericon-started {
-    background-position-y: -48px;
+    background-position: -26px -48px;
 }
 
 //Google markup is awful and has no classes, forcing these styles to be super ugly.
