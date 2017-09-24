@@ -15,14 +15,14 @@ jobs:
       - run:
           name: yarn-install
           command: yarn install
+      - save_cache:
+          paths:
+            - node_modules
+          key: deps-{{ checksum "package.json "}}
       - run:
           name: build
           command: yarn run build
       - run:
           name: gh-pages
           command: ./scripts/deploy-ghpages.sh build
-      - save_cache:
-          paths:
-            - node_modules
-          key: deps-{{ checksum "package.json "}}
 
