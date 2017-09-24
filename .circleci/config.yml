@@ -13,7 +13,13 @@ jobs:
             - deps-{{ checksum "package.json" }}
             - deps-
       - run:
-          name: build-to-gh-pages
+          name: yarn-install
+          command: yarn install
+      - run:
+          name: build
+          command: yarn run build
+      - run:
+          name: gh-pages
           command: ./scripts/deploy-ghpages.sh build
       - save_cache:
           paths:
