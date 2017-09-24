@@ -1,0 +1,22 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:8.5
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - deps-{{ checksum "package.json" }}
+            - deps-
+      - run:
+          name: build-to-gh-pages
+          command: ./scripts/deploy-ghpages.sh build
+      - save_cache:
+          paths:
+            - node_modules
+          key: deps-{{ checksum "package.json "}}
+
