@@ -63,19 +63,27 @@
 }
 
 .panel__checkbox-icon-workshop {
-  background-position-y: 2px;
+  background-position: 0 2px;
 }
 
 .panel__checkbox-icon-machine {
-  background-position-y: -26px;
+  background-position: 0 -26px;
 }
 
 .panel__checkbox-icon-started {
-  background-position-y: -59px;
+  background-position: 0 -59px;
 }
 
-.panel__checkbox:checked ~ .panel__checkbox-icon {
-  background-position-x: 30px;
+.panel__checkbox:checked ~ .panel__checkbox-icon-workshop {
+  background-position: 30px 2px;
+}
+
+.panel__checkbox:checked ~ .panel__checkbox-icon-machine {
+  background-position: 30px -26px;
+}
+
+.panel__checkbox:checked ~ .panel__checkbox-icon-started {
+  background-position: 30px -59px;
 }
 
 .panel__checkbox:checked ~ .panel__checkbox-text {

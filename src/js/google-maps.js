@@ -79,7 +79,10 @@ function checkForGeoLocation(map) {
         lat: position.coords.latitude,
         lng: position.coords.longitude
       }
-      if (!userClicked) map.panTo(pos)
+      if (!userClicked) {
+        map.panTo(pos)
+        map.setZoom(13)
+      }
     })
   }
 }

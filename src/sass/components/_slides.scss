@@ -56,13 +56,13 @@
     font-family: "Varela Round", sans-serif;
     height: 70px;
     background-size: 115px;
-    background-position-y: 75px;
+    background-position: 0 75px;
     background-image: url('../img/map-sprite.png');
 }
 
 .slides__next { 
     right: 0;
-    background-position-x: 50px;
+    background-position: 50px 75px;
 }
 
 .slides__input:checked + .slides__container .slides__slide {
