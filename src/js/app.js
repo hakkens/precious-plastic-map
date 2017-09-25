@@ -79,7 +79,7 @@ export default class App {
 
 function applyFilters(locationData, activeFilters) {
   return locationData.filter(location => {
-    return !_.isEmpty(_.intersection(location.filters, activeFilters))
+    return !_.isEmpty(_.intersection([location.filter], activeFilters))
   })
 }
 

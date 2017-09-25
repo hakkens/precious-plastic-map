@@ -84,7 +84,7 @@ function checkForGeoLocation(map) {
       }
       if (!userClicked) {
         map.panTo(pos)
-        map.setZoom(13)
+        map.setZoom(6)
       }
     })
   }
