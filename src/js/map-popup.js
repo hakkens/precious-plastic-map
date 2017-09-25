@@ -11,12 +11,10 @@ export default function generateMarkerContent(data) {
         <h2 class="popup__header">${data.name}</h2>
         <p class="popup__description">${data.description}</p>
         <ul class="popup__filters">
-          ${data.filters.map(filter =>
-            `<li class="popup__filter">
-              <span class="popup__filtericon popup__filtericon-${filter.toLowerCase()}"></span>
-              <p class="popup__filter-text">${FILTERS_SINGULAR[filter]}</p>
-            </li>`
-          ).join('')}
+            <li class="popup__filter">
+              <span class="popup__filtericon popup__filtericon-${data.filter.toLowerCase()}"></span>
+              <p class="popup__filter-text">${FILTERS_SINGULAR[data.filter]}</p>
+            </li>
         </ul>
         <div class="popup__column">
           ${status}
