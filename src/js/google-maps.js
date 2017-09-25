@@ -2,7 +2,7 @@ import mapStyleConfig from './map-style.json'
 import generateMarkerContent from './map-popup'
 import initSearch from './map-search'
 import { getQueryVariable } from './utils'
-import markerIcon from '../img/marker.svg'
+import FILTER_ICONS from './const'
 import './../../lib/markerclusterer'
 import m1 from '../img/m1.png'
 import m2 from '../img/m2.png'
@@ -62,7 +62,7 @@ function getMarkerFromData(data, clickHandler) {
       lat: data.lat,
       lng: data.lng
     },
-    icon: markerIcon
+    icon: FILTER_ICONS[data.filter]
   })
 
   marker.addListener('click', () => { clickHandler(marker, data) })
