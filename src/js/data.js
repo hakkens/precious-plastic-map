@@ -15,7 +15,6 @@ export default class Data {
           location.filter = filter
           return location
         })
-
       })
   }
 }
