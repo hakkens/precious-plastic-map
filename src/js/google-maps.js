@@ -3,6 +3,12 @@ import generateMarkerContent from './map-popup'
 import initSearch from './map-search'
 import { getQueryVariable } from './utils'
 import markerIcon from '../img/marker.svg'
+import './../../lib/markerclusterer'
+import m1 from '../img/m1.png'
+import m2 from '../img/m2.png'
+import m3 from '../img/m3.png'
+import m4 from '../img/m4.png'
+import m5 from '../img/m5.png'
 
 export default class GoogleMap {
 
@@ -33,12 +39,13 @@ export default class GoogleMap {
     this.infoWindow = new google.maps.InfoWindow()
 
     google.maps.event.addListener(this.map, 'click', event => this.infoWindow.close())
+    this.markerCluster = new MarkerClusterer(this.map, this.markers, { imagePaths: [m1, m2, m3, m4, m5] })
   }
 
   setData(data) {
-    this.setMapOnMarkers(null)
+    this.markerCluster.clearMarkers()
     this.markers = data.map(marker => getMarkerFromData(marker, this.markerClicked()))
-    this.setMapOnMarkers(this.map)
+    this.markerCluster.addMarkers(this.markers)
   }
 
   markerClicked() {
@@ -46,10 +53,6 @@ export default class GoogleMap {
       this.infoWindow.setContent(generateMarkerContent(data))
       this.infoWindow.open(this.map, marker)
     }
-  }
-
-  setMapOnMarkers(mapToSet) {
-    this.markers.forEach(marker => marker.setMap(mapToSet))
   }
 }
 
