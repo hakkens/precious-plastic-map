@@ -1,6 +1,6 @@
-import markerWorkspace from '../img/marker.svg'
-import markerMachine from '../img/marker.svg'
-import markerStarted from '../img/marker.svg'
+import markerWorkspace from '../img/markerWorkspace.svg'
+import markerMachine from '../img/markerMachine.svg'
+import markerStarted from '../img/markerStarted.svg'
 
 export const FILTERS = {
   WORKSHOP: 'Workspaces',
