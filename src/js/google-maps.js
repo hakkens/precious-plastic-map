@@ -47,7 +47,8 @@ export default class GoogleMap {
       keepSpiderfied: true,
       event: 'click',
       circleFootSeparation: 70,
-      spiralFootSeparation: 75
+      spiralFootSeparation: 75,
+      nearbyDistance: 70
     })
 
     this.markerCluster = new MarkerClusterer(
