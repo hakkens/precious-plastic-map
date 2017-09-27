@@ -3258,6 +3258,10 @@ node-gyp@^3.3.1:
     tar "^2.0.0"
     which "1"
 
+node-js-marker-clusterer@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/node-js-marker-clusterer/-/node-js-marker-clusterer-1.0.0.tgz#d09a1e963ebc5f6c162ece8510e9e680bba097a9"
+
 node-libs-browser@^0.7.0:
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/node-libs-browser/-/node-libs-browser-0.7.0.tgz#3e272c0819e308935e26674408d7af0e1491b83b"
@@ -3520,6 +3524,10 @@ osenv@0, osenv@^0.1.4:
   dependencies:
     os-homedir "^1.0.0"
     os-tmpdir "^1.0.0"
+
+overlapping-marker-spiderfier@^1.1.4:
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/overlapping-marker-spiderfier/-/overlapping-marker-spiderfier-1.1.4.tgz#54b5bf57c33c9137bf11f71874ff0f2172760c94"
 
 pako@~0.2.0:
   version "0.2.9"
