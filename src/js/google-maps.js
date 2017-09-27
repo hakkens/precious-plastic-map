@@ -77,7 +77,7 @@ export default class GoogleMap {
   }
 
   markerClicked() {
-    return (marker) => {
+    return marker => {
       this.infoWindow.setContent(generateMarkerContent(marker.ppData))
       this.infoWindow.open(this.map, marker)
     }
