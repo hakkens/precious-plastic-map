@@ -3,7 +3,7 @@ import generateMarkerContent from './map-popup'
 import initSearch from './map-search'
 import { getQueryVariable } from './utils'
 import { FILTER_ICONS } from './const'
-import './../../lib/markerclusterer'
+import MarkerClusterer from 'node-js-marker-clusterer'
 import m1 from '../img/m1.png'
 import m2 from '../img/m2.png'
 import m3 from '../img/m3.png'
@@ -17,6 +17,9 @@ export default class GoogleMap {
   }
 
   render(domElement) {
+    //the below is sub optimal, but we want to force this to load _after_ google maps
+    const OverlappingMarkerSpiderfier = require('overlapping-marker-spiderfier')
+
     const defaultLocation = { lat: 52.373, lng: 4.8925 }
     const urlParamLocation = getUrlParamLocation()
 
@@ -39,24 +42,49 @@ export default class GoogleMap {
     this.infoWindow = new google.maps.InfoWindow()
 
     google.maps.event.addListener(this.map, 'click', event => this.infoWindow.close())
-    this.markerCluster = new MarkerClusterer(this.map, this.markers, { imagePaths: [m1, m2, m3, m4, m5] })
+
+    this.markerSpiderfier = new OverlappingMarkerSpiderfier(this.map, {
+      keepSpiderfied: true,
+      event: 'click',
+      circleFootSeparation: 70,
+      spiralFootSeparation: 75
+    })
+
+    this.markerCluster = new MarkerClusterer(
+      this.map,
+      this.markers, {
+        styles: [
+          { height: 53, width: 53, url: m1 },
+          { height: 56, width: 56, url: m2 },
+          { height: 66, width: 66, url: m3 },
+          { height: 78, width: 78, url: m4 },
+          { height: 90, width: 90, url: m5 }
+        ],
+        maxZoom: 14
+      }
+    )
   }
 
   setData(data) {
     this.markerCluster.clearMarkers()
-    this.markers = data.map(marker => getMarkerFromData(marker, this.markerClicked()))
+    this.markers = data.map(marker => {
+      const mapMarker = getMarkerFromData(marker)
+      this.markerSpiderfier.addMarker(mapMarker)
+      return mapMarker
+    })
+    this.markerSpiderfier.addListener('click', this.markerClicked())
     this.markerCluster.addMarkers(this.markers)
   }
 
   markerClicked() {
-    return (marker, data) => {
-      this.infoWindow.setContent(generateMarkerContent(data))
+    return (marker) => {
+      this.infoWindow.setContent(generateMarkerContent(marker.ppData))
       this.infoWindow.open(this.map, marker)
     }
   }
 }
 
-function getMarkerFromData(data, clickHandler) {
+function getMarkerFromData(data) {
   const marker = new google.maps.Marker({
     position: {
       lat: data.lat,
@@ -65,7 +93,8 @@ function getMarkerFromData(data, clickHandler) {
     icon: FILTER_ICONS[data.filter]
   })
 
-  marker.addListener('click', () => { clickHandler(marker, data) })
+  marker.ppData = data
+
   return marker
 }
 
