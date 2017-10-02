@@ -61,7 +61,8 @@ export default class GoogleMap {
           { height: 78, width: 78, url: m4 },
           { height: 90, width: 90, url: m5 }
         ],
-        maxZoom: 14
+        maxZoom: 14,
+        minimumClusterSize: 10
       }
     )
   }
