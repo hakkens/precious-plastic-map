@@ -44,6 +44,7 @@ export default class GoogleMap {
     google.maps.event.addListener(this.map, 'click', event => this.infoWindow.close())
 
     this.markerSpiderfier = new OverlappingMarkerSpiderfier(this.map, {
+      minZoomLevel: 13,
       keepSpiderfied: true,
       event: 'click',
       circleFootSeparation: 70,
