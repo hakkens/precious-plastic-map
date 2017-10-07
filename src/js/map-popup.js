@@ -21,7 +21,7 @@ export default function generateMarkerContent(data) {
           ${website}
         </div>
         <div class="popup__column popup__column-right">
-          <a href="${contactURL}" target="_blank" class="btn btn-primary">Profile</a>
+          <a href="${contactURL}" target="_blank" class="btn btn-primary">Say Hi</a>
         </div>
       </div>
     </div>
