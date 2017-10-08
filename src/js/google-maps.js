@@ -63,7 +63,7 @@ export default class GoogleMap {
           { height: 90, width: 90, url: m5 }
         ],
         maxZoom: 14,
-        minimumClusterSize: 10
+        minimumClusterSize: 40
       }
     )
   }
@@ -133,4 +133,3 @@ function getUrlParamLocation() {
     lng: parseFloat(lng)
   }
 }
-
