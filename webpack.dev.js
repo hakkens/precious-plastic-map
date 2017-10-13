@@ -8,8 +8,7 @@ var mergedConfig = function(env) {
     plugins: [
       new webpack.DefinePlugin({
         'process.env' : {
-          'WP_URL': JSON.stringify('http://localhost:8000'),
-          'WP_LOGIN': JSON.stringify('http://localhost:8000/community/login?redirect_to=')
+          'WP_URL': JSON.stringify('http://localhost:8000')
         }
       })
     ]
