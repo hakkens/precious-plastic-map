@@ -27,8 +27,9 @@ export default class GoogleMap {
       center: urlParamLocation || defaultLocation,
       zoom: urlParamLocation ? 13 : 3,
       minZoom: 3,
+      gestureControl: 'greedy',
       mapTypeControlOptions: {
-        mapTypeIds: ['styled_map', 'satellite']
+        mapTypeIds: []
       }
     })
 
