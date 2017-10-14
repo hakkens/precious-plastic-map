@@ -92,6 +92,6 @@ function toggleFilterDrop() {
 }
 
 function addPin() {
-  openNewWindow(process.env.WP_LOGIN + encodeURIComponent('USER/pins/'))
+  openNewWindow(process.env.WP_URL + '/community/register/?add-pin=add')
 }
 
