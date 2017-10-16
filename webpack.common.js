@@ -62,7 +62,7 @@ module.exports = {
       title: 'Precious Plastic',
       template: path.join(__dirname, 'src', 'index.ejs'),
       inject: 'head',
-      googleKey: 'AIzaSyCrb3BB8Wg-YaCs8JXtFCeNGY2YPAmATrc'
+      googleKey: 'AIzaSyDWVlrKqGIsaic-hlfBJAHfvhvkLj_EvDo'
     }),
     new ExtractTextPlugin('style-[contenthash].css'),
     new FaviconsWebpackPlugin({
