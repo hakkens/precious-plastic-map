@@ -39,7 +39,7 @@ export default class App {
 
     return filters.map(filter => filter.key).filter(filter => {
       if (paramFilters.length > 0) return paramFilters.includes(filter)
-      return filter === 'WORKSHOP'
+      return true;
     })
   }
 
