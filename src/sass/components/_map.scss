@@ -1,3 +1,16 @@
 html, body, .map {
   height: 100%;
 }
+
+.map {
+  .marker-cluster {
+    position: absolute;
+
+    span {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+}
