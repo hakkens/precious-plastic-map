@@ -14,6 +14,9 @@ export default class Search {
   }
 
   init(elem) {
+    //prevent enter reloaded the page
+    this.elem.addEventListener('keydown', event => event.which == 13 ? event.preventDefault() : null)
+
     this.elem = elem
     // eslint-disable-next-line
     new autoComplete({
