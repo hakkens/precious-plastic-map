@@ -14,10 +14,11 @@ export default class Search {
   }
 
   init(elem) {
+    this.elem = elem
+
     //prevent enter reloaded the page
     this.elem.addEventListener('keydown', event => event.which == 13 ? event.preventDefault() : null)
 
-    this.elem = elem
     // eslint-disable-next-line
     new autoComplete({
       cache: false,
@@ -47,6 +48,7 @@ export default class Search {
         this.map.fitBounds([[bb[1], bb[0]], [bb[3], bb[2]]], { animate: true, duration: 1.5 })
       }
     })
+
 
     getElement('close-search').addEventListener('click', () => {
       elem.value = ''
