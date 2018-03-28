@@ -3,13 +3,14 @@ import 'leaflet.markercluster'
 import generateMarkerContent from './map-popup'
 import { getQueryVariable } from '../utils'
 import { getClusterIcon, getMarker } from './sprite'
+import Search from './search'
 
 export default class LeafletMap {
 
   constructor() {
     this.markers = []
     this.markerCluster = L.markerClusterGroup({
-      maxClusterRadius: 40,
+      maxClusterRadius: 30,
       iconCreateFunction: cluster => {
         const count = cluster.getChildCount()
         return getClusterIcon(count)
@@ -17,7 +18,7 @@ export default class LeafletMap {
     })
   }
 
-  render(domElement) {
+  render(domElement, searchElement) {
     const defaultLocation = [52.373, 4.8925]
     const urlParamLocation = getUrlParamLocation()
 
@@ -25,6 +26,9 @@ export default class LeafletMap {
       urlParamLocation || defaultLocation,
       urlParamLocation ? 13 : 3
     )
+
+    this.search = new Search(this.map)
+    this.search.init(searchElement)
 
     const osmUrl='http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
     const osmAttrib='Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'

@@ -5,6 +5,7 @@ import m2 from '../../img/m2.png'
 import m3 from '../../img/m3.png'
 import m4 from '../../img/m4.png'
 import m5 from '../../img/m5.png'
+import searchMarker from '../../img/searchMarker.png'
 
 const CLUSTER_ICONS = [
   { iconUrl: m1, iconSize: [56, 55], iconAnchor: [27, 26] },
@@ -18,7 +19,7 @@ export const getClusterIcon = count => {
   const size = Math.floor(Math.log10(count))
   const { iconUrl, iconSize, iconAnchor } = CLUSTER_ICONS[size]
   return L.divIcon({
-    html: `<img src="${iconUrl}" /><span>${count}</span>`,
+    html: `<img src="${iconUrl}" /><span class="cluster-count">${count}</span>`,
     className: `marker-cluster marker-cluster-${size}`,
     iconSize,
     iconAnchor
@@ -35,6 +36,19 @@ export const getMarker = data => {
         iconSize: [75, 75],
         iconAnchor: [32, 32],
         popupAnchor: [7, -19]
+      })
+    }
+  )
+}
+
+export const getSearchMarker = data => {
+  return L.marker(
+    new L.LatLng(data.lat, data.lng),
+    {
+      icon: L.icon({
+        iconUrl: searchMarker,
+        iconSize: [50, 42],
+        iconAnchor: [12.5, 40]
       })
     }
   )

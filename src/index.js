@@ -5,16 +5,17 @@ import LeafletMap from './js/map/leaflet'
 import App from './js/app'
 import './sass/index.scss'
 
-window.init = () => {
+document.addEventListener('DOMContentLoaded', () => {
   if (!window.Promise) {
     window.Promise = Promise
   }
 
   const mapElement = document.getElementById('map')
+  const searchElement = document.getElementById('search')
 
   const data = new Data()
   const map = new LeafletMap()
-  map.render(mapElement)
+  map.render(mapElement, searchElement)
   const app = new App({ data, map })
   app.initApp()
-}
+})
