@@ -1,21 +1,15 @@
 import L from 'leaflet'
-import 'leaflet.markercluster'
+import clusters from './cluster'
 import generateMarkerContent from './map-popup'
 import { getQueryVariable } from '../utils'
-import { getClusterIcon, getMarker } from './sprite'
+import { getMarker } from './sprite'
 import Search from './search'
 
 export default class LeafletMap {
 
   constructor() {
     this.markers = []
-    this.markerCluster = L.markerClusterGroup({
-      maxClusterRadius: 30,
-      iconCreateFunction: cluster => {
-        const count = cluster.getChildCount()
-        return getClusterIcon(count)
-      }
-    })
+    this.markerClusters = clusters
   }
 
   render(domElement, searchElement) {
@@ -35,19 +29,29 @@ export default class LeafletMap {
     const osm = new L.TileLayer(osmUrl, { minZoom: 3, maxZoom: 18, attribution: osmAttrib })
     osm.addTo(this.map)
 
-    this.map.addLayer(this.markerCluster)
-
     if (!urlParamLocation) checkForGeoLocation(this.map)
   }
 
   setData(data) {
-    this.markerCluster.removeLayers(this.markers)
-    this.markers = data.map(d => {
+    const markerMap = new Map()
+    data.map(d => {
+      if (!markerMap.has(d.filter)) markerMap.set(d.filter, [])
+      const markers = markerMap.get(d.filter)
       const marker = getMarker(d)
       marker.bindPopup(L.popup({ minWidth: 299, maxWidth: 299, className: 'marker-popup' }).setContent(generateMarkerContent(d)))
-      return marker
+      markerMap.set(d.filter, markers.concat([marker]))
     })
-    this.markerCluster.addLayers(this.markers)
+
+    for (const key of markerMap.keys()) {
+      this.markerClusters[key].addLayers(markerMap.get(key))
+    }
+  }
+
+  setFilters(filters) {
+    for (const key of Object.keys(this.markerClusters)) {
+      if (filters.includes(key)) this.markerClusters[key].addTo(this.map)
+      else this.markerClusters[key].remove()
+    }
   }
 }
 
