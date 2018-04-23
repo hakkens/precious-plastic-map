@@ -21,7 +21,8 @@ export default class App {
     getElement('mob-add-pin').addEventListener('click', addPin)
     getElement('info').addEventListener('click', toggleInfoBox)
     getElement('drop-toggle').addEventListener('click', toggleFilterDrop)
-    this.setData()
+    this.map.setData(this.locationData)
+    this.map.setFilters(this.activeFilters)
   }
 
   toggleMenu() {
@@ -65,22 +66,10 @@ export default class App {
       input.addEventListener('click', e => {
         const filter = e.target.value.toUpperCase()
         this.activeFilters = _.xor(this.activeFilters, [filter])
-        this.setData()
+        this.map.setFilters(this.activeFilters)
       })
     })
   }
-
-  setData() {
-    const { locationData, activeFilters } = this
-    const filtered = applyFilters(locationData, activeFilters)
-    this.map.setData(filtered)
-  }
-}
-
-function applyFilters(locationData, activeFilters) {
-  return locationData.filter(location => {
-    return !_.isEmpty(_.intersection([location.filter], activeFilters))
-  })
 }
 
 function toggleInfoBox() {

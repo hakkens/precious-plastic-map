@@ -1,5 +1,6 @@
 .popup {
     max-width: 300px;
+    padding-bottom: 1rem;
 }
 
 .popup__text {
@@ -71,21 +72,26 @@
     background-position: -26px -48px;
 }
 
-//Google markup is awful and has no classes, forcing these styles to be super ugly.
-//Nth-child is used to hopefully prevent these styles from affecting other things.
-.gm-style-iw {
-    top: 0px !important;
-    left: 0px !important;
+
+// resets for leaflet styles
+.leaflet-popup-content p {
+    margin: 0 0 1rem 0;
 }
 
-.gm-style-iw,
-.gm-style-iw > div:first-child {
-    max-width: 300px !important;
-    width: 300px !important;
+.popup a {
+    color: #fff;
 }
 
-//Close button layer
-.gm-style-iw + div {
+.map .leaflet-popup-content-wrapper {
+  padding: 0;
+  border-radius: 2px;
+}
+
+.map .leaflet-popup-content {
+  margin: 0
+}
+
+.leaflet-container .marker-popup a.leaflet-popup-close-button {
     width: 25px !important;
     height: 25px !important;
     left: 265px;
@@ -98,23 +104,9 @@
     line-height: 22px;
     border-radius: 50%;
     background: $text-color;
-}
-.gm-style-iw + div:after {
-    content: "\00d7";
-}
-.gm-style-iw + div img {
-    display: none;
+    padding: 0;
 }
 
-//Shadow layer
-.gm-style > div:first-child > div:nth-child(3) > div:nth-child(2) > div:nth-child(4) > div:first-child > div:first-child > div:nth-child(2),
-.gm-style > div:first-child > div:nth-child(3) > div:nth-child(2) > div:nth-child(4) > div:first-child > div:first-child > div:nth-child(4) {
-    width: 300px !important;
-    top: 0px !important;
-    left: 0px !important;
-}
-
-//Places of interest popups
 .poi-info-window {
     padding: 20px 20px 0 20px;
     word-wrap: break-word;

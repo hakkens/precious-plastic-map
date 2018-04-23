@@ -1,4 +1,4 @@
-import { FILTERS_SINGULAR, STATUS } from './const'
+import { FILTERS_SINGULAR, STATUS } from '../const'
 
 export default function generateMarkerContent(data) {
   const contactURL = process.env.WP_URL + '/community/login?redirect_to=' + encodeURIComponent('community/members/' + data.username)
