@@ -15,11 +15,13 @@ export default class LeafletMap {
   render(domElement, searchElement) {
     const defaultLocation = [52.373, 4.8925]
     const urlParamLocation = getUrlParamLocation()
+    const scrollWheelZoom = !(getQueryVariable('scrollzoom') === 'false')
 
-    this.map = L.map(domElement).setView(
-      urlParamLocation || defaultLocation,
-      urlParamLocation ? 13 : 3
-    )
+    this.map = L.map(domElement, {
+      scrollWheelZoom,
+      center: urlParamLocation || defaultLocation,
+      zoom: urlParamLocation ? 13 : 3
+    })
 
     this.search = new Search(this.map)
     this.search.init(searchElement)
