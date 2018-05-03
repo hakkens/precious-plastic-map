@@ -51,7 +51,8 @@ export const getMarker = data => {
         iconSize: [75, 75],
         iconAnchor: [32, 32],
         popupAnchor: [7, -19]
-      })
+      }),
+      zIndexOffset: (data.filter == 'WORKSHOP' ? 9000 : (data.filter == 'MACHINE' ? 8000 : 0))
     }
   )
 }
