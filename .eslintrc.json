@@ -17,7 +17,8 @@
         "brace-style" : [ "error", "1tbs", { "allowSingleLine" : true } ],
         "arrow-parens": [ "error", "as-needed" ],
         "spaced-comment": "off",
-        "comma-dangle": [ "error", "never" ]
+        "comma-dangle": [ "error", "never" ],
+        "no-console": [ "error", { "allow": ["warn", "error"] } ]
     },
     "parser": "babel-eslint",
     "plugins": []

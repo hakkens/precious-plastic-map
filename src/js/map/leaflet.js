@@ -37,6 +37,7 @@ export default class LeafletMap {
   setData(data) {
     const markerMap = new Map()
     data.map(d => {
+      if (!d.filter) { console.warn(d); return }
       if (!markerMap.has(d.filter)) markerMap.set(d.filter, [])
       const markers = markerMap.get(d.filter)
       const marker = getMarker(d)
@@ -45,7 +46,7 @@ export default class LeafletMap {
     })
 
     for (const key of markerMap.keys()) {
-      this.markerClusters[key].addLayers(markerMap.get(key))
+      if (key) this.markerClusters[key].addLayers(markerMap.get(key))
     }
   }
 
